@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "javalang-py"
+version = "0.1.0"
+description = "Implementação em Python de classes baseadas na API Java SE 8 (String, Integer, Float)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Beatriz Vieira Gomes da Silva" },
+    { name = "Isabela Martins Garcia" },
+    { name = "Maria Eduarda da Silva de Macedo" },
+    { name = "Miguel Paulo Rodrigues de Macedo" },
+    { name = "Luciana Nunes Viana" },
+    { name = "Reinaldo Andrade Hashioka" },
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["javalang*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
