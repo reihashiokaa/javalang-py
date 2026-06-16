@@ -1,0 +1,33 @@
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testes e cobertura
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Build / empacotamento
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Tipagem
+.mypy_cache/
+.ruff_cache/
+
+# Configurações de IDE
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
