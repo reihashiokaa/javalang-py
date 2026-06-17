@@ -72,7 +72,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | ---------- | ---------- | ----------------------- | ---------------------- | --------- |
 | 13/06/2026 | ChatGPT    | Criação de documentação | docs/uso-de-ia.md      | Adaptada    |
 | DD/MM/AAAA | ChatGPT | Criação de plano de implementação | docs/plano-implementacao.md | Aceita com modificações |
-
+| 17/06/2026 | ChatGPT | Preparação de relatório de baseline | `docs/relatorios/status-v0.1.md` | Aceita com modificações |
 ---
 
 ## Registro de Uso 01
@@ -143,6 +143,44 @@ O conteúdo foi revisado e adaptado antes de ser incorporado ao repositório. A 
 ### Resultado
 
 Aceita com modificações.
+
+## Registro de Uso 03
+
+### Data
+
+17/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na preparação do relatório de status da baseline `v0.1-functional`.
+
+### Trecho do projeto afetado
+
+* `docs/relatorios/status-v0.1.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Preparar o conteúdo da issue de baseline `v0.1-functional`, incluindo relatório de status, escopo consolidado, artefatos adicionados, estado da CI, pendências conhecidas e texto de pull request.
+
+### Descrição da contribuição da IA
+
+A IA sugeriu uma estrutura inicial para o relatório de status da baseline, incluindo resumo da etapa, escopo consolidado, decisões registradas, artefatos adicionados, estado da integração contínua e pendências previstas para a próxima milestone.
+
+Também foi sugerido um texto inicial para a descrição do pull request relacionado à preparação da baseline.
+
+### Validação da equipe
+
+O conteúdo foi revisado e ajustado antes de ser incorporado ao repositório. As informações foram conferidas com base no estado real das issues, pull requests e documentos existentes no projeto.
+
+### Resultado
+
+Aceita com modificações.
+
 
 
 
