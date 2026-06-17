@@ -71,7 +71,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | Data       | Ferramenta | Objetivo                | Arquivo/Funcionalidade | Resultado |
 | ---------- | ---------- | ----------------------- | ---------------------- | --------- |
 | 13/06/2026 | ChatGPT    | Criação de documentação | docs/uso-de-ia.md      | Adaptada    |
-
+| DD/MM/AAAA | ChatGPT | Criação de plano de implementação | docs/plano-implementacao.md | Aceita com modificações |
 
 ---
 
@@ -107,6 +107,42 @@ A IA sugeriu um modelo bem completo e útil para registro de uso IA
 ### Resultado
 
 * Aceita com modificações.
+
+---
+
+## Registro de Uso 02
+
+### Data
+
+17/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na criação do plano inicial de implementação das classes do projeto.
+
+### Trecho do projeto afetado
+
+* `docs/plano-implementacao.md`
+
+### Prompt ou interação representativa
+
+> Criar um plano inicial de implementação para o projeto, definindo a ordem das classes, os primeiros blocos de métodos de `JInteger` e a forma como `JFloat` e `JString` serão tratados nas próximas etapas.
+
+### Descrição da contribuição da IA
+
+A IA sugeriu uma estrutura inicial para o documento de plano de implementação, organizando a ordem das classes em `JInteger`, `JFloat` e `JString`, separando blocos iniciais de métodos e relacionando o plano com as próximas baselines do projeto.
+
+### Validação da equipe
+
+O conteúdo foi revisado e adaptado antes de ser incorporado ao repositório. A equipe manteve apenas as partes compatíveis com a organização real do projeto e com as decisões já registradas.
+
+### Resultado
+
+Aceita com modificações.
 
 
 
