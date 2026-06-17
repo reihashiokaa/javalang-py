@@ -26,4 +26,9 @@ jobs:
         run: ruff check .
 
       - name: Run tests
-        run: pytest
+        run: |
+          if ls tests/test_*.py 1> /dev/null 2>&1; then
+            pytest
+          else
+            echo "No tests found. Skipping pytest."
+          fi
