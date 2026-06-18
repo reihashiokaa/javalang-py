@@ -182,6 +182,38 @@ O conteúdo foi revisado e ajustado antes de ser incorporado ao repositório. As
 
 Aceita com modificações.
 
-## Registro de Uso 04 ### Data 18/06/2026 ### Ferramenta utilizada ChatGPT ### Objetivo Auxiliar na implementação inicial da classe `JInteger`, incluindo a definição das constantes básicas e a criação dos primeiros testes automatizados. ### Trecho do projeto afetado - `javalang/jinteger.py` - `javalang/__init__.py` - `tests/test_jinteger.py` ### Prompt ou interação representativa > Ajudar a implementar a primeira issue da milestone `v0.2-jinteger`, criando a estrutura inicial da classe `JInteger`, suas constantes básicas e os testes correspondentes. ### Descrição da contribuição da IA A IA sugeriu uma estrutura inicial para a classe `JInteger`, contendo as constantes `MAX_VALUE`, `MIN_VALUE`, `SIZE`, `BYTES` e `TYPE`. Também sugeriu testes unitários para validar esses valores e orientou a execução local dos testes com `python -m pytest` e `python -m ruff check .`. ### Validação da equipe O conteúdo foi revisado antes de ser incorporado ao repositório. A implementação foi mantida dentro do escopo da issue, sem adicionar métodos de conversão, parsing, comparação ou operações bit a bit. ### Resultado Aceita com modificações.
+## Registro de Uso 04
 
+### Data
 
+18/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação inicial da classe `JInteger`, incluindo a definição das constantes básicas e a criação dos primeiros testes automatizados.
+
+### Trecho do projeto afetado
+
+* `javalang/jinteger.py`
+* `javalang/__init__.py`
+* `tests/test_jinteger.py`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a primeira issue da milestone `v0.2-jinteger`, criando a estrutura inicial da classe `JInteger`, suas constantes básicas e os testes correspondentes.
+
+### Descrição da contribuição da IA
+
+A IA sugeriu uma estrutura inicial para a classe `JInteger`, contendo as constantes `MAX_VALUE`, `MIN_VALUE`, `SIZE`, `BYTES` e `TYPE`. Também sugeriu testes unitários para validar esses valores e orientou a execução local dos testes com `python -m pytest` e `python -m ruff check .`.
+
+### Validação da equipe
+
+O conteúdo foi revisado antes de ser incorporado ao repositório. A implementação foi mantida dentro do escopo da issue, sem adicionar métodos de conversão, parsing, comparação ou operações bit a bit.
+
+### Resultado
+
+Aceito com modificações.
