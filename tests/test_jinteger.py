@@ -40,3 +40,21 @@ def test_hash_code_returns_stored_integer_value():
     assert JInteger(10).hashCode() == 10
     assert JInteger(-10).hashCode() == -10
     assert JInteger(0).hashCode() == 0
+
+def test_equals_compares_jinteger_by_value():
+    assert JInteger(10).equals(JInteger(10)) is True
+    assert JInteger(10).equals(JInteger(5)) is False
+    assert JInteger(-1).equals(JInteger(-1)) is True
+    assert JInteger(0).equals(0) is False
+
+
+def test_compare_to_orders_jinteger_values():
+    assert JInteger(10).compareTo(JInteger(5)) == 1
+    assert JInteger(5).compareTo(JInteger(10)) == -1
+    assert JInteger(10).compareTo(JInteger(10)) == 0
+    assert JInteger(-5).compareTo(JInteger(0)) == -1
+
+
+def test_compare_to_rejects_non_jinteger():
+    with pytest.raises(TypeError):
+        JInteger(10).compareTo(10)

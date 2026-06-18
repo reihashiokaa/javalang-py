@@ -27,3 +27,19 @@ class JInteger:
     def hashCode(self):
         """Retorna o hash compatível com o valor inteiro armazenado."""
         return self._value
+    def equals(self, other):
+        """Compara este JInteger com outro objeto por valor."""
+        return isinstance(other, JInteger) and self._value == other._value
+
+    def compareTo(self, other):
+        """Compara este JInteger com outro JInteger."""
+        if not isinstance(other, JInteger):
+            raise TypeError("compareTo expects a JInteger instance")
+
+        if self._value < other._value:
+            return -1
+
+        if self._value > other._value:
+            return 1
+
+        return 0
