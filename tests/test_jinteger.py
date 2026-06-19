@@ -72,3 +72,21 @@ def test_reverse_one():
 def test_reverse_minus_one():
     assert JInteger.reverse(-1) == -1
  
+ 
+def test_reverse_bytes_zero():
+    assert JInteger.reverseBytes(0) == 0
+ 
+ 
+def test_reverse_bytes_hex():
+    assert JInteger.reverseBytes(0x01020304) == 0x04030201
+
+def test_rotate_left_distance_1():
+    assert JInteger.rotateLeft(1, 1) == 2
+ 
+ 
+def test_rotate_left_distance_32():
+    assert JInteger.rotateLeft(1, 32) == 1
+ 
+ 
+def test_rotate_left_distance_33():
+    assert JInteger.rotateLeft(1, 33) == JInteger.rotateLeft(1, 1)
