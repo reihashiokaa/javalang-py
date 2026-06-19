@@ -59,3 +59,16 @@ def test_compare_to_orders_jinteger_values():
 def test_compare_to_rejects_non_jinteger():
     with pytest.raises(TypeError):
         JInteger(10).compareTo(10)
+
+
+def test_reverse_zero():
+    assert JInteger.reverse(0) == 0
+ 
+ 
+def test_reverse_one():
+    assert JInteger.reverse(1) == -2147483648
+ 
+ 
+def test_reverse_minus_one():
+    assert JInteger.reverse(-1) == -1
+ 
