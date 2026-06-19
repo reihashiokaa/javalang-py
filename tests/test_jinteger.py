@@ -90,3 +90,15 @@ def test_rotate_left_distance_32():
  
 def test_rotate_left_distance_33():
     assert JInteger.rotateLeft(1, 33) == JInteger.rotateLeft(1, 1)
+
+def test_rotate_right_distance_1():
+    assert JInteger.rotateRight(1, 1) == -2147483648
+ 
+ 
+def test_rotate_right_distance_32():
+    assert JInteger.rotateRight(1, 32) == 1
+ 
+ 
+def test_rotate_right_distance_33():
+    assert JInteger.rotateRight(1, 33) == JInteger.rotateRight(1, 1)
+ 
