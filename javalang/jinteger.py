@@ -59,4 +59,10 @@ class JInteger:
         return a if a < b else b
 
 
- 
+    @staticmethod
+    def compare(a: int, b: int) -> int:
+        if a < b:
+            return -1
+        if a > b:
+            return 1
+        return 0
