@@ -41,5 +41,14 @@ class JInteger:
 
         if self._value > other._value:
             return 1
+    
+    def intValue(self):
+        """Retorna o valor armazenado como int"""
+        return self._value
+
+    def logValue(self):
+        """Retorna o valor armazenado como long"""
+        return self._value
+    
 
         return 0
