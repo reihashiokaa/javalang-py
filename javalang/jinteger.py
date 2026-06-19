@@ -50,5 +50,13 @@ class JInteger:
         """Retorna o valor armazenado como long"""
         return self._value
     
+    def floatValue(self):
+        """Retorna o valor armazenado como float."""
+        return float(self._value)
+
+    def doubleValue(self):
+        """Retorna o valor armazenado como double."""
+        return float(self._value)
+    
 
         return 0
