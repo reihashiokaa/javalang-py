@@ -94,3 +94,29 @@ def test_to_unsigned_string_formats_values():
     assert JInteger.toUnsignedString(255, 8) == "377"
     assert JInteger.toUnsignedString(255, 16) == "ff"
     assert JInteger.toUnsignedString(-1, 16) == "ffffffff"
+
+def test_compare_unsigned_orders_values_as_unsigned_32_bits():
+    assert JInteger.compareUnsigned(1, 2) == -1
+    assert JInteger.compareUnsigned(2, 1) == 1
+    assert JInteger.compareUnsigned(2, 2) == 0
+    assert JInteger.compareUnsigned(-1, 1) == 1
+
+
+def test_divide_unsigned_uses_unsigned_32_bit_interpretation():
+    assert JInteger.divideUnsigned(10, 2) == 5
+    assert JInteger.divideUnsigned(-1, 2) == 2147483647
+    assert JInteger.divideUnsigned(-1, -1) == 1
+
+
+def test_remainder_unsigned_uses_unsigned_32_bit_interpretation():
+    assert JInteger.remainderUnsigned(10, 3) == 1
+    assert JInteger.remainderUnsigned(-1, 2) == 1
+    assert JInteger.remainderUnsigned(-1, -1) == 0
+
+
+def test_unsigned_division_operations_reject_zero_divisor():
+    with pytest.raises(ZeroDivisionError):
+        JInteger.divideUnsigned(10, 0)
+
+    with pytest.raises(ZeroDivisionError):
+        JInteger.remainderUnsigned(10, 0)
