@@ -102,3 +102,14 @@ def test_rotate_right_distance_32():
 def test_rotate_right_distance_33():
     assert JInteger.rotateRight(1, 33) == JInteger.rotateRight(1, 1)
  
+def test_signum_negative():
+    assert JInteger.signum(-10) == -1
+ 
+ 
+def test_signum_zero():
+    assert JInteger.signum(0) == 0
+ 
+ 
+def test_signum_positive():
+    assert JInteger.signum(10) == 1
+ 
