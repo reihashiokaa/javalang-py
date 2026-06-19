@@ -108,3 +108,39 @@ class JInteger:
         unsigned_value = _to_unsigned_32(value)
 
         return _format_unsigned(unsigned_value, radix)
+    
+    @staticmethod
+    def compareUnsigned(first: int, second: int):
+        """Compara dois inteiros usando interpretação sem sinal de 32 bits."""
+        first_unsigned = _to_unsigned_32(first)
+        second_unsigned = _to_unsigned_32(second)
+
+        if first_unsigned < second_unsigned:
+            return -1
+
+        if first_unsigned > second_unsigned:
+            return 1
+
+        return 0
+
+    @staticmethod
+    def divideUnsigned(dividend: int, divisor: int):
+        """Divide dois inteiros interpretados como sem sinal de 32 bits."""
+        unsigned_dividend = _to_unsigned_32(dividend)
+        unsigned_divisor = _to_unsigned_32(divisor)
+
+        if unsigned_divisor == 0:
+            raise ZeroDivisionError("division by zero")
+
+        return unsigned_dividend // unsigned_divisor
+
+    @staticmethod
+    def remainderUnsigned(dividend: int, divisor: int):
+        """Retorna o resto da divisão sem sinal de 32 bits."""
+        unsigned_dividend = _to_unsigned_32(dividend)
+        unsigned_divisor = _to_unsigned_32(divisor)
+
+        if unsigned_divisor == 0:
+            raise ZeroDivisionError("division by zero")
+
+        return unsigned_dividend % unsigned_divisor
