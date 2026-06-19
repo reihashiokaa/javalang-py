@@ -74,6 +74,8 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | DD/MM/AAAA | ChatGPT | Criação de plano de implementação | docs/plano-implementacao.md | Aceita com modificações |
 | 17/06/2026 | ChatGPT | Preparação de relatório de baseline | `docs/relatorios/status-v0.1.md` | Aceita com modificações |
 | 18/06/2026 | ChatGPT | Apoio na implementação inicial de JInteger | `javalang/jinteger.py`, `javalang/__init__.py`, `tests/test_jinteger.py` | Aceita com modificações |
+| 18/06/2026 | ChatGPT | axiliar na implementação dos métodos básicos de instância da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py` e `docs/uso-de-ia.md` | Aceita |
+
 ---
 
 ## Registro de Uso 01
@@ -213,6 +215,46 @@ A IA sugeriu uma estrutura inicial para a classe `JInteger`, contendo as constan
 ### Validação da equipe
 
 O conteúdo foi revisado antes de ser incorporado ao repositório. A implementação foi mantida dentro do escopo da issue, sem adicionar métodos de conversão, parsing, comparação ou operações bit a bit.
+
+### Resultado
+
+Aceito com modificações.
+
+## Registro de Uso 05
+
+### Data
+
+18/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos básicos de instância da classe `JInteger`, relacionados à representação textual, igualdade, hash e comparação entre valores.
+
+### Trecho do projeto afetado
+
+* `javalang/jinteger.py`
+* `tests/test_jinteger.py`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue de `JInteger` responsável pelos métodos `toString`, `hashCode`, `equals` e `compareTo`, respeitando os limites de métodos por commit e mantendo a rastreabilidade com a issue correspondente.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação em etapas pequenas, sugerindo a divisão dos commits para manter o escopo controlado. Também orientou a criação do construtor básico necessário para armazenar o valor interno de `JInteger`, além da implementação dos métodos `toString`, `hashCode`, `equals` e `compareTo`.
+
+Foram sugeridos testes automatizados para validar a representação textual, o hash, a igualdade por valor e a comparação entre instâncias de `JInteger`.
+
+### Validação da equipe
+
+O conteúdo sugerido foi revisado antes de ser incorporado ao repositório. A implementação foi mantida dentro do escopo da issue, sem adicionar métodos de conversão, parsing, formatação por base ou operações bit a bit.
+
+Os testes de `JInteger` foram executados localmente com sucesso após a implementação.
 
 ### Resultado
 
