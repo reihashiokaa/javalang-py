@@ -1,5 +1,17 @@
 """Implementação inicial da classe JInteger."""
 
+"""Funções auxiliares"""
+     
+def _to_uint32(value: int) -> int:
+        return value & 0xFFFFFFFF
+    
+    
+def _to_int32(value: int) -> int:
+        value = _to_uint32(value)
+        if value >= 0x80000000:
+            value -= 0x100000000
+        return value
+
 
 class JInteger:
     """Representa a classe Integer da API Java SE 8."""
@@ -9,18 +21,6 @@ class JInteger:
     SIZE = 32
     BYTES = 4
     TYPE = int
-
-    """Funções auxiliares"""
-     
-    def _to_uint32(value: int) -> int:
-        return value & 0xFFFFFFFF
-    
-    
-    def _to_int32(value: int) -> int:
-        value = _to_uint32(value)
-        if value >= 0x80000000:
-            value -= 0x100000000
-        return value
 
 
     """Métodos estáticos"""
