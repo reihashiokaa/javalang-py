@@ -259,3 +259,36 @@ Os testes de `JInteger` foram executados localmente com sucesso após a implemen
 ### Resultado
 
 Aceito com modificações.
+
+
+## Registro de Uso 006
+
+### Data 
+
+18/06/2026
+
+### Ferramenta Utilizada
+
+Claude
+
+### Objetivo
+
+Auxiliar na adaptação da implementação de operações bit a bit da classe Jinteger e seus testes.
+
+### Trecho do Projeto Afetado
+
+javalang/test_jinteger.py
+tests/jinteger.py
+docs/adaptacoes.md
+
+### Descrição da Contribuição da IA
+
+O agente explicou como funcionava a lógica bit abit de Java e como adapta-lá para python. Auxiliou também na documentação dessas adaptações.
+
+### Validação da Equipe
+
+O conteúdo sugerido foi revisado antes de ser incorporado ao repositório. A implementação foi mantida dentro do escopo da issue, sem adicionar métodos fora do escopo.
+
+### Resultado
+
+Aceita com modificações
