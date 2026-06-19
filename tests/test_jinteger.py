@@ -59,3 +59,38 @@ def test_compare_to_orders_jinteger_values():
 def test_compare_to_rejects_non_jinteger():
     with pytest.raises(TypeError):
         JInteger(10).compareTo(10)
+
+def test_parse_unsigned_int_accepts_valid_values():
+    assert JInteger.parseUnsignedInt("0") == 0
+    assert JInteger.parseUnsignedInt("10") == 10
+    assert JInteger.parseUnsignedInt("4294967295") == 4294967295
+    assert JInteger.parseUnsignedInt("11111111", 2) == 255
+    assert JInteger.parseUnsignedInt("ff", 16) == 255
+    assert JInteger.parseUnsignedInt("377", 8) == 255
+
+
+def test_parse_unsigned_int_rejects_invalid_values():
+    with pytest.raises(ValueError):
+        JInteger.parseUnsignedInt("-1")
+
+    with pytest.raises(ValueError):
+        JInteger.parseUnsignedInt("")
+
+    with pytest.raises(ValueError):
+        JInteger.parseUnsignedInt("10", 1)
+
+    with pytest.raises(ValueError):
+        JInteger.parseUnsignedInt("10", 37)
+
+    with pytest.raises(OverflowError):
+        JInteger.parseUnsignedInt("4294967296")
+
+
+def test_to_unsigned_string_formats_values():
+    assert JInteger.toUnsignedString(0) == "0"
+    assert JInteger.toUnsignedString(10) == "10"
+    assert JInteger.toUnsignedString(-1) == "4294967295"
+    assert JInteger.toUnsignedString(255, 2) == "11111111"
+    assert JInteger.toUnsignedString(255, 8) == "377"
+    assert JInteger.toUnsignedString(255, 16) == "ff"
+    assert JInteger.toUnsignedString(-1, 16) == "ffffffff"
