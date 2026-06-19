@@ -43,3 +43,20 @@ class JInteger:
             return 1
 
         return 0
+
+    @staticmethod
+    def sum(a: int, b: int) -> int:
+        return a + b
+
+
+    @staticmethod
+    def max(a: int, b: int) -> int:
+        return a if a > b else b
+
+
+    @staticmethod
+    def min(a: int, b: int) -> int:
+        return a if a < b else b
+
+
+ 
