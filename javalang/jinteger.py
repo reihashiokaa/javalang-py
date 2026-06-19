@@ -46,7 +46,7 @@ class JInteger:
         """Retorna o valor armazenado como int"""
         return self._value
 
-    def logValue(self):
+    def longValue(self):
         """Retorna o valor armazenado como long"""
         return self._value
     
