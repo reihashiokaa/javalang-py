@@ -22,6 +22,39 @@ O prefixo J foi adotado para diferenciar as classes do projeto dos tipos nativos
 
 ---
 
+## Adaptações Registradas
+
+### JInteger
+
+**Método:**
+toBinaryString, toOctalString e toHexString
+
+**Assinatura Java:**
+Integer.toBinaryString(int i)
+Integer.toOctalString(int i)
+Integer.toHexString(int i)
+
+**Decisão da equipe:**
+Valores negativos são representados com sinal negativo seguido da conversão da magnitude do número.
+
+**Justificativa:**
+A API Java utiliza representação em complemento de dois para valores negativos nesses métodos. Na implementação inicial do projeto foi adotada uma abordagem simplificada e mais compatível com a representação textual utilizada em Python.
+
+**Alternativa em Python (quando aplicável):**
+JInteger.toBinaryString(-10) → "-1010"
+
+JInteger.toOctalString(-10) → "-12"
+
+JInteger.toHexString(-10) → "-a"
+
+**Issue relacionada:**
+#5
+
+**Pull Request relacionado:**
+Preencher após abertura do pull request.
+
+---
+
 ## Modelo para Registro de Adaptações
 
 ### Classe
@@ -44,6 +77,8 @@ O prefixo J foi adotado para diferenciar as classes do projeto dos tipos nativos
 
 ## Histórico de Atualizações
 
-| Data       | Alteração                    | Responsável |
-| ---------- | ---------------------------- | ----------- |
-| 13/06/2026 | Criação inicial do documento | Luciana     |
+| Data       | Alteração                                              | Responsável |
+| ---------- | -------------------------------------------------------| ------------
+| 19/06/2026 | Registro da adaptação de valores negativos em JInteger | Luciana     |
+-----------  |--------------------------------------------------------|-------------
+| 13/06/2026 | Criação inicial do documento                           | Luciana     |
