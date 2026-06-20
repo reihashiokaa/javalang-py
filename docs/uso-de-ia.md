@@ -261,13 +261,60 @@ Os testes de `JInteger` foram executados localmente com sucesso após a implemen
 
 Aceito com modificações.
 
-## Registro de Uso 02
+## Registro de Uso 06
 
 ### Data
 
 **19/06/2026**
 
 ### Ferramenta Utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação das operações sem sinal da classe `JInteger`, incluindo parsing, conversão textual, comparação, divisão e resto com interpretação de 32 bits sem sinal.
+
+### Trecho do projeto afetado
+
+* `javalang/jinteger.py`
+* `tests/test_jinteger.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #30, responsável pelos métodos `parseUnsignedInt`, `toUnsignedString`, `compareUnsigned`, `divideUnsigned` e `remainderUnsigned`, respeitando a regra de até 3 métodos por commit e até 7 métodos por pull request.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação das operações sem sinal de `JInteger`, sugerindo uma estratégia baseada em máscara de 32 bits para interpretar valores negativos como inteiros sem sinal.
+
+Também sugeriu a divisão da implementação em commits menores, separando os métodos `parseUnsignedInt` e `toUnsignedString` dos métodos `compareUnsigned`, `divideUnsigned` e `remainderUnsigned`.
+
+Além disso, apoiou a criação de testes automatizados para parsing válido e inválido, conversão textual em diferentes bases, comparação sem sinal, divisão, resto e divisão por zero. Também auxiliou na redação do registro de adaptações técnicas em `docs/adaptacoes.md`.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #30, sem adicionar métodos de outras issues.
+
+As verificações locais foram executadas com sucesso utilizando:
+
+* `python -m ruff check .`
+* `python -m pytest`
+
+### Resultado
+
+Aceita com modificações.
+
+
+## Registro de Uso 07
+
+### Data
+
+19/06/2026
+
+### Ferramenta utilizada
 
 ChatGPT
 
@@ -294,4 +341,3 @@ A IA auxiliou na interpretação do guia da milestone, explicando o comportament
 ### Resultado
 
 * Aceita com modificações.
-
