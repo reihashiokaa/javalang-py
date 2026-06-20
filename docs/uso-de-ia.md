@@ -77,6 +77,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 18/06/2026 | ChatGPT | axiliar na implementação dos métodos básicos de instância da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py` e `docs/uso-de-ia.md` | Aceita |
 | 19/06/2026 | ChatGPT | Apoio na implementação de parsing e criação por valor em JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos de conversão da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
+| 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos operacao bit a bit classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modificações |
 
 ---
 
@@ -406,3 +407,56 @@ O conteúdo sugerido foi revisado antes de ser incorporado ao repositório. A im
 
 ### Resultado
 Aceito com modificações
+
+## Registro de Uso IA-08
+
+### Data
+
+19/06/2026
+
+### Ferramenta Utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação e validação das operações bit a bit iniciais da classe JInteger, bem como na criação dos testes automatizados e na documentação das adaptações necessárias para compatibilidade com o comportamento da classe Integer do Java.
+
+### Trecho do Projeto Afetado
+
+* `javalang/jinteger.py`
+* `tests/test_jinteger.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+Funcionalidades afetadas:
+
+* `bitCount`
+* `highestOneBit`
+* `lowestOneBit`
+* `numberOfLeadingZeros`
+* `numberOfTrailingZeros`
+
+### Descrição da Contribuição da IA
+
+A IA foi utilizada para:
+
+* Explicar o comportamento esperado dos métodos da API Java.
+* Sugerir estratégias para simulação de inteiros de 32 bits em Python.
+* Auxiliar na implementação dos métodos utilizando as funções auxiliares já existentes no projeto.
+* Propor casos de teste para valores zero, positivos, negativos e limites de 32 bits.
+* Auxiliar na elaboração da documentação de adaptação referente ao tratamento de inteiros de 32 bits e operações bit a bit.
+
+### Validação da Equipe
+
+* As implementações sugeridas foram comparadas com os requisitos da issue e com o guia da milestone.
+* O código foi revisado manualmente antes da incorporação ao projeto.
+* Os testes automatizados foram executados localmente utilizando `python -m pytest`.
+* As verificações de qualidade foram executadas utilizando `python -m ruff check .`.
+* As adaptações documentadas foram revisadas pela equipe para garantir consistência com as decisões já adotadas no projeto.
+
+### Resultado
+
+Aceita com modificações.
+
+As sugestões fornecidas pela IA foram analisadas, adaptadas ao padrão já existente no projeto e integradas utilizando as funções auxiliares de manipulação de inteiros de 32 bits previamente implementadas pela equipe.
