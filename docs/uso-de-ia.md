@@ -64,14 +64,15 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 
 ---
 
-
-
 ## Histórico
 
-| Data       | Ferramenta | Objetivo                | Arquivo/Funcionalidade | Resultado |
-| ---------- | ---------- | ----------------------- | ---------------------- | --------- |
-| 13/06/2026 | ChatGPT    | Criação de documentação | docs/uso-de-ia.md      | Adaptada    |
+| Data       | Ferramenta | Objetivo | Arquivo/Funcionalidade | Resultado |
+| ---------- | ---------- | --------- | ---------------------- | --------- |
+| 13/06/2026 | ChatGPT    | Criação de documentação | docs/uso-de-ia.md | Adaptada |
 | DD/MM/AAAA | ChatGPT | Criação de plano de implementação | docs/plano-implementacao.md | Aceita com modificações |
+| 17/06/2026 | ChatGPT | Preparação de relatório de baseline | docs/relatorios/status-v0.1.md | Aceita com modificações |
+| 18/06/2026 | ChatGPT | Apoio na implementação inicial de JInteger | javalang/jinteger.py, javalang/__init__.py, tests/test_jinteger.py | Aceita com modificações |
+| 18/06/2026 | ChatGPT | Auxílio na implementação dos métodos básicos de instância da classe JInteger | javalang/jinteger.py, tests/test_jinteger.py, docs/uso-de-ia.md | Aceita com modificações |
 | 17/06/2026 | ChatGPT | Preparação de relatório de baseline | `docs/relatorios/status-v0.1.md` | Aceita com modificações |
 | 18/06/2026 | ChatGPT | Apoio na implementação inicial de JInteger | `javalang/jinteger.py`, `javalang/__init__.py`, `tests/test_jinteger.py` | Aceita com modificações |
 | 18/06/2026 | ChatGPT | axiliar na implementação dos métodos básicos de instância da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py` e `docs/uso-de-ia.md` | Aceita |
@@ -89,26 +90,23 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 
 ### Ferramenta Utilizada
 
-chatGPT
+ChatGPT
 
 ### Objetivo
 
 * Criar modelo de registro de uso de IA para trabalho de GCS
 
-
 ### Trecho do Projeto Afetado
 
 * `docs/uso-de-ia.md`
 
-
 ### Descrição da Contribuição da IA
 
-A IA sugeriu um modelo bem completo e útil para registro de uso IA
+A IA sugeriu um modelo bem completo e útil para registro de uso de IA.
 
 ### Validação da Equipe
 
 * Modelo revisado e adaptado em descrições e títulos.
-
 
 ### Resultado
 
@@ -144,11 +142,13 @@ A IA sugeriu uma estrutura inicial para o documento de plano de implementação,
 
 ### Validação da equipe
 
-O conteúdo foi revisado e adaptado antes de ser incorporado ao repositório. A equipe manteve apenas as partes compatíveis com a organização real do projeto e com as decisões já registradas.
+O conteúdo foi revisado e adaptado antes de ser incorporado ao repositório.
 
 ### Resultado
 
 Aceita com modificações.
+
+---
 
 ## Registro de Uso 03
 
@@ -177,15 +177,15 @@ Auxiliar na preparação do relatório de status da baseline `v0.1-functional`.
 
 A IA sugeriu uma estrutura inicial para o relatório de status da baseline, incluindo resumo da etapa, escopo consolidado, decisões registradas, artefatos adicionados, estado da integração contínua e pendências previstas para a próxima milestone.
 
-Também foi sugerido um texto inicial para a descrição do pull request relacionado à preparação da baseline.
-
 ### Validação da equipe
 
-O conteúdo foi revisado e ajustado antes de ser incorporado ao repositório. As informações foram conferidas com base no estado real das issues, pull requests e documentos existentes no projeto.
+O conteúdo foi revisado e ajustado antes de ser incorporado ao repositório.
 
 ### Resultado
 
 Aceita com modificações.
+
+---
 
 ## Registro de Uso 04
 
@@ -199,29 +199,31 @@ ChatGPT
 
 ### Objetivo
 
-Auxiliar na implementação inicial da classe `JInteger`, incluindo a definição das constantes básicas e a criação dos primeiros testes automatizados.
+Auxiliar na implementação inicial da classe `JInteger`, incluindo constantes básicas e estrutura inicial de testes.
 
 ### Trecho do projeto afetado
 
-* `javalang/jinteger.py`
-* `javalang/__init__.py`
-* `tests/test_jinteger.py`
+- `javalang/jinteger.py`
+- `javalang/__init__.py`
+- `tests/test_jinteger.py`
 
 ### Prompt ou interação representativa
 
-> Ajudar a implementar a primeira issue da milestone `v0.2-jinteger`, criando a estrutura inicial da classe `JInteger`, suas constantes básicas e os testes correspondentes.
+> Ajudar a implementar a primeira issue da milestone v0.2-jinteger.
 
 ### Descrição da contribuição da IA
 
-A IA sugeriu uma estrutura inicial para a classe `JInteger`, contendo as constantes `MAX_VALUE`, `MIN_VALUE`, `SIZE`, `BYTES` e `TYPE`. Também sugeriu testes unitários para validar esses valores e orientou a execução local dos testes com `python -m pytest` e `python -m ruff check .`.
+A IA sugeriu a estrutura inicial da classe `JInteger`, com constantes como `MAX_VALUE`, `MIN_VALUE`, `SIZE`, `BYTES` e `TYPE`, além de orientar a criação de testes básicos.
 
 ### Validação da equipe
 
-O conteúdo foi revisado antes de ser incorporado ao repositório. A implementação foi mantida dentro do escopo da issue, sem adicionar métodos de conversão, parsing, comparação ou operações bit a bit.
+O código foi revisado antes de ser incorporado ao repositório.
 
 ### Resultado
 
 Aceito com modificações.
+
+---
 
 ## Registro de Uso 05
 
@@ -235,33 +237,33 @@ ChatGPT
 
 ### Objetivo
 
-Auxiliar na implementação dos métodos básicos de instância da classe `JInteger`, relacionados à representação textual, igualdade, hash e comparação entre valores.
+Auxiliar na implementação dos métodos de instância da classe `JInteger` (`toString`, `hashCode`, `equals`, `compareTo`).
 
 ### Trecho do projeto afetado
 
-* `javalang/jinteger.py`
-* `tests/test_jinteger.py`
-* `docs/uso-de-ia.md`
+- `javalang/jinteger.py`
+- `tests/test_jinteger.py`
+- `docs/uso-de-ia.md`
 
 ### Prompt ou interação representativa
 
-> Ajudar a implementar a issue de `JInteger` responsável pelos métodos `toString`, `hashCode`, `equals` e `compareTo`, respeitando os limites de métodos por commit e mantendo a rastreabilidade com a issue correspondente.
+> Implementar métodos de instância de JInteger respeitando rastreabilidade e divisão de commits.
 
 ### Descrição da contribuição da IA
 
-A IA auxiliou na organização da implementação em etapas pequenas, sugerindo a divisão dos commits para manter o escopo controlado. Também orientou a criação do construtor básico necessário para armazenar o valor interno de `JInteger`, além da implementação dos métodos `toString`, `hashCode`, `equals` e `compareTo`.
-
-Foram sugeridos testes automatizados para validar a representação textual, o hash, a igualdade por valor e a comparação entre instâncias de `JInteger`.
+A IA auxiliou na organização da implementação em pequenas etapas e sugeriu testes para validar comportamento dos métodos de instância.
 
 ### Validação da equipe
 
-O conteúdo sugerido foi revisado antes de ser incorporado ao repositório. A implementação foi mantida dentro do escopo da issue, sem adicionar métodos de conversão, parsing, formatação por base ou operações bit a bit.
-
-Os testes de `JInteger` foram executados localmente com sucesso após a implementação.
+O código foi revisado manualmente e testado com pytest.
 
 ### Resultado
 
-Aceito com modificações.
+
+Aceita com modificações.
+
+---
+
 
 ## Registro de Uso 06
 
@@ -322,6 +324,47 @@ ChatGPT
 
 ### Objetivo
 
+Auxiliar na implementação dos métodos estáticos de aritmética da classe `JInteger`, incluindo `sum`, `max`, `min` e `compare`.
+
+### Trecho do projeto afetado
+
+- `javalang/jinteger.py`
+- `tests/test_jinteger.py`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar métodos estáticos da classe JInteger (sum, max, min, compare), respeitando limites de commits.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na implementação dos métodos estáticos da classe `JInteger`, garantindo aderência à especificação da API Java SE 8.
+
+Foram sugeridos:
+- implementação dos métodos `sum`, `max`, `min` e `compare` como métodos estáticos;
+- criação de testes unitários cobrindo casos positivos, negativos, zero e igualdade.
+
+### Validação da equipe
+
+O código foi revisado manualmente antes do commit final e validado com execução dos testes automatizados (`pytest`).
+
+### Resultado
+
+Aceita com modificações.
+
+---
+
+## Registro de Uso 09
+
+### Data
+
+19/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
 Auxiliar na implementação dos métodos de parsing e criação por valor da classe `JInteger`, incluindo `parseInt`, `valueOf` e `decode`.
 
 ### Trecho do projeto afetado
@@ -353,29 +396,6 @@ As verificações locais foram executadas utilizando:
 ### Resultado
 
 Aceita com modificações.
-
-* Apoiar a implementação da Issue 26 da milestone v0.2-jinteger, referente às conversões básicas da classe `JInteger`.
-
-### Trecho do Projeto Afetado
-
-* `javalang/jinteger.py`
-* `tests/test_jinteger.py`
-* `docs/adaptacoes.md`
-* `docs/uso-de-ia.md`
-
-### Descrição da Contribuição da IA
-
-A IA auxiliou na interpretação do guia da milestone, explicando o comportamento esperado dos métodos `byteValue`, `shortValue`, `intValue`, `longValue`, `floatValue` e `doubleValue`. Também forneceu sugestões de implementação compatíveis com o comportamento da API Java, exemplos de testes unitários e apoio na documentação das adaptações necessárias entre Java e Python.
-
-### Validação da Equipe
-
-* As implementações sugeridas foram analisadas e comparadas com a documentação da milestone.
-* Os métodos foram revisados antes da inclusão no projeto.
-* As adaptações registradas foram ajustadas para refletir as decisões adotadas pela equipe.
-
-### Resultado
-
-* Aceita com modificações.
 
 ## Registro de Uso 008
 
@@ -460,3 +480,4 @@ A IA foi utilizada para:
 Aceita com modificações.
 
 As sugestões fornecidas pela IA foram analisadas, adaptadas ao padrão já existente no projeto e integradas utilizando as funções auxiliares de manipulação de inteiros de 32 bits previamente implementadas pela equipe.
+

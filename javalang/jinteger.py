@@ -167,6 +167,30 @@ class JInteger:
         """Retorna o valor armazenado como int"""
         return self._value
 
+
+    @staticmethod
+    def sum(a: int, b: int) -> int:
+        return a + b
+
+
+    @staticmethod
+    def max(a: int, b: int) -> int:
+        return a if a > b else b
+
+
+    @staticmethod
+    def min(a: int, b: int) -> int:
+        return a if a < b else b
+
+
+    @staticmethod
+    def compare(a: int, b: int) -> int:
+        if a < b:
+            return -1
+        if a > b:
+            return 1
+        return 0
+    
     def longValue(self):
         """Retorna o valor armazenado como long"""
         return self._value

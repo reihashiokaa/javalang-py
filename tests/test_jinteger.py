@@ -61,6 +61,20 @@ def test_compare_to_rejects_non_jinteger():
     with pytest.raises(TypeError):
         JInteger(10).compareTo(10)
 
+
+
+def test_compare_less():
+    assert JInteger.compare(5, 10) == -1
+
+def test_compare_greater():
+    assert JInteger.compare(10, 5) == 1
+
+def test_compare_equal():
+    assert JInteger.compare(5, 5) == 0
+
+def test_compare_zero():
+    assert JInteger.compare(0, 0) == 0
+
 def test_reverse_zero():
     assert JInteger.reverse(0) == 0
  
