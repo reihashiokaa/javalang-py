@@ -283,6 +283,47 @@ Essa abordagem permite reproduzir o comportamento da classe Integer do Java para
 
 **Pull Request relacionado:**
 
+```markdown id="gg1fjh"
+### Estrutura inicial e constantes de JFloat
+
+**Classe:** `JFloat`
+
+**Elementos relacionados da API Java:**
+
+- `Float.POSITIVE_INFINITY`
+- `Float.NEGATIVE_INFINITY`
+- `Float.NaN`
+- `Float.MAX_VALUE`
+- `Float.MIN_VALUE`
+- `Float.MIN_NORMAL`
+- `Float.MAX_EXPONENT`
+- `Float.MIN_EXPONENT`
+- `Float.SIZE`
+- `Float.BYTES`
+- `Float.TYPE`
+
+**Decisão da equipe:**
+
+A classe `JFloat` foi criada como adaptação da classe `Float` da API Java SE 8. A implementação inicial utiliza o tipo `float` do Python para armazenar internamente os valores.
+
+**Justificativa:**
+
+No Java, o tipo `float` representa valores de ponto flutuante de 32 bits. Em Python, o tipo `float` normalmente utiliza precisão dupla. Por isso, a implementação inicial de `JFloat` registra os valores principais da classe `Float`, mas usa `float` do Python como base para armazenamento interno.
+
+Diferenças mais específicas de precisão, arredondamento, representação binária e tratamento de valores especiais serão documentadas conforme os métodos forem implementados nas próximas issues da milestone `v0.3-jfloat`.
+
+**Comportamento adotado em Python:**
+
+- `POSITIVE_INFINITY` foi representado com `float("inf")`.
+- `NEGATIVE_INFINITY` foi representado com `float("-inf")`.
+- `NaN` foi representado com `float("nan")`.
+- `TYPE` foi adaptado para `float`.
+- O valor interno da instância foi armazenado em `_value` como `float` do Python.
+
+**Issue relacionada:** #49
+
+**Pull Request relacionado:** A definir.
+
 ## Histórico de Atualizações
 
 | Data       | Alteração                    | Responsável |
