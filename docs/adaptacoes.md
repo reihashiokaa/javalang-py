@@ -324,6 +324,55 @@ Diferenças mais específicas de precisão, arredondamento, representação bin�
 
 **Pull Request relacionado:** 57.
 
+### JFloat
+
+**Métodos:**
+byteValue, shortValue, intValue, longValue, floatValue e doubleValue
+
+**Assinatura Java:**
+Float.byteValue()
+
+Float.shortValue()
+
+Float.intValue()
+
+Float.longValue()
+
+Float.floatValue()
+
+Float.doubleValue()
+
+**Decisão da equipe:**
+As conversões foram adaptadas para os tipos nativos do Python. Os métodos intValue e longValue retornam `int`; os métodos floatValue e doubleValue retornam `float`. Os métodos byteValue e shortValue simulam o comportamento dos tipos assinados de 8 e 16 bits do Java por meio de mascaramento de bits e ajuste de sinal.
+
+**Justificativa:**
+Python não possui tipos primitivos equivalentes a `byte`, `short`, `long` e `double` com o mesmo comportamento da plataforma Java. Para manter compatibilidade com a API Java, foram simuladas as conversões de `byte` e `short`, enquanto `longValue` e `doubleValue` utilizam os tipos nativos mais próximos disponíveis em Python.
+
+Além disso, as conversões para tipos inteiros utilizam `int()`, que realiza truncamento em direção ao zero, comportamento compatível com as conversões primitivas de estreitamento da API Java.
+
+**Alternativa em Python (quando aplicável):**
+JFloat(10.8).intValue() → 10
+
+JFloat(-10.8).intValue() → -10
+
+JFloat(130.0).byteValue() → -126
+
+JFloat(32768.0).shortValue() → -32768
+
+JFloat(10.5).doubleValue() → 10.5
+
+**Limitações conhecidas:**
+Casos especiais envolvendo NaN, POSITIVE_INFINITY e NEGATIVE_INFINITY não são tratados especificamente nesta implementação e serão abordados em issue própria relacionada aos valores especiais de JFloat.
+
+**Issue relacionada:**
+#50
+
+**Pull Request relacionado:**
+Preencher após abertura do pull request.
+
+---
+
+
 ## Histórico de Atualizações
 
 | Data       | Alteração                    | Responsável |
@@ -334,3 +383,4 @@ Diferenças mais específicas de precisão, arredondamento, representação bin�
 | 19/06/2026 | Registro das adaptações de parsing e criação por valor de JInteger | Reinaldo |
 | 19/06/2026 | Registro das adaptações de operações bit-a-bit| Beatriz |
 | 19/06/2026 | Registro das adaptações de operações bit-a-bit| Miguel |
+| 20/06/2026 | Registro das adaptações de operações de conversões em JFloat| Miguel |

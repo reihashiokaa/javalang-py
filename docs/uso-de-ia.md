@@ -81,6 +81,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos operacao bit a bit classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modificações |
 | 20/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.2-jinteger | `docs/relatorios/status-v0.2.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | ChatGPT | Apoio na implementação inicial de JFloat | `javalang/jfloat.py`, `javalang/__init__.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 20/06/2026 | ChatGPT | Apoio na implementação das conversões básicas de JFloat, criação de testes e documentação de adaptações | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 
 ---
 
@@ -573,4 +574,41 @@ As verificações locais foram executadas utilizando:
 ### Resultado
 
 Aceita com modificações.
+
+## Registro de Uso 11
+
+### Data
+
+**20/06/2026**
+
+### Ferramenta Utilizada
+
+ChatGPT
+
+### Objetivo
+
+* Auxiliar na implementação dos métodos de conversão da classe `JFloat`.
+* Sugerir casos de teste para validar as conversões implementadas.
+* Apoiar a documentação das adaptações entre Java e Python.
+
+### Trecho do Projeto Afetado
+
+* `javalang/jfloat.py`
+* `tests/test_jfloat.py`
+* `docs/adaptacoes.md`
+
+### Descrição da Contribuição da IA
+
+A IA auxiliou na explicação do comportamento das conversões numéricas da classe `Float` da API Java, sugerindo uma estratégia para implementação dos métodos `byteValue`, `shortValue`, `intValue`, `longValue`, `floatValue` e `doubleValue`. Também foram sugeridos casos de teste para validar truncamento de valores decimais e simulação de conversões para tipos assinados de 8 e 16 bits.
+
+### Validação da Equipe
+
+* As sugestões foram analisadas e comparadas com o guia da milestone e com a especificação da API Java.
+* O código gerado foi revisado manualmente antes da implementação.
+* Os testes foram executados localmente para confirmar o comportamento esperado.
+
+### Resultado
+
+* Aceita com modificações.
+
 
