@@ -48,3 +48,12 @@ def test_jfloat_int_value_truncates_negative_decimal_part():
 def test_jfloat_long_value_returns_integer_value():
     value = JFloat(20.5)
     assert value.longValue() == 20
+
+def test_jfloat_float_value_returns_float():
+    value = JFloat(10.5)
+    assert value.floatValue() == 10.5
+
+
+def test_jfloat_double_value_returns_float_adaptation():
+    value = JFloat(10.5)
+    assert value.doubleValue() == 10.5
