@@ -75,7 +75,8 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 17/06/2026 | ChatGPT | Preparação de relatório de baseline | `docs/relatorios/status-v0.1.md` | Aceita com modificações |
 | 18/06/2026 | ChatGPT | Apoio na implementação inicial de JInteger | `javalang/jinteger.py`, `javalang/__init__.py`, `tests/test_jinteger.py` | Aceita com modificações |
 | 18/06/2026 | ChatGPT | axiliar na implementação dos métodos básicos de instância da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py` e `docs/uso-de-ia.md` | Aceita |
-| 19/06/2026 | ChatGPT | axiliar na implementação dos métodos de conversão da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
+| 19/06/2026 | ChatGPT | Apoio na implementação de parsing e criação por valor em JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos de conversão da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
 
 ---
 
@@ -319,6 +320,38 @@ Aceita com modificações.
 ChatGPT
 
 ### Objetivo
+
+Auxiliar na implementação dos métodos de parsing e criação por valor da classe `JInteger`, incluindo `parseInt`, `valueOf` e `decode`.
+
+### Trecho do projeto afetado
+
+- `javalang/jinteger.py`
+- `tests/test_jinteger.py`
+- `docs/adaptacoes.md`
+- `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue de parsing e criação por valor de `JInteger`, criando os métodos `parseInt`, `valueOf` e `decode`, seus testes correspondentes e os registros de adaptação necessários.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação dos métodos `parseInt`, `valueOf` e `decode`. Também sugeriu casos de teste para valores decimais, valores com radix, entradas inválidas, limites de 32 bits e formatos aceitos por `decode`, como decimal, hexadecimal e octal.
+
+Além disso, apoiou a redação da documentação de adaptação em `docs/adaptacoes.md`, explicando a diferença entre sobrecarga de métodos em Java e o uso de parâmetros opcionais em Python.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue, sem adicionar operações sem sinal, formatação por base, comparação, conversões básicas ou operações bit a bit.
+
+As verificações locais foram executadas utilizando:
+
+- `python -m pytest`
+- `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
 
 * Apoiar a implementação da Issue 26 da milestone v0.2-jinteger, referente às conversões básicas da classe `JInteger`.
 

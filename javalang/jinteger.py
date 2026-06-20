@@ -114,6 +114,87 @@ class JInteger:
         return value
 
     @staticmethod
+    def parseInt(value: str, radix: int = 10):
+        """Converte uma string em inteiro com sinal de 32 bits."""
+        _validate_radix(radix)
+
+        if not isinstance(value, str):
+            raise TypeError("value must be a string")
+
+        if value == "":
+            raise ValueError("value must not be empty")
+
+        if value.strip() != value:
+            raise ValueError("value must not contain whitespace")
+
+        parsed_value = int(value, radix)
+
+        if parsed_value < JInteger.MIN_VALUE or parsed_value > JInteger.MAX_VALUE:
+            raise OverflowError("integer value must be within signed 32-bit range")
+
+        return parsed_value
+    
+    @staticmethod
+    def valueOf(value, radix: int = 10):
+        """Cria uma instância de JInteger a partir de inteiro ou string."""
+        if isinstance(value, int):
+            if value < JInteger.MIN_VALUE or value > JInteger.MAX_VALUE:
+                raise OverflowError("integer value must be within signed 32-bit range")
+
+            return JInteger(value)
+
+        if isinstance(value, str):
+            return JInteger(JInteger.parseInt(value, radix))
+
+        raise TypeError("value must be an int or a string")
+    
+    @staticmethod
+    def decode(value: str):
+        """Decodifica uma string numérica em uma instância de JInteger."""
+        if not isinstance(value, str):
+            raise TypeError("value must be a string")
+
+        if value == "":
+            raise ValueError("value must not be empty")
+
+        if value.strip() != value:
+            raise ValueError("value must not contain whitespace")
+
+        sign = 1
+        number = value
+
+        if number[0] in "+-":
+            if number[0] == "-":
+                sign = -1
+
+            number = number[1:]
+
+            if number == "":
+                raise ValueError("value must contain digits")
+
+        radix = 10
+
+        if number.startswith(("0x", "0X")):
+            radix = 16
+            number = number[2:]
+        elif number.startswith("#"):
+            radix = 16
+            number = number[1:]
+        elif len(number) > 1 and number.startswith("0"):
+            radix = 8
+            number = number[1:]
+
+        if number == "":
+            raise ValueError("value must contain digits")
+
+        parsed_value = int(number, radix) * sign
+
+        if parsed_value < JInteger.MIN_VALUE or parsed_value > JInteger.MAX_VALUE:
+            raise OverflowError("integer value must be within signed 32-bit range")
+
+        return JInteger(parsed_value)
+
+    @staticmethod
     def parseUnsignedInt(value: str, radix: int = 10):
         """Converte uma string em inteiro sem sinal de 32 bits."""
         _validate_radix(radix)

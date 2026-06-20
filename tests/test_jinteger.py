@@ -1,3 +1,4 @@
+
 import pytest
 
 from javalang import JInteger
@@ -157,3 +158,110 @@ def test_unsigned_division_operations_reject_zero_divisor():
     with pytest.raises(ZeroDivisionError):
         JInteger.remainderUnsigned(10, 0)
 
+
+def test_parse_int_accepts_decimal_values():
+    assert JInteger.parseInt("0") == 0
+    assert JInteger.parseInt("10") == 10
+    assert JInteger.parseInt("-10") == -10
+
+
+def test_parse_int_accepts_radix_values():
+    assert JInteger.parseInt("1010", 2) == 10
+    assert JInteger.parseInt("12", 8) == 10
+    assert JInteger.parseInt("A", 16) == 10
+
+
+def test_parse_int_rejects_invalid_values():
+    with pytest.raises(ValueError):
+        JInteger.parseInt("")
+
+    with pytest.raises(ValueError):
+        JInteger.parseInt("abc")
+
+    with pytest.raises(ValueError):
+        JInteger.parseInt("102", 2)
+
+    with pytest.raises(ValueError):
+        JInteger.parseInt("10", 1)
+
+    with pytest.raises(ValueError):
+        JInteger.parseInt("10", 37)
+
+
+def test_parse_int_rejects_values_outside_signed_32_bit_range():
+    with pytest.raises(OverflowError):
+        JInteger.parseInt(str(JInteger.MAX_VALUE + 1))
+
+    with pytest.raises(OverflowError):
+        JInteger.parseInt(str(JInteger.MIN_VALUE - 1))
+        
+        
+def test_value_of_creates_jinteger_from_integer():
+    result = JInteger.valueOf(10)
+
+    assert isinstance(result, JInteger)
+    assert result.toString() == "10"
+
+
+def test_value_of_creates_jinteger_from_string():
+    result = JInteger.valueOf("10")
+
+    assert isinstance(result, JInteger)
+    assert result.toString() == "10"
+
+
+def test_value_of_creates_jinteger_from_string_with_radix():
+    result = JInteger.valueOf("1010", 2)
+
+    assert isinstance(result, JInteger)
+    assert result.toString() == "10"
+
+
+def test_value_of_rejects_invalid_type():
+    with pytest.raises(TypeError):
+        JInteger.valueOf(10.5)
+
+
+def test_value_of_rejects_integer_outside_signed_32_bit_range():
+    with pytest.raises(OverflowError):
+        JInteger.valueOf(JInteger.MAX_VALUE + 1)
+
+    with pytest.raises(OverflowError):
+        JInteger.valueOf(JInteger.MIN_VALUE - 1)
+        
+def test_decode_interprets_decimal_values():
+    assert JInteger.decode("10").toString() == "10"
+    assert JInteger.decode("-10").toString() == "-10"
+    assert JInteger.decode("0").toString() == "0"
+
+
+def test_decode_interprets_hexadecimal_prefixes():
+    assert JInteger.decode("0x10").toString() == "16"
+    assert JInteger.decode("0X10").toString() == "16"
+    assert JInteger.decode("#10").toString() == "16"
+    assert JInteger.decode("-0x10").toString() == "-16"
+
+
+def test_decode_interprets_octal_prefix():
+    assert JInteger.decode("010").toString() == "8"
+
+
+def test_decode_rejects_invalid_values():
+    with pytest.raises(TypeError):
+        JInteger.decode(10)
+
+    with pytest.raises(ValueError):
+        JInteger.decode("")
+
+    with pytest.raises(ValueError):
+        JInteger.decode("0x")
+
+    with pytest.raises(ValueError):
+        JInteger.decode("abc")
+
+
+def test_decode_rejects_values_outside_signed_32_bit_range():
+    with pytest.raises(OverflowError):
+        JInteger.decode("0x80000000")
+
+    assert JInteger.decode("-0x80000000").toString() == str(JInteger.MIN_VALUE)
