@@ -76,3 +76,51 @@ def test_jfloat_byte_value_wraps_like_signed_byte():
 def test_jfloat_short_value_wraps_like_signed_short():
     value = JFloat(32768.0)
     assert value.shortValue() == -32768
+
+def test_parse_float_inteiro():
+    assert JFloat.parseFloat("10") == 10.0
+ 
+ 
+def test_parse_float_decimal():
+    assert JFloat.parseFloat("3.14") == pytest.approx(3.14)
+ 
+ 
+def test_parse_float_negativo():
+    assert JFloat.parseFloat("-2.5") == -2.5
+ 
+ 
+def test_parse_float_zero():
+    assert JFloat.parseFloat("0") == 0.0
+ 
+ 
+def test_parse_float_zero_decimal():
+    assert JFloat.parseFloat("0.0") == 0.0
+ 
+ 
+def test_parse_float_infinity():
+    assert JFloat.parseFloat("Infinity") == float("inf")
+ 
+ 
+def test_parse_float_negative_infinity():
+    assert JFloat.parseFloat("-Infinity") == float("-inf")
+ 
+ 
+def test_parse_float_nan():
+    assert math.isnan(JFloat.parseFloat("NaN"))
+ 
+ 
+def test_parse_float_entrada_invalida():
+    with pytest.raises(ValueError):
+        JFloat.parseFloat("abc")
+ 
+ 
+def test_parse_float_entrada_vazia():
+    with pytest.raises(ValueError):
+        JFloat.parseFloat("")
+ 
+ 
+def test_parse_float_tipo_errado():
+    with pytest.raises(ValueError):
+        JFloat.parseFloat(3.14)
+ 
+
