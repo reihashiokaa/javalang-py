@@ -79,6 +79,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 19/06/2026 | ChatGPT | Apoio na implementação de parsing e criação por valor em JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos de conversão da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
 | 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos operacao bit a bit classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modificações |
+| 20/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.2-jinteger | `docs/relatorios/status-v0.2.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 
 ---
 
@@ -480,4 +481,49 @@ A IA foi utilizada para:
 Aceita com modificações.
 
 As sugestões fornecidas pela IA foram analisadas, adaptadas ao padrão já existente no projeto e integradas utilizando as funções auxiliares de manipulação de inteiros de 32 bits previamente implementadas pela equipe.
+
+---
+
+## Registro de Uso IA-09
+
+### Data
+
+20/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na preparação do fechamento da baseline `v0.2-jinteger`, incluindo a estrutura do relatório de status e o texto sugerido para a release.
+
+### Trecho do projeto afetado
+
+* `docs/relatorios/status-v0.2.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a fazer a issue de preparação da baseline `v0.2-jinteger`, criando o relatório de status da baseline e o texto da release.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização do relatório de status da baseline `v0.2-jinteger`, incluindo identificação da baseline, objetivo, escopo consolidado, itens de configuração envolvidos, verificações realizadas, adaptações documentadas, uso de IA, conflitos de merge e estado final da baseline.
+
+Também foi sugerido um texto inicial para a release `v0.2-jinteger`, destacando as principais entregas relacionadas à classe `JInteger`.
+
+### Validação da equipe
+
+O conteúdo foi revisado antes de ser incorporado ao repositório. As informações foram ajustadas de acordo com o estado real das issues, pull requests, testes, documentação e CI do projeto.
+
+As verificações locais foram executadas utilizando:
+
+* `python -m pytest`
+* `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
+
 
