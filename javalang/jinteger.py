@@ -77,8 +77,41 @@ class JInteger:
 
         if self._value > other._value:
             return 1
-
         return 0
+    
+    def intValue(self):
+        """Retorna o valor armazenado como int"""
+        return self._value
+
+    def longValue(self):
+        """Retorna o valor armazenado como long"""
+        return self._value
+    
+    def floatValue(self):
+        """Retorna o valor armazenado como float."""
+        return float(self._value)
+
+    def doubleValue(self):
+        """Retorna o valor armazenado como double."""
+        return float(self._value)
+
+    def byteValue(self):
+        """Converte o valor para byte com comportamento semelhante ao Java."""
+        value = self._value & 0xFF
+
+        if value >= 0x80:
+            value -= 0x100
+
+        return value
+    
+    def shortValue(self):
+        """Converte o valor para short com comportamento semelhante ao Java."""
+        value = self._value & 0xFFFF
+
+        if value >= 0x8000:
+            value -= 0x10000
+
+        return value
 
     @staticmethod
     def parseInt(value: str, radix: int = 10):

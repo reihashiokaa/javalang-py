@@ -76,6 +76,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 18/06/2026 | ChatGPT | Apoio na implementação inicial de JInteger | `javalang/jinteger.py`, `javalang/__init__.py`, `tests/test_jinteger.py` | Aceita com modificações |
 | 18/06/2026 | ChatGPT | axiliar na implementação dos métodos básicos de instância da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py` e `docs/uso-de-ia.md` | Aceita |
 | 19/06/2026 | ChatGPT | Apoio na implementação de parsing e criação por valor em JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos de conversão da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
 
 ---
 
@@ -265,9 +266,9 @@ Aceito com modificações.
 
 ### Data
 
-19/06/2026
+**19/06/2026**
 
-### Ferramenta utilizada
+### Ferramenta Utilizada
 
 ChatGPT
 
@@ -306,6 +307,7 @@ As verificações locais foram executadas com sucesso utilizando:
 ### Resultado
 
 Aceita com modificações.
+
 
 ## Registro de Uso 07
 
@@ -351,3 +353,25 @@ As verificações locais foram executadas utilizando:
 
 Aceita com modificações.
 
+* Apoiar a implementação da Issue 26 da milestone v0.2-jinteger, referente às conversões básicas da classe `JInteger`.
+
+### Trecho do Projeto Afetado
+
+* `javalang/jinteger.py`
+* `tests/test_jinteger.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Descrição da Contribuição da IA
+
+A IA auxiliou na interpretação do guia da milestone, explicando o comportamento esperado dos métodos `byteValue`, `shortValue`, `intValue`, `longValue`, `floatValue` e `doubleValue`. Também forneceu sugestões de implementação compatíveis com o comportamento da API Java, exemplos de testes unitários e apoio na documentação das adaptações necessárias entre Java e Python.
+
+### Validação da Equipe
+
+* As implementações sugeridas foram analisadas e comparadas com a documentação da milestone.
+* Os métodos foram revisados antes da inclusão no projeto.
+* As adaptações registradas foram ajustadas para refletir as decisões adotadas pela equipe.
+
+### Resultado
+
+* Aceita com modificações.
