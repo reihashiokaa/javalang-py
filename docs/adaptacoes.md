@@ -22,6 +22,24 @@ O prefixo J foi adotado para diferenciar as classes do projeto dos tipos nativos
 
 ---
 
+## Modelo para Registro de Adaptações
+
+### Classe
+
+**Método:**
+
+**Assinatura Java:**
+
+**Decisão da equipe:**
+
+**Justificativa:**
+
+**Alternativa em Python (quando aplicável):**
+
+**Issue relacionada:**
+
+**Pull Request relacionado:**
+
 ## Adaptações
 
 ### longValue
@@ -87,26 +105,6 @@ O prefixo J foi adotado para diferenciar as classes do projeto dos tipos nativos
 **Issue relacionada:** #<26>
 
 **Pull Request relacionado:** #<5>
-
-
-
-## Modelo para Registro de Adaptações
-
-### Classe
-
-**Método:**
-
-**Assinatura Java:**
-
-**Decisão da equipe:**
-
-**Justificativa:**
-
-**Alternativa em Python (quando aplicável):**
-
-**Issue relacionada:**
-
-**Pull Request relacionado:**
 
 ## Adaptações da JInteger
 
@@ -219,6 +217,39 @@ Os métodos reverse, reverseBytes, rotateLeft e rotateRight dependem diretamente
 **Pull Request relacionado:**
 ...
 
+### JInteger
+
+**Método:** bitCount, highestOneBit, lowestOneBit, numberOfLeadingZeros e numberOfTrailingZeros
+
+**Assinatura Java:**
+
+public static int bitCount(int i) 
+public static int highestOneBit(int i) 
+public static int lowestOneBit(int i)
+public static int numberOfLeadingZeros(int i) 
+public static int numberOfTrailingZeros(int i)
+
+**Decisão da equipe:**
+
+As operações bit a bit foram implementadas considerando uma representação fixa de 32 bits. Antes dos cálculos, os valores são convertidos para uma representação sem sinal de 32 bits utilizando função auxiliar interna. Quando necessário, o resultado é convertido novamente para inteiro assinado de 32 bits.
+
+**Justificativa:**
+
+Diferentemente do Java, que utiliza inteiros de 32 bits com sinal, o Python possui inteiros de precisão arbitrária. Sem essa adaptação, operações envolvendo números negativos ou limites de 32 bits produziriam resultados diferentes dos definidos pela API Java.
+
+**Alternativa em Python (quando aplicável):**
+
+Foi utilizada uma estratégia baseada em máscaras de bits e funções auxiliares internas para simular o comportamento de inteiros de 32 bits:
+
+_to_uint32(value)
+_to_int32(value)
+
+Essa abordagem permite reproduzir o comportamento da classe Integer do Java para operações bit a bit.
+
+**Issue relacionada: #<31>**
+
+**Pull Request relacionado:**
+
 ## Histórico de Atualizações
 
 | Data       | Alteração                    | Responsável |
@@ -228,6 +259,7 @@ Os métodos reverse, reverseBytes, rotateLeft e rotateRight dependem diretamente
 | 19/06/2026 | Registro das adaptações de operações sem sinal de JInteger | Isabela |
 | 19/06/2026 | Registro das adaptações de parsing e criação por valor de JInteger | Reinaldo |
 | 19/06/2026 | Registro das adaptações de operações bit-a-bit| Beatriz |
+| 19/06/2026 | Registro das adaptações de operações bit-a-bit| Miguel |
 
 
 

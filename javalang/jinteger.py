@@ -342,3 +342,51 @@ class JInteger:
             raise ZeroDivisionError("division by zero")
 
         return unsigned_dividend % unsigned_divisor
+
+    @staticmethod
+    def bitCount(i: int) -> int:
+        """Conta a quantidade de bits 1 em um inteiro de 32 bits."""
+        return bin(_to_uint32(i)).count("1")
+
+    @staticmethod
+    def highestOneBit(i: int) -> int:
+        """Retorna o bit 1 mais significativo de um inteiro de 32 bits."""
+        bits = _to_uint32(i)
+
+        if bits == 0:
+            return 0
+
+        result = 1 << (bits.bit_length() - 1)
+
+        return _to_int32(result)
+    
+    @staticmethod
+    def lowestOneBit(i: int) -> int:
+        """Retorna o bit 1 menos significativo de um inteiro de 32 bits."""
+        bits = _to_uint32(i)
+
+        if bits == 0:
+            return 0
+
+        result = bits & -bits
+
+        return _to_int32(result)
+    
+    @staticmethod
+    def numberOfLeadingZeros(i: int) -> int:
+        """Conta os zeros à esquerda em uma representação de 32 bits."""
+        bits = _to_uint32(i)
+
+        if bits == 0:
+            return 32
+
+        return 32 - bits.bit_length()
+    @staticmethod
+    def numberOfTrailingZeros(i: int) -> int:
+        """Conta os zeros à direita em uma representação de 32 bits."""
+        bits = _to_uint32(i)
+
+        if bits == 0:
+            return 32
+
+        return (bits & -bits).bit_length() - 1
