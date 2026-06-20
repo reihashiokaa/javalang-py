@@ -38,3 +38,44 @@ class JFloat:
 
     def doubleValue(self):
         return float(self._value)
+
+    @staticmethod
+    def parseFloat(s: str) -> float:
+        """
+        Adaptação: Java lança NumberFormatException para entradas inválidas.
+        Em Python, lançamos ValueError com mensagem equivalente, pois
+        NumberFormatException não existe na linguagem.
+        """
+        if not isinstance(s, str):
+            raise ValueError(
+                f"parseFloat espera uma string, recebeu {type(s).__name__}"
+            )
+        s = s.strip()
+        if s in ("Infinity", "+Infinity"):
+            return float("inf")
+        if s == "-Infinity":
+            return float("-inf")
+        if s == "NaN":
+            return float("nan")
+        try:
+            return float(s)
+        except ValueError:
+            raise ValueError(f'parseFloat: entrada inválida: "{s}"')
+ 
+    @staticmethod
+    def valueOf(value) -> "JFloat":
+        """
+        Adaptação: em Java, valueOf é um método sobrecarregado — existe
+        Float.valueOf(float) e Float.valueOf(String). Python não suporta
+        sobrecarga de métodos, então unificamos os dois em um único método
+        que detecta o tipo do argumento:
+          - se receber str, converte via parseFloat antes de criar a instância;
+          - se receber int ou float, cria a instância diretamente.
+        """
+        if isinstance(value, str):
+            return JFloat(JFloat.parseFloat(value))
+        if isinstance(value, (int, float)):
+            return JFloat(float(value))
+        raise ValueError(
+            f"valueOf espera str, int ou float, recebeu {type(value).__name__}"
+        )
