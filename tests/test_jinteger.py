@@ -60,6 +60,42 @@ def test_compare_to_rejects_non_jinteger():
     with pytest.raises(TypeError):
         JInteger(10).compareTo(10)
 
+def test_int_value_returns_stored_integer():
+    assert JInteger(10).intValue() == 10
+
+def test_int_value_negative():
+    assert JInteger(-10).intValue() == -10
+
+def test_int_value_zero():
+    assert JInteger(0).intValue() == 0
+
+def test_long_value_returns_stored_integer():
+    assert JInteger(10).longValue() == 10
+
+def test_float_value_returns_float():
+    assert JInteger(10).floatValue() == 10.0
+
+def test_double_value_returns_float():
+    assert JInteger(10).doubleValue() == 10.0
+
+def test_byte_value_positive():
+    assert JInteger(127).byteValue() == 127
+
+def test_byte_value_overflow():
+    assert JInteger(128).byteValue() == -128
+
+def test_byte_value_negative():
+    assert JInteger(-1).byteValue() == -1
+
+def test_short_value_positive():
+    assert JInteger(32767).shortValue() == 32767
+
+def test_short_value_overflow():
+    assert JInteger(32768).shortValue() == -32768
+
+def test_short_value_negative():
+    assert JInteger(-1).shortValue() == -1
+
 def test_parse_unsigned_int_accepts_valid_values():
     assert JInteger.parseUnsignedInt("0") == 0
     assert JInteger.parseUnsignedInt("10") == 10
@@ -120,3 +156,4 @@ def test_unsigned_division_operations_reject_zero_divisor():
 
     with pytest.raises(ZeroDivisionError):
         JInteger.remainderUnsigned(10, 0)
+
