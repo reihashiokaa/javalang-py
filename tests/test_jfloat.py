@@ -57,3 +57,22 @@ def test_jfloat_float_value_returns_float():
 def test_jfloat_double_value_returns_float_adaptation():
     value = JFloat(10.5)
     assert value.doubleValue() == 10.5
+
+def test_jfloat_byte_value_with_value_inside_range():
+    value = JFloat(10.5)
+    assert value.byteValue() == 10
+
+
+def test_jfloat_short_value_with_value_inside_range():
+    value = JFloat(300.9)
+    assert value.shortValue() == 300
+
+
+def test_jfloat_byte_value_wraps_like_signed_byte():
+    value = JFloat(130.0)
+    assert value.byteValue() == -126
+
+
+def test_jfloat_short_value_wraps_like_signed_short():
+    value = JFloat(32768.0)
+    assert value.shortValue() == -32768
