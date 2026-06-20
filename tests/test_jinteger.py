@@ -61,6 +61,58 @@ def test_compare_to_rejects_non_jinteger():
     with pytest.raises(TypeError):
         JInteger(10).compareTo(10)
 
+def test_reverse_zero():
+    assert JInteger.reverse(0) == 0
+ 
+ 
+def test_reverse_one():
+    assert JInteger.reverse(1) == -2147483648
+ 
+ 
+def test_reverse_minus_one():
+    assert JInteger.reverse(-1) == -1
+ 
+ 
+def test_reverse_bytes_zero():
+    assert JInteger.reverseBytes(0) == 0
+ 
+ 
+def test_reverse_bytes_hex():
+    assert JInteger.reverseBytes(0x01020304) == 0x04030201
+
+def test_rotate_left_distance_1():
+    assert JInteger.rotateLeft(1, 1) == 2
+ 
+ 
+def test_rotate_left_distance_32():
+    assert JInteger.rotateLeft(1, 32) == 1
+ 
+ 
+def test_rotate_left_distance_33():
+    assert JInteger.rotateLeft(1, 33) == JInteger.rotateLeft(1, 1)
+
+def test_rotate_right_distance_1():
+    assert JInteger.rotateRight(1, 1) == -2147483648
+ 
+ 
+def test_rotate_right_distance_32():
+    assert JInteger.rotateRight(1, 32) == 1
+ 
+ 
+def test_rotate_right_distance_33():
+    assert JInteger.rotateRight(1, 33) == JInteger.rotateRight(1, 1)
+ 
+def test_signum_negative():
+    assert JInteger.signum(-10) == -1
+ 
+ 
+def test_signum_zero():
+    assert JInteger.signum(0) == 0
+ 
+ 
+def test_signum_positive():
+    assert JInteger.signum(10) == 1
+ 
 def test_int_value_returns_stored_integer():
     assert JInteger(10).intValue() == 10
 

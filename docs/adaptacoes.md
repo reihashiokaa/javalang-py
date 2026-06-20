@@ -187,6 +187,37 @@ Além disso, a classe `JInteger` representa o `Integer` do Java, que trabalha co
 
 **Pull Request relacionado:** 46.
 
+| 19/06/2026 | Adição de adaptação métodos estáticos | Beatriz     |
+
+### Operações bit-a-bit
+
+**Método:**
+reverse, reverseBytes, rotateLeft, rotateRight e signum
+
+**Assinatura Java:**
+public static int reverse(int i) 
+public static int reverseBytes(int i) 
+public static int rotateLeft(int i, int distance) 
+public static int rotateRight(int i, int distance) 
+public static int signum(int i)
+
+**Decisão da equipe:**
+Como Python não possui inteiros limitados a 32 bits, foram criadas funções auxiliares internas para simular inteiros de 32 bits com sinal, garantindo compatibilidade com os resultados obtidos em Java.
+
+**Justificativa:**
+Os métodos reverse, reverseBytes, rotateLeft e rotateRight dependem diretamente da representação binária fixa de 32 bits do tipo int do Java. Como os inteiros em Python possuem tamanho arbitrário, a implementação exige a limitação explícita dos valores a 32 bits para que operações de deslocamento, rotação e inversão de bits produzam os mesmos resultados da plataforma Java.
+
+**Alternativa em Python (quando aplicável):**
+    signum (valor > 0) - (valor < 0) 
+
+    # exemplo de inversão dos 32 bits 
+    int('{:032b}'.format(valor & 0xFFFFFFFF)[::-1], 2)
+
+**Issue relacionada:**
+ Issue #32
+
+**Pull Request relacionado:**
+...
 
 ## Histórico de Atualizações
 
@@ -196,5 +227,9 @@ Além disso, a classe `JInteger` representa o `Integer` do Java, que trabalha co
 | 19/06/2026 | Implementação de conversões  | Miguel      |
 | 19/06/2026 | Registro das adaptações de operações sem sinal de JInteger | Isabela |
 | 19/06/2026 | Registro das adaptações de parsing e criação por valor de JInteger | Reinaldo |
+| 19/06/2026 | Registro das adaptações de operações bit-a-bit| Beatriz |
+
+
+
 
 
