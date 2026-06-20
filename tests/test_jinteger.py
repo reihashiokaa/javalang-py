@@ -317,3 +317,74 @@ def test_decode_rejects_values_outside_signed_32_bit_range():
         JInteger.decode("0x80000000")
 
     assert JInteger.decode("-0x80000000").toString() == str(JInteger.MIN_VALUE)
+
+def test_bit_count_zero():
+    assert JInteger.bitCount(0) == 0
+
+
+def test_bit_count_positive():
+    assert JInteger.bitCount(10) == 2
+
+
+def test_bit_count_all_bits_set():
+    assert JInteger.bitCount(-1) == 32
+
+def test_highest_one_bit_zero():
+    assert JInteger.highestOneBit(0) == 0
+
+
+def test_highest_one_bit_positive():
+    assert JInteger.highestOneBit(10) == 8
+
+
+def test_highest_one_bit_power_of_two():
+    assert JInteger.highestOneBit(16) == 16
+
+
+def test_highest_one_bit_negative():
+    assert JInteger.highestOneBit(-1) == -2147483648
+
+def test_lowest_one_bit_zero():
+    assert JInteger.lowestOneBit(0) == 0
+
+
+def test_lowest_one_bit_positive():
+    assert JInteger.lowestOneBit(10) == 2
+
+
+def test_lowest_one_bit_power_of_two():
+    assert JInteger.lowestOneBit(16) == 16
+
+
+def test_lowest_one_bit_negative():
+    assert JInteger.lowestOneBit(-1) == 1
+
+def test_number_of_leading_zeros_zero():
+    assert JInteger.numberOfLeadingZeros(0) == 32
+
+
+def test_number_of_leading_zeros_one():
+    assert JInteger.numberOfLeadingZeros(1) == 31
+
+
+def test_number_of_leading_zeros_eight():
+    assert JInteger.numberOfLeadingZeros(8) == 28
+
+
+def test_number_of_leading_zeros_highest_bit_set():
+    assert JInteger.numberOfLeadingZeros(-2147483648) == 0
+
+def test_number_of_trailing_zeros_zero():
+    assert JInteger.numberOfTrailingZeros(0) == 32
+
+
+def test_number_of_trailing_zeros_one():
+    assert JInteger.numberOfTrailingZeros(1) == 0
+
+
+def test_number_of_trailing_zeros_two():
+    assert JInteger.numberOfTrailingZeros(2) == 1
+
+
+def test_number_of_trailing_zeros_eight():
+    assert JInteger.numberOfTrailingZeros(8) == 3
