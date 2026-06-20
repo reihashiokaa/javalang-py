@@ -26,3 +26,9 @@ class JFloat:
     def shortValue(self):
         value = int(self._value) & 0xFFFF
         return value - 65536 if value >= 32768 else value
+    
+    def intValue(self):
+        return int(self._value)
+
+    def longValue(self):
+        return int(self._value)
