@@ -192,3 +192,40 @@ def test_value_of_rejects_integer_outside_signed_32_bit_range():
 
     with pytest.raises(OverflowError):
         JInteger.valueOf(JInteger.MIN_VALUE - 1)
+        
+def test_decode_interprets_decimal_values():
+    assert JInteger.decode("10").toString() == "10"
+    assert JInteger.decode("-10").toString() == "-10"
+    assert JInteger.decode("0").toString() == "0"
+
+
+def test_decode_interprets_hexadecimal_prefixes():
+    assert JInteger.decode("0x10").toString() == "16"
+    assert JInteger.decode("0X10").toString() == "16"
+    assert JInteger.decode("#10").toString() == "16"
+    assert JInteger.decode("-0x10").toString() == "-16"
+
+
+def test_decode_interprets_octal_prefix():
+    assert JInteger.decode("010").toString() == "8"
+
+
+def test_decode_rejects_invalid_values():
+    with pytest.raises(TypeError):
+        JInteger.decode(10)
+
+    with pytest.raises(ValueError):
+        JInteger.decode("")
+
+    with pytest.raises(ValueError):
+        JInteger.decode("0x")
+
+    with pytest.raises(ValueError):
+        JInteger.decode("abc")
+
+
+def test_decode_rejects_values_outside_signed_32_bit_range():
+    with pytest.raises(OverflowError):
+        JInteger.decode("0x80000000")
+
+    assert JInteger.decode("-0x80000000").toString() == str(JInteger.MIN_VALUE)
