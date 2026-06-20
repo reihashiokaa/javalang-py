@@ -73,7 +73,7 @@ Usar `value & 0xFFFFFFFF` para interpretar um inteiro como valor sem sinal de 32
 
 **Issue relacionada:** #30
 
-**Pull Request relacionado:** A definir.
+**Pull Request relacionado:** 42.
 
 ### Parsing e criação por valor em JInteger
 
@@ -117,7 +117,7 @@ Além disso, a classe `JInteger` representa o `Integer` do Java, que trabalha co
 
 **Issue relacionada:** #N
 
-**Pull Request relacionado:** A definir.
+**Pull Request relacionado:** 46.
 
 
 ## Histórico de Atualizações
