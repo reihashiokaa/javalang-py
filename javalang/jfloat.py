@@ -32,3 +32,9 @@ class JFloat:
 
     def longValue(self):
         return int(self._value)
+
+    def floatValue(self):
+        return float(self._value)
+
+    def doubleValue(self):
+        return float(self._value)
