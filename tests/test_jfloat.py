@@ -34,3 +34,17 @@ def test_jfloat_size_and_bytes_match_java_float():
 
 def test_jfloat_type_uses_python_float_as_adaptation():
     assert JFloat.TYPE is float
+
+def test_jfloat_int_value_truncates_decimal_part():
+    value = JFloat(10.8)
+    assert value.intValue() == 10
+
+
+def test_jfloat_int_value_truncates_negative_decimal_part():
+    value = JFloat(-10.8)
+    assert value.intValue() == -10
+
+
+def test_jfloat_long_value_returns_integer_value():
+    value = JFloat(20.5)
+    assert value.longValue() == 20
