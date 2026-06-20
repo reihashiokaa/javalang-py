@@ -123,4 +123,26 @@ def test_parse_float_tipo_errado():
     with pytest.raises(ValueError):
         JFloat.parseFloat(3.14)
  
+def test_value_of_float():
+    resultado = JFloat.valueOf(3.14)
+    assert isinstance(resultado, JFloat)
+    assert resultado.floatValue() == pytest.approx(3.14)
+ 
+ 
+def test_value_of_inteiro():
+    resultado = JFloat.valueOf(10)
+    assert isinstance(resultado, JFloat)
+    assert resultado.floatValue() == 10.0
+ 
+ 
+def test_value_of_negativo():
+    resultado = JFloat.valueOf(-7.5)
+    assert isinstance(resultado, JFloat)
+    assert resultado.floatValue() == -7.5
+ 
+ 
+def test_value_of_zero():
+    resultado = JFloat.valueOf(0)
+    assert isinstance(resultado, JFloat)
+    assert resultado.floatValue() == 0.0
 
