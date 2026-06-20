@@ -48,14 +48,54 @@ def _format_unsigned(value: int, radix: int):
 
 
 class JInteger:
-    """Representa a classe Integer da API Java SE 8."""
-
     MAX_VALUE = (2**31) - 1
     MIN_VALUE = -(2**31)
     SIZE = 32
     BYTES = 4
     TYPE = int
 
+
+
+    def toString(self_or_value, radix=10):
+    
+        # Retorna a representação textual do valor inteiro.
+
+        # Este método funciona tanto como:
+        # - JInteger.toString(10)
+        # - JInteger.toString(255, 16)
+        # - JInteger(10).toString()
+        
+        _validate_radix(radix)
+
+        if isinstance(self_or_value, JInteger):
+            value = self_or_value._value
+        else:
+            value = self_or_value
+
+        if not isinstance(value, int):
+            raise TypeError("value must be an int")
+
+        if radix == 10:
+            return str(value)
+
+        negative = value < 0
+        value = abs(value)
+
+        result = _format_unsigned(value, radix)
+
+        return "-" + result if negative else result
+
+    @staticmethod
+    def toBinaryString(value):
+        return JInteger.toString(value, 2)
+
+    @staticmethod
+    def toOctalString(value):
+        return JInteger.toString(value, 8)
+
+    @staticmethod
+    def toHexString(value):
+        return JInteger.toString(value, 16)
 
     """Métodos estáticos"""
     @staticmethod
@@ -138,10 +178,6 @@ class JInteger:
             raise OverflowError("JInteger value must be within 32-bit signed integer range")
 
         self._value = value
-
-    def toString(self):
-        """Retorna a representação textual do valor inteiro."""
-        return str(self._value)
 
     def hashCode(self):
         """Retorna o hash compatível com o valor inteiro armazenado."""
