@@ -100,6 +100,20 @@ class JInteger:
             raise OverflowError("integer value must be within signed 32-bit range")
 
         return parsed_value
+    
+    @staticmethod
+    def valueOf(value, radix: int = 10):
+        """Cria uma instância de JInteger a partir de inteiro ou string."""
+        if isinstance(value, int):
+            if value < JInteger.MIN_VALUE or value > JInteger.MAX_VALUE:
+                raise OverflowError("integer value must be within signed 32-bit range")
+
+            return JInteger(value)
+
+        if isinstance(value, str):
+            return JInteger(JInteger.parseInt(value, radix))
+
+        raise TypeError("value must be an int or a string")
 
     @staticmethod
     def parseUnsignedInt(value: str, radix: int = 10):
