@@ -40,7 +40,6 @@ O prefixo J foi adotado para diferenciar as classes do projeto dos tipos nativos
 
 **Pull Request relacionado:**
 
----
 ## Adaptações da JInteger
 
 ### Operações sem sinal de 32 bits
@@ -76,9 +75,57 @@ Usar `value & 0xFFFFFFFF` para interpretar um inteiro como valor sem sinal de 32
 
 **Pull Request relacionado:** A definir.
 
+### Parsing e criação por valor em JInteger
+
+**Métodos:** `parseInt`, `valueOf` e `decode`
+
+**Assinaturas Java relacionadas:**
+
+- `static int parseInt(String s)`
+- `static int parseInt(String s, int radix)`
+- `static Integer valueOf(int i)`
+- `static Integer valueOf(String s)`
+- `static Integer valueOf(String s, int radix)`
+- `static Integer decode(String nm)`
+
+**Decisão da equipe:**
+
+As variações sobrecarregadas da API Java foram adaptadas para Python usando parâmetros opcionais e verificação interna de tipo.
+
+Na implementação em Python:
+
+- `parseInt(value, radix=10)` representa as variações de `parseInt` com e sem radix.
+- `valueOf(value, radix=10)` representa as variações de `valueOf` com inteiro, string e string com radix.
+- `decode(value)` interpreta prefixos numéricos para identificar decimal, hexadecimal e octal.
+
+**Justificativa:**
+
+Java permite sobrecarga de métodos, ou seja, vários métodos com o mesmo nome e assinaturas diferentes. Python não possui esse mesmo mecanismo. Por isso, a equipe optou por representar as variações usando parâmetros opcionais.
+
+Além disso, a classe `JInteger` representa o `Integer` do Java, que trabalha com valores inteiros de 32 bits. Por isso, os valores convertidos por parsing são validados em relação aos limites `MIN_VALUE` e `MAX_VALUE`.
+
+**Comportamento adotado em Python:**
+
+- `parseInt` retorna um valor `int` do Python.
+- `valueOf` retorna uma instância de `JInteger`.
+- `decode` retorna uma instância de `JInteger`.
+- `parseInt` aceita radix entre 2 e 36.
+- `decode` suporta valores decimais, prefixos `0x`, `0X`, `#` e valores octais iniciados por `0`.
+- Entradas vazias, inválidas ou com radix fora do intervalo aceito geram `ValueError`.
+- Valores fora do intervalo assinado de 32 bits geram `OverflowError`.
+- Tipos inválidos geram `TypeError`.
+
+**Issue relacionada:** #N
+
+**Pull Request relacionado:** A definir.
+
+
 ## Histórico de Atualizações
 
 | Data       | Alteração                    | Responsável |
 | ---------- | ---------------------------- | ----------- |
 | 13/06/2026 | Criação inicial do documento | Luciana     |
 | 19/06/2026 | Registro das adaptações de operações sem sinal de JInteger | Isabela |
+| 19/06/2026 | Registro das adaptações de parsing e criação por valor de JInteger | Reinaldo |
+
+
