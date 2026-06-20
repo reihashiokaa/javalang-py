@@ -322,7 +322,7 @@ Diferenças mais específicas de precisão, arredondamento, representação bin�
 
 **Issue relacionada:** #49
 
-**Pull Request relacionado:** A definir.
+**Pull Request relacionado:** 57.
 
 ## Histórico de Atualizações
 
