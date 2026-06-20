@@ -1,3 +1,4 @@
+
 import pytest
 
 from javalang import JInteger
@@ -157,3 +158,37 @@ def test_parse_int_rejects_values_outside_signed_32_bit_range():
 
     with pytest.raises(OverflowError):
         JInteger.parseInt(str(JInteger.MIN_VALUE - 1))
+        
+        
+def test_value_of_creates_jinteger_from_integer():
+    result = JInteger.valueOf(10)
+
+    assert isinstance(result, JInteger)
+    assert result.toString() == "10"
+
+
+def test_value_of_creates_jinteger_from_string():
+    result = JInteger.valueOf("10")
+
+    assert isinstance(result, JInteger)
+    assert result.toString() == "10"
+
+
+def test_value_of_creates_jinteger_from_string_with_radix():
+    result = JInteger.valueOf("1010", 2)
+
+    assert isinstance(result, JInteger)
+    assert result.toString() == "10"
+
+
+def test_value_of_rejects_invalid_type():
+    with pytest.raises(TypeError):
+        JInteger.valueOf(10.5)
+
+
+def test_value_of_rejects_integer_outside_signed_32_bit_range():
+    with pytest.raises(OverflowError):
+        JInteger.valueOf(JInteger.MAX_VALUE + 1)
+
+    with pytest.raises(OverflowError):
+        JInteger.valueOf(JInteger.MIN_VALUE - 1)
