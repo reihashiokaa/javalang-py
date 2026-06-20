@@ -120,3 +120,40 @@ def test_unsigned_division_operations_reject_zero_divisor():
 
     with pytest.raises(ZeroDivisionError):
         JInteger.remainderUnsigned(10, 0)
+
+
+def test_parse_int_accepts_decimal_values():
+    assert JInteger.parseInt("0") == 0
+    assert JInteger.parseInt("10") == 10
+    assert JInteger.parseInt("-10") == -10
+
+
+def test_parse_int_accepts_radix_values():
+    assert JInteger.parseInt("1010", 2) == 10
+    assert JInteger.parseInt("12", 8) == 10
+    assert JInteger.parseInt("A", 16) == 10
+
+
+def test_parse_int_rejects_invalid_values():
+    with pytest.raises(ValueError):
+        JInteger.parseInt("")
+
+    with pytest.raises(ValueError):
+        JInteger.parseInt("abc")
+
+    with pytest.raises(ValueError):
+        JInteger.parseInt("102", 2)
+
+    with pytest.raises(ValueError):
+        JInteger.parseInt("10", 1)
+
+    with pytest.raises(ValueError):
+        JInteger.parseInt("10", 37)
+
+
+def test_parse_int_rejects_values_outside_signed_32_bit_range():
+    with pytest.raises(OverflowError):
+        JInteger.parseInt(str(JInteger.MAX_VALUE + 1))
+
+    with pytest.raises(OverflowError):
+        JInteger.parseInt(str(JInteger.MIN_VALUE - 1))
