@@ -18,3 +18,11 @@ class JFloat:
 
     def __init__(self, value=0.0):
         self._value = float(value)
+
+    def byteValue(self):
+        value = int(self._value) & 0xFF
+        return value - 256 if value >= 128 else value
+
+    def shortValue(self):
+        value = int(self._value) & 0xFFFF
+        return value - 65536 if value >= 32768 else value
