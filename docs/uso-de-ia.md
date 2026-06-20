@@ -80,6 +80,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos de conversão da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
 | 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos operacao bit a bit classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modificações |
 | 20/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.2-jinteger | `docs/relatorios/status-v0.2.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 20/06/2026 | ChatGPT | Apoio na implementação inicial de JFloat | `javalang/jfloat.py`, `javalang/__init__.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 
 ---
 
@@ -526,4 +527,50 @@ As verificações locais foram executadas utilizando:
 
 Aceita com modificações.
 
+## Registro de Uso IA-10
+
+### Data
+
+20/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação inicial da classe `JFloat`, incluindo a criação da estrutura da classe, definição das constantes principais, criação dos testes iniciais e registro da adaptação entre `Float` do Java e `float` do Python.
+
+### Trecho do projeto afetado
+
+- `javalang/jfloat.py`
+- `javalang/__init__.py`
+- `tests/test_jfloat.py`
+- `docs/adaptacoes.md`
+- `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a primeira issue da milestone `v0.3-jfloat`, criando a estrutura inicial da classe `JFloat`, suas constantes principais, os testes iniciais e a documentação de adaptação necessária.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação inicial da classe `JFloat`, sugerindo a criação do arquivo `javalang/jfloat.py`, a definição das constantes principais inspiradas na classe `Float` da API Java SE 8 e o armazenamento interno do valor como `float` do Python.
+
+Também foram sugeridos testes iniciais para validar a criação da classe, constantes de infinito, `NaN`, tamanho em bits, quantidade de bytes e adaptação do tipo base para `float`.
+
+Além disso, a IA apoiou a redação do registro em `docs/adaptacoes.md`, explicando a diferença entre o `float` de 32 bits do Java e o `float` utilizado em Python.
+
+### Validação da equipe
+
+O conteúdo foi revisado antes de ser incorporado ao projeto. A implementação foi mantida dentro do escopo da issue, sem adicionar métodos de conversão, parsing, comparação, operações de bits ou operações estáticas.
+
+As verificações locais foram executadas utilizando:
+
+- `python -m pytest`
+- `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
 
