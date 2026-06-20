@@ -320,13 +320,14 @@ ChatGPT
 
 ### Objetivo
 
-* Apoiar a implementação da Issue 2 da milestone v0.2-jinteger, referente às conversões básicas da classe `JInteger`.
+* Apoiar a implementação da Issue 26 da milestone v0.2-jinteger, referente às conversões básicas da classe `JInteger`.
 
 ### Trecho do Projeto Afetado
 
 * `javalang/jinteger.py`
 * `tests/test_jinteger.py`
 * `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
 
 ### Descrição da Contribuição da IA
 

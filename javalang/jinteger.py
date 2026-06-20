@@ -112,9 +112,6 @@ class JInteger:
             value -= 0x10000
 
         return value
-    
-
-        return 0
 
     @staticmethod
     def parseUnsignedInt(value: str, radix: int = 10):

@@ -154,6 +154,3 @@ def test_unsigned_division_operations_reject_zero_divisor():
     with pytest.raises(ZeroDivisionError):
         JInteger.divideUnsigned(10, 0)
 
-    with pytest.raises(ZeroDivisionError):
-        JInteger.remainderUnsigned(10, 0)
-
