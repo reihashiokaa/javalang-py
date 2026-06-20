@@ -146,3 +146,23 @@ def test_value_of_zero():
     assert isinstance(resultado, JFloat)
     assert resultado.floatValue() == 0.0
 
+def test_value_of_string_decimal():
+    resultado = JFloat.valueOf("2.71")
+    assert isinstance(resultado, JFloat)
+    assert resultado.floatValue() == pytest.approx(2.71)
+ 
+ 
+def test_value_of_string_negativa():
+    resultado = JFloat.valueOf("-1.0")
+    assert isinstance(resultado, JFloat)
+    assert resultado.floatValue() == -1.0
+ 
+ 
+def test_value_of_string_invalida():
+    with pytest.raises(ValueError):
+        JFloat.valueOf("texto")
+ 
+ 
+def test_value_of_tipo_invalido():
+    with pytest.raises(ValueError):
+        JFloat.valueOf([1, 2, 3])
