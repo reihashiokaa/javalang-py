@@ -41,6 +41,7 @@ class JInteger:
 
         if self._value > other._value:
             return 1
+        return 0
     
     def intValue(self):
         """Retorna o valor armazenado como int"""
