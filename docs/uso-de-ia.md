@@ -797,3 +797,47 @@ As sugestões foram revisadas antes de serem incorporadas ao projeto. A implemen
 ### Resultado
 
 Aceita com modificações.
+
+## Registro de Uso 18
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos aritméticos estáticos da classe `JFloat`, referentes à issue #55 da milestone `v0.3-jfloat`.
+
+### Trecho do projeto afetado
+
+* `javalang/jfloat.py`
+* `tests/test_jfloat.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #55, responsável pelos métodos `sum`, `max` e `min` da classe `JFloat`, incluindo testes para valores positivos, negativos, zero, valores decimais, `NaN` e infinito, além do registro das adaptações necessárias.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na definição da implementação dos métodos estáticos `sum`, `max` e `min`, seguindo o contrato da API Java e as orientações da milestone. Também apoiou a criação dos testes automatizados para cenários com valores positivos, negativos, zero, números decimais, `NaN`, infinito positivo e infinito negativo.
+
+Além disso, auxiliou na elaboração da documentação de adaptação relacionada ao tratamento de valores especiais de ponto flutuante, especialmente o comportamento adotado para operações envolvendo `NaN`, bem como na redação dos registros de uso de IA e na organização dos commits da issue.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #55, contemplando apenas os métodos `sum`, `max` e `min`, seus testes correspondentes e a documentação necessária.
+
+As verificações locais foram executadas utilizando:
+
+* `python -m pytest`
+* `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
