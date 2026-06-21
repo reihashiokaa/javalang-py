@@ -180,3 +180,37 @@ class JString:
     def intern(self):
         """Retorna a propria instancia como adaptacao de String.intern."""
         return self
+    
+    def contains(self, sequence):
+        """Verifica se a string contem a sequencia informada."""
+        if isinstance(sequence, JString):
+            sequence_value = sequence._value
+        elif isinstance(sequence, str):
+            sequence_value = sequence
+        else:
+            raise TypeError("sequence must be a string or JString")
+        return sequence_value in self._value
+    
+    def startsWith(self, prefix, toffset=0):
+        """Verifica se a string começa com o prefixo informado."""
+        if isinstance(prefix, JString):
+            prefix = prefix._value
+        elif not isinstance(prefix, str):
+            raise TypeError("prefix must be a string or JString")
+
+        if not isinstance(toffset, int):
+            raise TypeError("toffset must be an int")
+
+        if toffset < 0 or toffset > self.length():
+            return False
+
+        return self._value.startswith(prefix, toffset)
+    
+    def endsWith(self, suffix):
+        """Verifica se a string termina com o sufixo informado."""
+        if isinstance(suffix, JString):
+            suffix = suffix._value
+        elif not isinstance(suffix, str):
+            raise TypeError("suffix must be a string or JString")
+
+        return self._value.endswith(suffix)
