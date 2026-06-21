@@ -127,6 +127,36 @@ class JFloat:
         return JFloat.compare(self._value, other._value)
 
     @staticmethod
+    def toHexString(value: float) -> str:
+        """Retorna a representação hexadecimal textual de um valor float."""
+        value = float(value)
+
+        if math.isnan(value):
+            return "NaN"
+
+        if math.isinf(value):
+            return "Infinity" if value > 0 else "-Infinity"
+
+        bits = JFloat.floatToRawIntBits(value) & 0xFFFFFFFF
+        sign = "-" if bits & 0x80000000 else ""
+
+        exponent_bits = (bits >> 23) & 0xFF
+        fraction_bits = bits & 0x7FFFFF
+
+        if exponent_bits == 0:
+            if fraction_bits == 0:
+                return f"{sign}0x0.0p0"
+
+            fraction_hex = f"{fraction_bits << 1:06x}".rstrip("0") or "0"
+
+            return f"{sign}0x0.{fraction_hex}p-126"
+
+        exponent = exponent_bits - 127
+        fraction_hex = f"{fraction_bits << 1:06x}".rstrip("0") or "0"
+
+        return f"{sign}0x1.{fraction_hex}p{exponent}"
+
+    @staticmethod
     def compare(f1: float, f2: float) -> int:
         """Compara dois valores float brutos usando as regras do Java."""
         v1 = struct.unpack("f", struct.pack("f", float(f1)))[0]
