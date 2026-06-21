@@ -142,3 +142,23 @@ class JString:
 
     def hashCode(self):
         return hash(self._value)
+    
+    def substring(self, beginIndex, endIndex=None):
+        """Retorna uma nova JString com parte do conteudo."""
+        if not isinstance(beginIndex, int):
+            raise TypeError("beginIndex must be an int")
+        
+        if endIndex is None:
+            endIndex = self.length()
+        elif not isinstance(endIndex, int):
+            raise TypeError("endIndex must be an int")
+        
+        if beginIndex < 0 or endIndex < beginIndex or endIndex > self.length():
+            raise IndexError("substring range is invalid")
+        
+        return JString(self._value[beginIndex:endIndex])
+    
+    def subSequence(self, beginIndex, endIndex):
+        """Retorna uma subsequencia da string."""
+
+        return self.substring(beginIndex, endIndex)
