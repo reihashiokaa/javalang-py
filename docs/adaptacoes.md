@@ -283,7 +283,8 @@ Essa abordagem permite reproduzir o comportamento da classe Integer do Java para
 
 **Pull Request relacionado:**
 
-```markdown id="gg1fjh"
+--- 
+
 ### Estrutura inicial e constantes de JFloat
 
 **Classe:** `JFloat`
@@ -403,16 +404,63 @@ Preencher após o pull request
 
 ---
 
+### JFloat
+
+**Métodos:**
+`isNaN`, `isInfinite` e `isFinite`
+
+**Assinatura Java:**
+`public boolean isNaN()`
+
+`public static boolean isNaN(float v)`
+
+`public boolean isInfinite()`
+
+`public static boolean isInfinite(float v)`
+
+`public static boolean isFinite(float f)`
+
+**Decisão da equipe:**
+Os métodos de verificação de valores especiais foram implementados utilizando a biblioteca `math` do Python. A implementação permite verificar tanto o valor armazenado em uma instância de `JFloat` quanto um valor numérico recebido diretamente pela chamada da classe.
+
+**Justificativa:**
+A classe `Float` do Java possui métodos para identificar valores especiais de ponto flutuante, como `NaN`, infinito positivo, infinito negativo e valores finitos. Em Python, esses valores podem ser representados por `float("nan")`, `float("inf")` e `float("-inf")`, e verificados com `math.isnan`, `math.isinf` e `math.isfinite`.
+
+Como Python não possui sobrecarga de métodos como Java, a implementação foi adaptada para identificar se o argumento recebido é uma instância de `JFloat` ou um valor numérico direto. Dessa forma, o mesmo método atende ao uso por instância e ao uso pela classe.
+
+**Comportamento adotado em Python:**
+
+* `isNaN` retorna `True` quando o valor é `NaN`.
+* `isInfinite` retorna `True` para infinito positivo ou negativo.
+* `isFinite` retorna `True` para valores finitos e `False` para `NaN` ou infinito.
+* Os métodos podem ser chamados por instância, como `JFloat(float("nan")).isNaN()`.
+* Os métodos também podem ser chamados pela classe, como `JFloat.isNaN(float("nan"))`.
+
+**Alternativa em Python (quando aplicável):**
+`math.isnan(value)`
+
+`math.isinf(value)`
+
+`math.isfinite(value)`
+
+**Issue relacionada:**
+#53
+
+**Pull Request relacionado:**
+A definir.
+
+---
+
 ## Histórico de Atualizações
 
 | Data       | Alteração                    | Responsável |
 | ---------- | ---------------------------- | ----------- |
 | 13/06/2026 | Criação inicial do documento | Luciana     |
-| 19/06/2026 | Implementação de conversões  | Miguel      |
 | 19/06/2026 | Registro das adaptações de operações sem sinal de JInteger | Isabela |
+| 19/06/2026 | Implementação de conversões  | Miguel      |
 | 19/06/2026 | Registro das adaptações de parsing e criação por valor de JInteger | Reinaldo |
 | 19/06/2026 | Registro das adaptações de operações bit-a-bit| Beatriz |
 | 19/06/2026 | Registro das adaptações de operações bit-a-bit| Miguel |
 | 20/06/2026 | Registro das adaptações de operações de conversões em JFloat| Miguel |
 | 20/06/2026 | Registro das adaptações de  parsing value em JFloat| Beatriz |
-
+| 21/06/2026 | Registro das adaptações de valores especiais em JFloat | Isabela |

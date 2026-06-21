@@ -84,6 +84,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 20/06/2026 | ChatGPT | Apoio na implementação das conversões básicas de JFloat, criação de testes e documentação de adaptações | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | Claude | Sugestão de implementação dos métodos parseFloat e valueOf da classe JFloat.| `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | Gemini     | Auxiliar na implementação dos métodos de representação textual, igualdade e comparação da classe JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py` | Aceita |
+| 21/06/2026 | ChatGPT | Apoio na implementação das verificações de valores especiais de JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 ---
 
 ## Registro de Uso 01
@@ -622,7 +623,7 @@ A IA auxiliou na explicação do comportamento das conversões numéricas da cla
 
 ---
 
-## Registro de Uso 014
+## Registro de Uso 14
 
 ### Data
 
@@ -702,3 +703,53 @@ A IA auxiliou no mapeamento técnico para garantir conformidade estrita com o Ja
 ### Resultado
 
 Aceita — a lógica foi incorporada integralmente e estruturada de forma modular no repositório.
+
+---
+
+## Registro de Uso 16
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos de verificação de valores especiais da classe `JFloat`, incluindo identificação de `NaN`, infinito positivo, infinito negativo e valores finitos.
+
+### Trecho do projeto afetado
+
+* `javalang/jfloat.py`
+* `tests/test_jfloat.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #53 da milestone `v0.3-jfloat`, responsável pelos métodos `isNaN`, `isInfinite` e `isFinite`, respeitando a regra de até três métodos por commit, criando testes e registrando as adaptações necessárias entre Java e Python.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação dos métodos `isNaN`, `isInfinite` e `isFinite`, sugerindo o uso da biblioteca `math` do Python para verificar valores especiais de ponto flutuante.
+
+Também apoiou a definição de uma estratégia para permitir chamadas tanto por instância quanto pela classe, contemplando usos como `JFloat(float("nan")).isNaN()` e `JFloat.isNaN(float("nan"))`.
+
+Além disso, sugeriu testes automatizados para cobrir `NaN`, infinito positivo, infinito negativo, valores finitos e os dois formatos de chamada. A IA também auxiliou na redação do registro de adaptações em `docs/adaptacoes.md`.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #53, sem adicionar métodos de outras issues da milestone.
+
+As verificações locais foram executadas com sucesso utilizando:
+
+* `python -m ruff check .`
+* `python -m pytest`
+
+### Resultado
+
+Aceita com modificações.
+
+---

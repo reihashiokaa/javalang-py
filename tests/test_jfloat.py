@@ -217,3 +217,39 @@ def test_jfloat_compare_static():
     assert JFloat.compare(-0.0, 0.0) == -1
     assert JFloat.compare(10.0, 5.0) == 1
 
+def test_jfloat_is_nan_detects_nan_value():
+    assert JFloat(float("nan")).isNaN() is True
+    assert JFloat.isNaN(float("nan")) is True
+
+
+def test_jfloat_is_nan_returns_false_for_regular_values():
+    assert JFloat(0.0).isNaN() is False
+    assert JFloat(10.5).isNaN() is False
+    assert JFloat.isNaN(-3.14) is False
+
+
+def test_jfloat_is_infinite_detects_positive_and_negative_infinity():
+    assert JFloat(float("inf")).isInfinite() is True
+    assert JFloat(float("-inf")).isInfinite() is True
+    assert JFloat.isInfinite(float("inf")) is True
+    assert JFloat.isInfinite(float("-inf")) is True
+
+
+def test_jfloat_is_infinite_returns_false_for_finite_and_nan_values():
+    assert JFloat(10.5).isInfinite() is False
+    assert JFloat(float("nan")).isInfinite() is False
+    assert JFloat.isInfinite(0.0) is False
+
+
+def test_jfloat_is_finite_detects_regular_values():
+    assert JFloat(0.0).isFinite() is True
+    assert JFloat(10.5).isFinite() is True
+    assert JFloat(-3.14).isFinite() is True
+    assert JFloat.isFinite(42.0) is True
+
+
+def test_jfloat_is_finite_returns_false_for_nan_and_infinity():
+    assert JFloat(float("nan")).isFinite() is False
+    assert JFloat(float("inf")).isFinite() is False
+    assert JFloat(float("-inf")).isFinite() is False
+    assert JFloat.isFinite(float("nan")) is False
