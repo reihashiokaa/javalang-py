@@ -254,3 +254,42 @@ class JString:
             raise TypeError("value must be a list or tuple of characters")
 
         return JString(value)
+    
+    @staticmethod
+    def format(format_string, *args):
+        """Formata uma string usando os argumentos informados."""
+        if not isinstance(format_string, str):
+            raise TypeError("format_string must be a string")
+
+        try:
+            if args:
+                return JString(format_string % args)
+
+            return JString(format_string)
+        except (TypeError, ValueError) as error:
+            raise ValueError("invalid format arguments") from error
+
+    @staticmethod
+    def join(delimiter, *elements):
+        """Une elementos usando o delimitador informado."""
+        if isinstance(delimiter, JString):
+            delimiter_value = delimiter._value
+        elif isinstance(delimiter, str):
+            delimiter_value = delimiter
+        else:
+            raise TypeError("delimiter must be a string or JString")
+
+        if len(elements) == 1 and isinstance(elements[0], (list, tuple)):
+            elements = tuple(elements[0])
+
+        values = []
+
+        for element in elements:
+            if isinstance(element, JString):
+                values.append(element._value)
+            elif isinstance(element, str):
+                values.append(element)
+            else:
+                raise TypeError("join elements must be strings or JString")
+
+        return JString(delimiter_value.join(values))
