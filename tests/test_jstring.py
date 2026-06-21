@@ -3,6 +3,110 @@ import pytest
 from javalang import JString
 
 
+def test_jstring_length_returns_number_of_characters():
+    value = JString("abc")
+
+    assert value.length() == 3
+
+def test_jstring_length_returns_zero_for_empty_string():
+    value = JString()
+
+    assert value.length() == 0
+
+def test_jstring_is_empty_returns_true_for_empty_string():
+    value = JString()
+
+    assert value.isEmpty() is True
+
+def test_jstring_is_empty_returns_false_for_non_empty_string():
+    value = JString("abc")
+
+    assert value.isEmpty() is False
+
+def test_jstring_char_at_returns_character_at_index():
+    value = JString("abc")
+
+    assert value.charAt(1) == "b"
+
+def test_jstring_char_at_rejects_negative_index():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.charAt(-1)
+
+def test_jstring_char_at_rejects_index_out_of_range():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.charAt(3)
+
+def test_jstring_char_at_rejects_non_integer_index():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.charAt("1")
+
+def test_jstring_to_char_array_returns_character_list():
+    value = JString("abc")
+
+    assert value.toCharArray() == ["a", "b", "c"]
+
+def test_jstring_to_char_array_returns_new_list():
+    value = JString("abc")
+    characters = value.toCharArray()
+    characters[0] = "x"
+
+    assert value._value == "abc"
+
+def test_jstring_get_chars_copies_range_to_destination():
+    value = JString("abcdef")
+    destination = ["", "", "", "", ""]
+    value.getChars(1, 4, destination, 1)
+
+    assert destination == ["", "b", "c", "d", ""]
+
+def test_jstring_get_chars_rejects_invalid_source_range():
+    value = JString("abc")
+    destination = ["", "", ""]
+
+    with pytest.raises(IndexError):
+        value.getChars(2, 5, destination, 0)
+
+def test_jstring_get_chars_rejects_invalid_destination_range():
+    value = JString("abc")
+    destination = [""]
+
+    with pytest.raises(IndexError):
+        value.getChars(0, 3, destination, 0)
+
+def test_jstring_get_chars_rejects_non_list_destination():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.getChars(0, 2, "abc", 0)
+
+def test_jstring_get_bytes_uses_utf8_by_default():
+    value = JString("abc")
+
+    assert value.getBytes() == b"abc"
+
+def test_jstring_get_bytes_accepts_charset():
+    value = JString("abc")
+
+    assert value.getBytes("utf-8") == b"abc"
+
+def test_jstring_get_bytes_rejects_invalid_charset_type():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.getBytes(123)
+
+def test_jstring_get_bytes_rejects_unknown_charset():
+    value = JString("abc")
+
+    with pytest.raises(LookupError):
+        value.getBytes("charset-inexistente")
+
 def test_jstring_can_be_created_empty():
     value = JString()
 

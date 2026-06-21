@@ -4,6 +4,56 @@
 class JString:
     """Representa uma adaptação da classe String da API Java SE 8."""
 
+    def length(self):
+        """Retorna o tamanho da string."""
+        return len(self._value)
+    
+    def isEmpty(self):
+        """Verifica se a string esta vazia."""
+        return self.length() == 0
+    
+    def charAt(self, index):
+        """Retorna o caractere na posicao informada."""
+        if not isinstance(index, int):
+            raise TypeError("index must be an int")
+        if index < 0 or index >= self.length():
+            raise IndexError("index out of range")
+    
+        return self._value[index]
+    
+    def toCharArray(self):
+        """Retorna uma lista com os caracteres da string."""
+        return list(self._value)
+    
+    def getChars(self, srcBegin, srcEnd, dst, dstBegin):
+        """Copia caracteres da string para uma lista de destino."""
+        if not all(isinstance(value, int) for value in [srcBegin, srcEnd, dstBegin]):
+            raise TypeError("srcBegin, srcEnd and dstBegin must be integers")
+        
+        if not isinstance(dst, list):
+            raise TypeError("dst must be a list")
+        
+        if srcBegin < 0 or srcEnd < srcBegin or srcEnd > self.length():
+            raise IndexError("source range is invalid")
+        
+        characters_to_copy = self._value[srcBegin:srcEnd]
+
+        if dstBegin < 0 or dstBegin + len(characters_to_copy) > len(dst):
+            raise IndexError("destination range is invalid")
+        
+        for index, character in enumerate(characters_to_copy):
+            dst[dstBegin + index] = character
+
+    def getBytes(self, charset="utf-8"):
+        """Retorna os bytes da string usando o charset informado."""
+        if not isinstance(charset, str):
+            raise TypeError("charset must be a string")
+        
+        try:
+            return self._value.encode(charset)
+        except LookupError as error:
+            raise LookupError("unsupported charset") from error
+
     def __init__(self, value="", offset=None, count=None):
         has_range = offset is not None or count is not None
 

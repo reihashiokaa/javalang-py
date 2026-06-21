@@ -88,6 +88,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 21/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.3-jfloat | `docs/relatorios/status-v0.3.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação inicial de JString | `javalang/jstring.py`, `javalang/__init__.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | Gemini     | Auxiliar na implementação dos métodos de igualdade, hash e comparação da classe JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
+| 21/06/2026 | Clude| Auxiliar na implementação dos básicos de tamanho, acesso a caracteres e conversão para arrays ou bytes. | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modifcações|
 ---
 
 ## Registro de Uso 01
@@ -980,3 +981,32 @@ As sugestões foram revisadas antes de serem incorporadas ao projeto. A implemen
 ### Resultado
 
 Aceita.
+
+---
+
+## Registro de Uso 22
+
+### Data
+**21/06/2026**
+
+### Ferramenta Utilizada
+Claude (Anthropic)
+
+### Objetivo
+* Gerar sugestão de implementação.
+* Propor casos de teste.
+
+### Trecho do Projeto Afetado
+* `javalang/jstring.py` — métodos `length`, `isEmpty`, `charAt`, `toCharArray`, `getChars`, `getBytes`, `substring`, `subSequence`, `concat`, `trim` e `intern`
+* `tests/test_jstring.py` — casos de teste dos métodos acima
+
+### Descrição da Contribuição da IA
+A IA sugeriu a implementação dos métodos de acesso, conversão e transformação da classe JString, incluindo tratamento de índices inválidos e unificação das sobrecargas Java em métodos únicos com parâmetros opcionais. Também foram sugeridos 33 casos de teste cobrindo strings vazias, strings comuns, índices válidos e inválidos.
+
+### Validação da Equipe
+* Código revisado pelo responsável da issue antes de commitar.
+* Linter `ruff` executado sem erros.
+* Lógica conferida manualmente comparando com a documentação Java SE 8.
+
+### Resultado
+Aceita com modificações.

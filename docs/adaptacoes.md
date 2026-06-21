@@ -589,12 +589,43 @@ Em Java, a comparação de strings com operadores relacionais checa a referênci
 Para o `hashCode`, o algoritmo oficial do Java SE 8 baseia-se na fórmula s[0]*31^(n-1) + s[1]*31^(n-2) + ... gerando um inteiro de 32 bits fixo. Visando simplicidade e performance em ambiente Python, a equipe optou por utilizar a função `hash()` nativa, que garante a consistência (objetos iguais geram hashes iguais) necessária para o projeto, embora o valor final divirja do cálculo exato do Java.
 
 **Alternativa em Python (quando aplicável):**
-```python
+python
 # equals nativo
 string1 == string2
 
 # hashCode nativo do Python
 hash(string_value)
+
+### Métodos de tamanho e acesso de JString
+
+**Classe:** ‘JString‘
+
+**Métodos relacionados:**
+- ‘length‘
+- ‘isEmpty‘
+- ‘charAt‘
+- ‘toCharArray‘
+- ‘getChars‘
+- ‘getBytes‘
+
+**Decisão da equipe:**
+Os métodos básicos de acesso de ‘JString‘ foram adaptados usando operações nativas de ‘str‘ do Python. O método ‘getBytes()‘ usa ‘utf-8‘ como charset padrão. A variação ‘getBytes(String charset)‘ foi adaptada por meio de um parâmetro opcional chamado ‘charset‘.
+
+**Justificativa:**
+Java pode usar o charset padrão da plataforma em ‘getBytes()‘. Para evitar comportamento dependente do ambiente, a implementação em Python usa ‘utf-8‘ como padrão.
+
+**Comportamento adotado em Python:**
+
+- ‘length()‘ retorna ‘len(self._value)‘.
+- ‘isEmpty()‘ verifica se o tamanho é zero.
+- ‘charAt(index)‘ retorna o caractere no índice informado.
+- ‘toCharArray()‘ retorna uma nova lista de caracteres.
+- ‘getChars()‘ copia caracteres para uma lista de destino.
+- ‘getBytes()‘ retorna bytes usando ‘utf-8‘ por padrão.
+
+**Issue relacionada:** #66
+
+**Pull Request relacionado:** A definir.
 
 
 ## Histórico de Atualizações
