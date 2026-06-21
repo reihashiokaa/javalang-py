@@ -4,7 +4,7 @@ from javalang import JString
 
 def test_jstring_length_returns_number_of_characters():
     value = JString("abc")
-    
+
     assert value.length() == 3
 
 def test_jstring_length_returns_zero_for_empty_string():
@@ -44,6 +44,45 @@ def test_jstring_char_at_rejects_non_integer_index():
 
     with pytest.raises(TypeError):
         value.charAt("1")
+
+def test_jstring_to_char_array_returns_character_list():
+    value = JString("abc")
+
+    assert value.toCharArray() == ["a", "b", "c"]
+
+def test_jstring_to_char_array_returns_new_list():
+    value = JString("abc")
+    characters = value.toCharArray()
+    characters[0] = "x"
+
+    assert value._value == "abc"
+
+def test_jstring_get_chars_copies_range_to_destination():
+    value = JString("abcdef")
+    destination = ["", "", "", "", ""]
+    value.getChars(1, 4, destination, 1)
+
+    assert destination == ["", "b", "c", "d", ""]
+
+def test_jstring_get_chars_rejects_invalid_source_range():
+    value = JString("abc")
+    destination = ["", "", ""]
+
+    with pytest.raises(IndexError):
+        value.getChars(2, 5, destination, 0)
+
+def test_jstring_get_chars_rejects_invalid_destination_range():
+    value = JString("abc")
+    destination = [""]
+
+    with pytest.raises(IndexError):
+        value.getChars(0, 3, destination, 0)
+
+def test_jstring_get_chars_rejects_non_list_destination():
+    value = JString("abc")
+    
+    with pytest.raises(TypeError):
+        value.getChars(0, 2, "abc", 0)
 
 def test_jstring_can_be_created_empty():
     value = JString()
