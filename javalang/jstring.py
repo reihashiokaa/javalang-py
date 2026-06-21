@@ -214,3 +214,48 @@ class JString:
             raise TypeError("suffix must be a string or JString")
 
         return self._value.endswith(suffix)
+    
+    def regionMatches(self, *args):
+    """
+    Adaptação das sobrecargas Java:
+
+    regionMatches(toffset, other, ooffset, length)
+    regionMatches(ignoreCase, toffset, other, ooffset, length)
+    """
+
+    if len(args) == 4:
+        ignoreCase = False
+        toffset, other, ooffset, length = args
+
+    elif len(args) == 5:
+        ignoreCase, toffset, other, ooffset, length = args
+
+        if not isinstance(ignoreCase, bool):
+            raise TypeError("ignoreCase must be a bool")
+    else:
+        raise TypeError("invalid arguments")
+
+    if isinstance(other, JString):
+        other = other._value
+    elif not isinstance(other, str):
+        raise TypeError("other must be a string or JString")
+
+    if not all(isinstance(value, int) for value in [toffset, ooffset, length]):
+        raise TypeError("offsets and length must be integers")
+
+    if toffset < 0 or ooffset < 0 or length < 0:
+        return False
+
+    if toffset + length > len(self._value):
+        return False
+
+    if ooffset + length > len(other):
+        return False
+
+    left = self._value[toffset:toffset + length]
+    right = other[ooffset:ooffset + length]
+
+    if ignoreCase:
+        return left.lower() == right.lower()
+
+    return left == right
