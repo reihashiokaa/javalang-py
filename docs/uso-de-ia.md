@@ -90,6 +90,8 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 21/06/2026 | Gemini     | Auxiliar na implementação dos métodos de igualdade, hash e comparação da classe JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
 | 21/06/2026 | Claude| Auxiliar na implementação dos básicos de tamanho, acesso a caracteres e conversão para arrays ou bytes. | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modifcações|
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos de code points de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos valueOf básicos de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+
 ---
 
 ## Registro de Uso 01
@@ -1012,7 +1014,7 @@ A IA sugeriu a implementação dos métodos de acesso, conversão e transformaç
 ### Resultado
 Aceita com modificações.
 
-## Registro de Uso 17
+## Registro de Uso 23
 
 ### Data
 
@@ -1059,3 +1061,49 @@ As verificações locais foram executadas com sucesso utilizando:
 Aceita com modificações.
 
 ---
+
+## Registro de Uso 24
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos estáticos básicos `valueOf` da classe `JString`, incluindo conversões para inteiros, floats, booleanos, strings, caracteres e listas de caracteres.
+
+### Trecho do projeto afetado
+
+* `javalang/jstring.py`
+* `tests/test_jstring.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue de métodos `valueOf` básicos da milestone `v0.4-jstring`, mantendo o limite de métodos por commit e criando testes separados por bloco.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação do método estático `JString.valueOf`, separando a implementação em dois blocos: primeiro valores numéricos, depois booleanos, strings, caracteres e listas ou tuplas de caracteres.
+
+Também foram sugeridos testes automatizados para validar conversões de inteiros, floats, booleanos, strings, listas de caracteres e tuplas de caracteres.
+
+Além disso, a IA apoiou a redação da adaptação em `docs/adaptacoes.md`, registrando a diferença entre as sobrecargas de `String.valueOf` no Java e a adaptação para um único método com verificação de tipo em Python.
+
+### Validação da equipe
+
+O conteúdo foi revisado antes de ser incorporado ao projeto. A implementação foi mantida dentro do escopo da issue, sem adicionar `valueOf(Object)`, `copyValueOf`, `format` ou `join`, que pertencem à próxima issue.
+
+As verificações locais foram executadas utilizando:
+
+* `python -m pytest`
+* `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
