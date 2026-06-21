@@ -91,6 +91,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 21/06/2026 | Claude| Auxiliar na implementação dos básicos de tamanho, acesso a caracteres e conversão para arrays ou bytes. | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modifcações|
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos de code points de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos valueOf básicos de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos estáticos auxiliares de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 
 ---
 
@@ -1106,4 +1107,54 @@ As verificações locais foram executadas utilizando:
 
 ### Resultado
 
+Aceita com modificações. 
+---
+
+## Registro de Uso 25
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos estáticos auxiliares da classe `JString`, incluindo `valueOf(Object)`, `copyValueOf`, `format` e `join`.
+
+### Trecho do projeto afetado
+
+* `javalang/jstring.py`
+* `tests/test_jstring.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #76 da milestone `v0.4-jstring`, responsável pelos métodos estáticos auxiliares `valueOf(Object)`, `copyValueOf`, `format` e `join`, respeitando a regra de até três métodos por commit, criando testes e registrando as adaptações necessárias entre Java e Python.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação dos métodos estáticos auxiliares da classe `JString`, sugerindo a divisão da issue em dois blocos: `valueOf(Object)` e `copyValueOf` no primeiro bloco, e `format` e `join` no segundo bloco.
+
+Também apoiou a definição da estratégia de adaptação para Python, expandindo o método `valueOf` para aceitar objetos genéricos, tratando `None` como equivalente textual a `null`, criando `copyValueOf` a partir de listas ou tuplas de caracteres, utilizando formatação textual com o operador `%` e implementando `join` com suporte a valores `str` e `JString`.
+
+Além disso, sugeriu testes automatizados para objeto genérico, valor `None`, cópia de lista de caracteres, formatação simples, junção de strings e casos inválidos. A IA também auxiliou na redação do registro de adaptações em `docs/adaptacoes.md`.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #76, sem adicionar métodos de outras issues da milestone `v0.4-jstring`.
+
+As verificações locais foram executadas com sucesso utilizando:
+
+* `python -m ruff check .`
+* `python -m pytest`
+
+### Resultado
+
 Aceita com modificações.
+
+---
+
