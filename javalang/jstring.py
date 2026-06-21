@@ -228,12 +228,24 @@ class JString:
     def valueOf(value):
         """Retorna uma JString representando o valor informado."""
         if isinstance(value, bool):
-            raise TypeError("boolean valueOf will be handled separately")
+            return JString("true" if value else "false")
 
         if isinstance(value, int):
             return JString(str(value))
 
         if isinstance(value, float):
             return JString(str(value))
+
+        if isinstance(value, str):
+            return JString(value)
+
+        if isinstance(value, (list, tuple)):
+            characters = list(value)
+
+            for character in characters:
+                if not isinstance(character, str) or len(character) != 1:
+                    raise ValueError("character array must contain only single-character strings")
+
+            return JString(characters)
 
         raise TypeError("unsupported value type")
