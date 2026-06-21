@@ -420,3 +420,12 @@ def test_jfloat_sum_with_negative_infinity():
     result = JFloat.sum(JFloat.NEGATIVE_INFINITY, 10.5)
     assert JFloat.isInfinite(result)
     assert result == JFloat.NEGATIVE_INFINITY
+
+def test_jfloat_max_with_nan_returns_nan():
+    result = JFloat.max(JFloat.NaN, 10.5)
+    assert JFloat.isNaN(result)
+
+
+def test_jfloat_min_with_nan_returns_nan():
+    result = JFloat.min(JFloat.NaN, 10.5)
+    assert JFloat.isNaN(result)
