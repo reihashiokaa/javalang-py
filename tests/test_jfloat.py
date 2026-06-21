@@ -168,3 +168,52 @@ def test_value_of_string_invalida():
 def test_value_of_tipo_invalido():
     with pytest.raises(ValueError):
         JFloat.valueOf([1, 2, 3])
+
+import pytest
+import math
+from javalang.jfloat import JFloat
+
+def test_jfloat_to_string():
+    """Testa a representação textual de instâncias e métodos estáticos."""
+    assert JFloat(1.5).toString() == "1.5"
+    assert JFloat(float('inf')).toString() == "Infinity"
+    assert JFloat(float('nan')).toString() == "NaN"
+    assert JFloat.toString_static(-2.5) == "-2.5"
+
+def test_jfloat_hash_code_valido():
+    """Testa se o hash code gera valores inteiros consistentes."""
+    jf = JFloat(10.5)
+    assert isinstance(jf.hashCode(), int)
+    assert jf.hashCode() > 0
+
+def test_jfloat_hash_code_casos_especiais():
+    """Testa o hash de NaN e a diferença de hash entre 0.0 e -0.0."""
+    nan_jf = JFloat(float('nan'))
+    assert nan_jf.hashCode() == 0x7fc00000
+    
+    assert JFloat(0.0).hashCode() != JFloat(-0.0).hashCode()
+
+def test_jfloat_equals():
+    """Testa as regras de igualdade do Java para Float."""
+    # Em Java, NaN é igual a NaN na comparação de objetos
+    assert JFloat(float('nan')).equals(JFloat(float('nan'))) is True
+    # Em Java, 0.0 é diferente de -0.0 no equals
+    assert JFloat(0.0).equals(JFloat(-0.0)) is False
+    assert JFloat(5.5).equals(JFloat(5.5)) is True
+
+def test_jfloat_compare_to():
+    """Testa a comparação baseada em instâncias."""
+    jf1 = JFloat(1.2)
+    jf2 = JFloat(3.4)
+    assert jf1.compareTo(jf2) == -1
+    assert jf2.compareTo(jf1) == 1
+    assert jf1.compareTo(JFloat(1.2)) == 0
+
+def test_jfloat_compare_static():
+    """Testa o método estático JFloat.compare e suas regras de ordenação."""
+    # NaN é considerado maior que qualquer outro valor, inclusive Infinity
+    assert JFloat.compare(float('nan'), float('inf')) == 1
+    assert JFloat.compare(float('nan'), float('nan')) == 0
+    # -0.0 é estritamente menor que 0.0
+    assert JFloat.compare(-0.0, 0.0) == -1
+    assert JFloat.compare(10.0, 5.0) == 1
