@@ -20,6 +20,29 @@ class JString:
             raise IndexError("index out of range")
     
         return self._value[index]
+    
+    def toCharArray(self):
+        """Retorna uma lista com os caracteres da string."""
+        return list(self._value)
+    
+    def getChars(self, srcBegin, srcEnd, dst, dstBegin):
+        """Copia caracteres da string para uma lista de destino."""
+        if not all(isinstance(value, int) for value in [srcBegin, srcEnd, dstBegin]):
+            raise TypeError("srcBegin, srcEnd and dstBegin must be integers")
+        
+        if not isinstance(dst, list):
+            raise TypeError("dst must be a list")
+        
+        if srcBegin < 0 or srcEnd < srcBegin or srcEnd > self.length():
+            raise IndexError("source range is invalid")
+        
+        characters_to_copy = self._value[srcBegin:srcEnd]
+
+        if dstBegin < 0 or dstBegin + len(characters_to_copy) > len(dst):
+            raise IndexError("destination range is invalid")
+        
+        for index, character in enumerate(characters_to_copy):
+            dst[dstBegin + index] = character
 
     def __init__(self, value="", offset=None, count=None):
         has_range = offset is not None or count is not None
