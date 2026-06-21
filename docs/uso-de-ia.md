@@ -85,6 +85,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 20/06/2026 | Claude | Sugestão de implementação dos métodos parseFloat e valueOf da classe JFloat.| `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | Gemini     | Auxiliar na implementação dos métodos de representação textual, igualdade e comparação da classe JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py` | Aceita |
 | 21/06/2026 | ChatGPT | Apoio na implementação das verificações de valores especiais de JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.3-jfloat | `docs/relatorios/status-v0.3.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 ---
 
 ## Registro de Uso 01
@@ -841,3 +842,49 @@ As verificações locais foram executadas utilizando:
 ### Resultado
 
 Aceita com modificações.
+
+## Registro de Uso 19
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na preparação do fechamento da baseline `v0.3-jfloat`, incluindo a estrutura do relatório de status da baseline e o texto sugerido para a release.
+
+### Trecho do projeto afetado
+
+- `docs/relatorios/status-v0.3.md`
+- `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a fazer a issue de fechamento da baseline `v0.3-jfloat`, criando o relatório de status da baseline e o texto da release.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização do relatório de status da baseline `v0.3-jfloat`, incluindo identificação da baseline, objetivo, escopo consolidado, itens de configuração envolvidos, verificações realizadas, adaptações documentadas, uso de IA, conflitos de merge e estado final da baseline.
+
+Também foi sugerido um texto inicial para a release `v0.3-jfloat`, destacando as principais entregas relacionadas à classe `JFloat`.
+
+### Validação da equipe
+
+O conteúdo foi revisado antes de ser incorporado ao projeto. As informações foram ajustadas de acordo com o estado real das issues, pull requests, testes, documentação e CI da milestone `v0.3-jfloat`.
+
+As verificações locais foram executadas utilizando:
+
+- `python -m pytest`
+- `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
+
+
+
+
