@@ -358,3 +358,30 @@ def test_ends_with():
 
 def test_ends_with_false():
     assert not JString("hello").endsWith("he")
+
+def test_region_matches():
+    assert JString("abcdef").regionMatches(
+        2,
+        JString("xxcdeyy"),
+        2,
+        3,
+    )
+
+
+def test_region_matches_ignore_case():
+    assert JString("ABCDEF").regionMatches(
+        True,
+        2,
+        JString("xxcdeyy"),
+        2,
+        3,
+    )
+
+
+def test_region_matches_false():
+    assert not JString("abcdef").regionMatches(
+        2,
+        JString("xxxyz"),
+        2,
+        3,
+    )
