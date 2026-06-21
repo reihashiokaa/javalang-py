@@ -21,6 +21,26 @@ class JString:
     
         return self._value[index]
     
+    def codePointAt(self, index):
+        """Retorna o code point do caractere na posicao informada."""
+        if not isinstance(index, int):
+            raise TypeError("index must be an int")
+
+        if index < 0 or index >= self.length():
+            raise IndexError("index out of range")
+
+        return ord(self._value[index])
+
+    def codePointBefore(self, index):
+        """Retorna o code point do caractere anterior ao indice informado."""
+        if not isinstance(index, int):
+            raise TypeError("index must be an int")
+
+        if index <= 0 or index > self.length():
+            raise IndexError("index out of range")
+
+        return ord(self._value[index - 1])
+
     def toCharArray(self):
         """Retorna uma lista com os caracteres da string."""
         return list(self._value)
