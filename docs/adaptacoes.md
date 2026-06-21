@@ -566,6 +566,36 @@ Python não possui sobrecarga de construtores da mesma forma que Java. Por isso,
 
 **Pull Request relacionado:** #79
 
+### Igualdade, hash e comparação de JString
+
+**Classe:** `JString`
+
+**Métodos:** `equals`, `equalsIgnoreCase`, `compareTo`, `compareToIgnoreCase`, `contentEquals` e `hashCode`
+
+**Assinaturas Java:**
+* `public boolean equals(Object anObject)`
+* `public boolean equalsIgnoreCase(String anotherString)`
+* `public int compareTo(String anotherString)`
+* `public int compareToIgnoreCase(String str)`
+* `public boolean contentEquals(CharSequence cs)`
+* `public int hashCode()`
+
+**Decisão da equipe:**
+Os métodos de igualdade e comparação lexicográfica foram implementados utilizando as operações nativas de strings do Python (`==`, `<`, `>`). O método `contentEquals` foi adaptado para aceitar tanto `JString` quanto o tipo primitivo `str`. O método `hashCode` delega a geração do valor para a função embutida `hash()` do Python.
+
+**Justificativa:**
+Em Java, a comparação de strings com operadores relacionais checa a referência de memória, exigindo o uso explícito de `equals` e `compareTo`. Em Python, os operadores relacionais nativos já realizam a comparação estrutural e lexicográfica de strings de forma idiomática.
+
+Para o `hashCode`, o algoritmo oficial do Java SE 8 baseia-se na fórmula s[0]*31^(n-1) + s[1]*31^(n-2) + ... gerando um inteiro de 32 bits fixo. Visando simplicidade e performance em ambiente Python, a equipe optou por utilizar a função `hash()` nativa, que garante a consistência (objetos iguais geram hashes iguais) necessária para o projeto, embora o valor final divirja do cálculo exato do Java.
+
+**Alternativa em Python (quando aplicável):**
+```python
+# equals nativo
+string1 == string2
+
+# hashCode nativo do Python
+hash(string_value)
+
 
 ## Histórico de Atualizações
 
