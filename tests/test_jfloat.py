@@ -342,3 +342,75 @@ def test_to_hex_string_special_values():
 
 def test_to_hex_string_min_value():
     assert JFloat.toHexString(JFloat.MIN_VALUE) == "0x0.000002p-126"
+
+def test_jfloat_sum_positive_values():
+    assert JFloat.sum(1.5, 2.5) == 4.0
+
+
+def test_jfloat_sum_negative_values():
+    assert JFloat.sum(-1.5, -2.5) == -4.0
+
+
+def test_jfloat_sum_positive_and_negative_values():
+    assert JFloat.sum(5.5, -2.5) == 3.0
+
+
+def test_jfloat_sum_with_zero():
+    assert JFloat.sum(10.5, 0.0) == 10.5
+
+def test_jfloat_max_returns_greater_value():
+    assert JFloat.max(10.5, 5.5) == 10.5
+
+
+def test_jfloat_max_with_negative_values():
+    assert JFloat.max(-10.5, -5.5) == -5.5
+
+
+def test_jfloat_max_with_equal_values():
+    assert JFloat.max(7.5, 7.5) == 7.5
+
+
+def test_jfloat_max_with_nan_returns_nan():
+    result = JFloat.max(float("nan"), 10.5)
+    assert math.isnan(result)
+
+
+def test_jfloat_max_with_infinity():
+    assert JFloat.max(float("inf"), 10.5) == float("inf")
+
+def test_jfloat_min_returns_smaller_value():
+    assert JFloat.min(5.5, 10.5) == 5.5
+
+
+def test_jfloat_min_with_negative_values():
+    assert JFloat.min(-10.5, -5.5) == -10.5
+
+
+def test_jfloat_min_with_equal_values():
+    assert JFloat.min(7.5, 7.5) == 7.5
+
+
+def test_jfloat_min_with_nan_returns_nan():
+    result = JFloat.min(float("nan"), 10.5)
+    assert math.isnan(result)
+
+
+def test_jfloat_min_with_negative_infinity():
+    assert JFloat.min(float("-inf"), 10.5) == float("-inf")
+
+def test_jfloat_max_with_positive_infinity():
+    result = JFloat.max(JFloat.POSITIVE_INFINITY, 10.5)
+    assert JFloat.isInfinite(result)
+    assert result == JFloat.POSITIVE_INFINITY
+
+def test_jfloat_sum_with_positive_infinity():
+    result = JFloat.sum(JFloat.POSITIVE_INFINITY, 10.5)
+    assert JFloat.isInfinite(result)
+    assert result == JFloat.POSITIVE_INFINITY
+
+
+def test_jfloat_sum_with_negative_infinity():
+    result = JFloat.sum(JFloat.NEGATIVE_INFINITY, 10.5)
+    assert JFloat.isInfinite(result)
+    assert result == JFloat.NEGATIVE_INFINITY
+
