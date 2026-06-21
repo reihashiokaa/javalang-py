@@ -342,3 +342,18 @@ def test_to_hex_string_special_values():
 
 def test_to_hex_string_min_value():
     assert JFloat.toHexString(JFloat.MIN_VALUE) == "0x0.000002p-126"
+
+def test_jfloat_sum_positive_values():
+    assert JFloat.sum(1.5, 2.5) == 4.0
+
+
+def test_jfloat_sum_negative_values():
+    assert JFloat.sum(-1.5, -2.5) == -4.0
+
+
+def test_jfloat_sum_positive_and_negative_values():
+    assert JFloat.sum(5.5, -2.5) == 3.0
+
+
+def test_jfloat_sum_with_zero():
+    assert JFloat.sum(10.5, 0.0) == 10.5
