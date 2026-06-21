@@ -490,6 +490,50 @@ Issue #54
 **Pull Request relacionado:**
 A definir
 
+### JFloat
+
+**Métodos:**
+`sum`, `max` e `min`
+
+**Assinatura Java:**
+`public static float sum(float a, float b)`
+
+`public static float max(float a, float b)`
+
+`public static float min(float a, float b)`
+
+**Decisão da equipe:**
+Os métodos aritméticos estáticos foram implementados utilizando as operações nativas de ponto flutuante do Python. Os argumentos recebidos são convertidos para `float` antes da execução da operação, buscando reproduzir o comportamento da classe `Float` da API Java.
+
+**Justificativa:**
+A classe `Float` do Java disponibiliza métodos estáticos para realizar operações simples de soma, obtenção do maior valor e obtenção do menor valor entre dois números de ponto flutuante.
+
+Em Python, essas operações podem ser realizadas diretamente com os operadores e comparações nativas da linguagem. Para manter compatibilidade com o contrato da API Java, os métodos recebem dois valores, convertem os argumentos para `float` e retornam o resultado correspondente.
+
+Nos métodos `max` e `min`, foi adotado tratamento explícito para valores `NaN`. Quando qualquer um dos argumentos é `NaN`, o método retorna `JFloat.NaN`, aproximando o comportamento esperado para operações envolvendo valores especiais de ponto flutuante.
+
+**Comportamento adotado em Python:**
+
+* `sum` retorna a soma de dois valores convertidos para `float`.
+* `max` retorna o maior entre dois valores.
+* `min` retorna o menor entre dois valores.
+* Quando algum argumento é `NaN`, os métodos `max` e `min` retornam `JFloat.NaN`.
+* Valores infinitos são tratados pelo próprio comportamento do tipo `float` do Python.
+
+**Alternativa em Python (quando aplicável):**
+`float(a) + float(b)`
+
+`max(a, b)`
+
+`min(a, b)`
+
+**Issue relacionada:**
+#55
+
+**Pull Request relacionado:**
+A definir.
+
+
 
 ## Histórico de Atualizações
 
@@ -505,3 +549,4 @@ A definir
 | 20/06/2026 | Registro das adaptações de  parsing value em JFloat| Beatriz |
 | 21/06/2026 | Registro das adaptações de valores especiais em JFloat | Isabela |
 | 21/06/2026 | Registro das adaptações de conversões de bits e representação hexadecimal em JFloat | Luciana |
+| 21/06/2026 | Registro das adaptações dos metodos estaticos min, max e sum em JFloat | Miguel |
