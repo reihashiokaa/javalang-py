@@ -377,3 +377,23 @@ def test_jfloat_max_with_nan_returns_nan():
 
 def test_jfloat_max_with_infinity():
     assert JFloat.max(float("inf"), 10.5) == float("inf")
+
+def test_jfloat_min_returns_smaller_value():
+    assert JFloat.min(5.5, 10.5) == 5.5
+
+
+def test_jfloat_min_with_negative_values():
+    assert JFloat.min(-10.5, -5.5) == -10.5
+
+
+def test_jfloat_min_with_equal_values():
+    assert JFloat.min(7.5, 7.5) == 7.5
+
+
+def test_jfloat_min_with_nan_returns_nan():
+    result = JFloat.min(float("nan"), 10.5)
+    assert math.isnan(result)
+
+
+def test_jfloat_min_with_negative_infinity():
+    assert JFloat.min(float("-inf"), 10.5) == float("-inf")
