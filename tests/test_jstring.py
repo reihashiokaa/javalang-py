@@ -60,3 +60,14 @@ def test_jstring_rejects_range_with_string_value():
 def test_jstring_rejects_invalid_type():
     with pytest.raises(TypeError):
         JString(123)
+
+def test_equals_returns_true_for_equal_strings():
+    assert JString("abc").equals(JString("abc"))
+
+
+def test_equals_returns_false_for_different_strings():
+    assert not JString("abc").equals(JString("def"))
+
+
+def test_equals_ignore_case_returns_true():
+    assert JString("abc").equalsIgnoreCase(JString("ABC"))
