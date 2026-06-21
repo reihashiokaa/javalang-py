@@ -550,3 +550,34 @@ def test_jstring_value_of_character_tuple():
 def test_jstring_value_of_rejects_invalid_character_list():
     with pytest.raises(ValueError):
         JString.valueOf(["a", "bc"])
+
+
+class SampleObject:
+    def __str__(self):
+        return "sample-object"
+
+
+def test_jstring_value_of_accepts_generic_object():
+    result = JString.valueOf(SampleObject())
+
+    assert isinstance(result, JString)
+    assert result._value == "sample-object"
+
+
+def test_jstring_value_of_none_returns_null_text():
+    result = JString.valueOf(None)
+
+    assert isinstance(result, JString)
+    assert result._value == "null"
+
+
+def test_jstring_copy_value_of_creates_string_from_character_list():
+    result = JString.copyValueOf(["a", "b", "c"])
+
+    assert isinstance(result, JString)
+    assert result._value == "abc"
+
+
+def test_jstring_copy_value_of_rejects_invalid_character_list():
+    with pytest.raises(ValueError):
+        JString.copyValueOf(["a", "bc"])
