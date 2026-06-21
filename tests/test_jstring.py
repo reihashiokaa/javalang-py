@@ -87,3 +87,25 @@ def test_compare_to_greater_string():
 
 def test_compare_to_ignore_case():
     assert JString("abc").compareToIgnoreCase(JString("ABC")) == 0
+
+
+def test_content_equals_jstring():
+    assert JString("abc").contentEquals(JString("abc"))
+
+
+def test_content_equals_string():
+    assert JString("abc").contentEquals("abc")
+
+
+def test_hash_code_equal_strings():
+    first = JString("abc")
+    second = JString("abc")
+
+    assert first.hashCode() == second.hashCode()
+
+
+def test_hash_code_different_strings():
+    first = JString("abc")
+    second = JString("def")
+
+    assert first.hashCode() != second.hashCode()
