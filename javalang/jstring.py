@@ -44,6 +44,16 @@ class JString:
         for index, character in enumerate(characters_to_copy):
             dst[dstBegin + index] = character
 
+    def getBytes(self, charset="utf-8"):
+        """Retorna os bytes da string usando o charset informado."""
+        if not isinstance(charset, str):
+            raise TypeError("charset must be a string")
+        
+        try:
+            return self._value.encode(charset)
+        except LookupError as error:
+            raise LookupError("unsupported charset") from error
+
     def __init__(self, value="", offset=None, count=None):
         has_range = offset is not None or count is not None
 
