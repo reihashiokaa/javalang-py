@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+import math
+import struct
+
+>>>>>>> cafd9cd (chore: fix import sorting and duplicate definitions in test_jfloat - refs #52)
 """Implementação inicial da classe JFloat."""
 import math
 import struct
