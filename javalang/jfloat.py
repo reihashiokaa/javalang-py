@@ -1,3 +1,6 @@
+import math
+import struct
+
 """Implementação inicial da classe JFloat."""
 
 
@@ -79,3 +82,67 @@ class JFloat:
         raise ValueError(
             f"valueOf espera str, int ou float, recebeu {type(value).__name__}"
         )
+    
+
+    def toString(self) -> str:
+        """Retorna a string correspondente ao valor do float."""
+        if math.isnan(self._value):
+            return "NaN"
+        if self._value == float('inf'):
+            return "Infinity"
+        if self._value == float('-inf'):
+            return "-Infinity"
+        return str(self._value)
+
+    @staticmethod
+    def toString_static(f: float) -> str:
+        """Equivalente a Float.toString(float) do Java."""
+        return JFloat(f).toString()
+
+    def hashCode(self) -> int:
+        """Retorna o hash compatível com Float.hashCode() do Java."""
+        if math.isnan(self._value):
+            return 0x7fc00000
+        return struct.unpack('I', struct.pack('f', self._value))[0]
+    
+    def equals(self, other) -> bool:
+        """Compara este JFloat com outro objeto por valor."""
+        if not isinstance(other, JFloat):
+            return False
+        if math.isnan(self._value) and math.isnan(other._value):
+            return True
+        if self._value == 0.0 and other._value == 0.0:
+            return self.hashCode() == other.hashCode()
+        return self._value == other._value
+
+    def compareTo(self, other) -> int:
+        """Compara duas instâncias de JFloat."""
+        if not isinstance(other, JFloat):
+            raise TypeError("compareTo expects a JFloat instance")
+        return JFloat.compare(self._value, other._value)
+
+    @staticmethod
+    def compare(f1: float, f2: float) -> int:
+        """Compara dois valores float brutos usando as regras do Java."""
+        v1 = struct.unpack('f', struct.pack('f', float(f1)))[0]
+        v2 = struct.unpack('f', struct.pack('f', float(f2)))[0]
+
+        if math.isnan(v1):
+            return 0 if math.isnan(v2) else 1
+        if math.isnan(v2):
+            return -1
+
+        if v1 < v2:
+            return -1
+        if v1 > v2:
+            return 1
+
+        if v1 == 0.0 and v2 == 0.0:
+            h1 = struct.unpack('I', struct.pack('f', v1))[0]
+            h2 = struct.unpack('I', struct.pack('f', v2))[0]
+            if h1 < h2:
+                return 1
+            if h1 > h2:
+                return -1
+        return 0
+

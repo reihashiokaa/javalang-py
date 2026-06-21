@@ -83,7 +83,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 20/06/2026 | ChatGPT | Apoio na implementação inicial de JFloat | `javalang/jfloat.py`, `javalang/__init__.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | ChatGPT | Apoio na implementação das conversões básicas de JFloat, criação de testes e documentação de adaptações | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | Claude | Sugestão de implementação dos métodos parseFloat e valueOf da classe JFloat.| `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
-
+| 20/06/2026 | Gemini     | Auxiliar na implementação dos métodos de representação textual, igualdade e comparação da classe JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py` | Aceita |
 ---
 
 ## Registro de Uso 01
@@ -666,3 +666,39 @@ Documentação de adaptações ajustada para seguir o modelo definido pela equip
 Aceita com modificações — a estrutura geral foi mantida, mas os textos de documentação foram ajustados para seguir o modelo de registro de adaptações da equipe.
 
 ---
+
+## Registro de Uso 15
+
+### Data
+
+20/06/2026
+
+### Ferramenta Utilizada
+
+Gemini (Google)
+
+### Objetivo
+
+Auxiliar na implementação dos métodos de representação textual, igualdade, hash e comparação da classe `JFloat`, bem como na criação dos testes automatizados correspondentes.
+
+### Trecho do Projeto Afetado
+
+- `javalang/jfloat.py` — métodos `toString`, `toString_static`, `hashCode`, `equals`, `compareTo` e `compare`
+- `tests/test_jfloat.py` — casos de teste para os métodos acima
+
+### Descrição da Contribuição da IA
+
+A IA auxiliou no mapeamento técnico para garantir conformidade estrita com o Java SE 8 em ambiente Python:
+- Sugeriu o tratamento correto do hash code através de conversão binária IEEE 754 de 32 bits usando o módulo `struct`.
+- Orientou a lógica de igualdade e ordenação para tratamento de casos especiais onde `NaN` deve ser avaliado como igual a si mesmo e o sinal de `-0.0` deve ser diferenciado de `0.0`.
+
+
+### Validação da Equipe
+
+- O código foi revisado manualmente pela responsável da issue antes da realização dos commits.
+- A divisão de métodos e funções foi validada para garantir cumprimento das regras do § 10 da disciplina (limites de escopo por commit).
+- Os testes unitários propostos foram adicionados e executados localmente via `pytest tests/test_jfloat.py` com sucesso.
+
+### Resultado
+
+Aceita — a lógica foi incorporada integralmente e estruturada de forma modular no repositório.
