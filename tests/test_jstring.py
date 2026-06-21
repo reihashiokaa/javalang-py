@@ -213,3 +213,63 @@ def test_hash_code_different_strings():
     second = JString("def")
 
     assert first.hashCode() != second.hashCode()
+
+def test_jstring_substring_from_begin_index():
+    value = JString("abcdef")
+    result = value.substring(2)
+
+    assert isinstance(result, JString)
+
+    assert result._value == "cdef"
+
+def test_jstring_substring_with_begin_and_end_index():
+    value = JString("abcdef")
+    result = value.substring(1, 4)
+
+    assert isinstance(result, JString)
+
+    assert result._value == "bcd"
+
+def test_jstring_substring_allows_empty_result():
+    value = JString("abcdef")
+    result = value.substring(2, 2)
+
+    assert result._value == ""
+
+def test_jstring_substring_rejects_negative_begin_index():
+    value = JString("abcdef")
+
+    with pytest.raises(IndexError):
+        value.substring(-1)
+
+def test_jstring_substring_rejects_end_before_begin():
+    value = JString("abcdef")
+
+    with pytest.raises(IndexError):
+        value.substring(4, 2)
+
+def test_jstring_substring_rejects_end_out_of_range():
+    value = JString("abcdef")
+
+    with pytest.raises(IndexError):
+        value.substring(1, 10)
+
+def test_jstring_substring_rejects_invalid_begin_type():
+    value = JString("abcdef")
+
+    with pytest.raises(TypeError):
+        value.substring("1")
+
+def test_jstring_substring_rejects_invalid_end_type():
+    value = JString("abcdef")
+    
+    with pytest.raises(TypeError):
+        value.substring(1, "4")
+
+def test_jstring_sub_sequence_returns_substring():
+    value = JString("abcdef")
+    result = value.subSequence(1, 4)
+
+    assert isinstance(result, JString)
+
+    assert result._value == "bcd"
