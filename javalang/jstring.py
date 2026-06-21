@@ -41,3 +41,13 @@ class JString:
             return
 
         raise TypeError("value must be a string, JString, list or tuple of characters")
+    
+    def equals(self, other):
+        if not isinstance(other, JString):
+            return False
+        return self._value == other._value
+
+    def equalsIgnoreCase(self, other):
+        if not isinstance(other, JString):
+            return False
+        return self._value.lower() == other._value.lower()
