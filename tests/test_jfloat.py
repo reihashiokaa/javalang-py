@@ -168,10 +168,7 @@ def test_value_of_string_invalida():
 def test_value_of_tipo_invalido():
     with pytest.raises(ValueError):
         JFloat.valueOf([1, 2, 3])
-
-import pytest
-import math
-from javalang.jfloat import JFloat
+        
 
 def test_jfloat_to_string():
     """Testa a representação textual de instâncias e métodos estáticos."""

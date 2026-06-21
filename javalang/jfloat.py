@@ -2,6 +2,7 @@
 import math
 import struct
 
+
 class JFloat:
     """Representa uma adaptação da classe Float da API Java SE 8."""
 
@@ -143,3 +144,4 @@ class JFloat:
             if h1 > h2:
                 return -1
         return 0
+
