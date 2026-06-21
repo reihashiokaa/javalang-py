@@ -713,6 +713,45 @@ A definir.
 
 ---
 
+### Métodos valueOf básicos de JString
+
+**Classe:** `JString`
+
+**Métodos relacionados:**
+
+* `String.valueOf(int)`
+* `String.valueOf(long)`
+* `String.valueOf(float)`
+* `String.valueOf(double)`
+* `String.valueOf(boolean)`
+* `String.valueOf(char)`
+* `String.valueOf(char[])`
+
+**Decisão da equipe:**
+
+As variações básicas de `String.valueOf` foram adaptadas para um único método estático `JString.valueOf`.
+
+**Justificativa:**
+
+Java possui sobrecarga de métodos para diferenciar tipos primitivos. Em Python, não há sobrecarga da mesma forma e os tipos numéricos também são mais simples. Por isso, a implementação usa verificação de tipo dentro de um único método.
+
+**Comportamento adotado em Python:**
+
+* `int` representa as variações de `int` e `long`.
+* `float` representa as variações de `float` e `double`.
+* `bool` retorna `"true"` ou `"false"`.
+* `str` representa caractere ou texto.
+* listas e tuplas de caracteres representam `char[]`.
+
+**Observação importante:**
+
+A verificação de `bool` ocorre antes da verificação de `int`, porque em Python `bool` é subclasse de `int`.
+
+**Issue relacionada:** #75
+
+**Pull Request relacionado:** A definir.
+
+
 ## Histórico de Atualizações
 
 | Data       | Alteração                    | Responsável |

@@ -478,3 +478,75 @@ def test_jstring_intern_returns_same_instance():
     value = JString("abc")
     
     assert value.intern() is value
+    
+def test_jstring_value_of_positive_integer():
+    result = JString.valueOf(10)
+
+    assert isinstance(result, JString)
+    assert result._value == "10"
+
+
+def test_jstring_value_of_negative_integer():
+    result = JString.valueOf(-5)
+
+    assert result._value == "-5"
+
+
+def test_jstring_value_of_zero_integer():
+    result = JString.valueOf(0)
+
+    assert result._value == "0"
+
+
+def test_jstring_value_of_float():
+    result = JString.valueOf(10.5)
+
+    assert isinstance(result, JString)
+    assert result._value == "10.5"
+
+
+def test_jstring_value_of_negative_float():
+    result = JString.valueOf(-2.5)
+
+    assert result._value == "-2.5"
+    
+def test_jstring_value_of_boolean_true():
+    result = JString.valueOf(True)
+
+    assert result._value == "true"
+
+
+def test_jstring_value_of_boolean_false():
+    result = JString.valueOf(False)
+
+    assert result._value == "false"
+
+
+def test_jstring_value_of_char():
+    result = JString.valueOf("a")
+
+    assert result._value == "a"
+
+
+def test_jstring_value_of_string_text():
+    result = JString.valueOf("abc")
+
+    assert result._value == "abc"
+
+
+def test_jstring_value_of_character_list():
+    result = JString.valueOf(["a", "b", "c"])
+
+    assert isinstance(result, JString)
+    assert result._value == "abc"
+
+
+def test_jstring_value_of_character_tuple():
+    result = JString.valueOf(("a", "b", "c"))
+
+    assert result._value == "abc"
+
+
+def test_jstring_value_of_rejects_invalid_character_list():
+    with pytest.raises(ValueError):
+        JString.valueOf(["a", "bc"])
