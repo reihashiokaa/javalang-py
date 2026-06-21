@@ -80,9 +80,31 @@ def test_jstring_get_chars_rejects_invalid_destination_range():
 
 def test_jstring_get_chars_rejects_non_list_destination():
     value = JString("abc")
-    
+
     with pytest.raises(TypeError):
         value.getChars(0, 2, "abc", 0)
+
+def test_jstring_get_bytes_uses_utf8_by_default():
+    value = JString("abc")
+
+    assert value.getBytes() == b"abc"
+
+def test_jstring_get_bytes_accepts_charset():
+    value = JString("abc")
+
+    assert value.getBytes("utf-8") == b"abc"
+
+def test_jstring_get_bytes_rejects_invalid_charset_type():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.getBytes(123)
+
+def test_jstring_get_bytes_rejects_unknown_charset():
+    value = JString("abc")
+
+    with pytest.raises(LookupError):
+        value.getBytes("charset-inexistente")
 
 def test_jstring_can_be_created_empty():
     value = JString()
