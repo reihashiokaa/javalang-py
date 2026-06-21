@@ -87,6 +87,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 21/06/2026 | ChatGPT | Apoio na implementação das verificações de valores especiais de JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.3-jfloat | `docs/relatorios/status-v0.3.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação inicial de JString | `javalang/jstring.py`, `javalang/__init__.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | Gemini     | Auxiliar na implementação dos métodos de igualdade, hash e comparação da classe JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
 ---
 
 ## Registro de Uso 01
@@ -933,3 +934,49 @@ Aceita com modificações.
 
 
 
+## Registro de Uso 21
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+Gemini (Google)
+
+### Objetivo
+
+Auxiliar na implementação dos métodos de igualdade, hash e comparação da classe `JString`, referentes à issue #68 da milestone `v0.4-jstring`.
+
+### Trecho do projeto afetado
+
+* `javalang/jstring.py`
+* `tests/test_jstring.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #68, responsável pelos métodos `equals`, `equalsIgnoreCase`, `compareTo`, `compareToIgnoreCase`, `contentEquals` e `hashCode` da classe `JString`, gerando também os testes automatizados e a documentação das adaptações.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou no mapeamento técnico e na implementação dos métodos de comparação lexicográfica e lógica para `JString`. 
+
+Foram sugeridas:
+* Implementações para `equals` e `equalsIgnoreCase` utilizando a infraestrutura nativa do Python.
+* Lógica para `compareTo` e `compareToIgnoreCase` retornando valores relativos (`0`, `-1`, `1`) para indicar a ordenação de strings.
+* Flexibilização do método `contentEquals` para aceitar comparações diretas tanto com instâncias de `JString` quanto com `str` nativas do Python.
+* Utilização da função embutida `hash()` do Python como adaptação para o método `hashCode`.
+* Casos de teste automatizados cobrindo strings idênticas, diferenças de caixa (case sensitivity) e ordenação lexicográfica.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida estritamente dentro do escopo da issue #68. As validações locais foram executadas e aprovadas via:
+
+* `python -m pytest`
+* `python -m ruff check .`
+
+### Resultado
+
+Aceita.

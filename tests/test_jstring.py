@@ -60,3 +60,52 @@ def test_jstring_rejects_range_with_string_value():
 def test_jstring_rejects_invalid_type():
     with pytest.raises(TypeError):
         JString(123)
+
+def test_equals_returns_true_for_equal_strings():
+    assert JString("abc").equals(JString("abc"))
+
+
+def test_equals_returns_false_for_different_strings():
+    assert not JString("abc").equals(JString("def"))
+
+
+def test_equals_ignore_case_returns_true():
+    assert JString("abc").equalsIgnoreCase(JString("ABC"))
+
+
+def test_compare_to_equal_strings():
+    assert JString("abc").compareTo(JString("abc")) == 0
+
+
+def test_compare_to_smaller_string():
+    assert JString("abc").compareTo(JString("abd")) < 0
+
+
+def test_compare_to_greater_string():
+    assert JString("abd").compareTo(JString("abc")) > 0
+
+
+def test_compare_to_ignore_case():
+    assert JString("abc").compareToIgnoreCase(JString("ABC")) == 0
+
+
+def test_content_equals_jstring():
+    assert JString("abc").contentEquals(JString("abc"))
+
+
+def test_content_equals_string():
+    assert JString("abc").contentEquals("abc")
+
+
+def test_hash_code_equal_strings():
+    first = JString("abc")
+    second = JString("abc")
+
+    assert first.hashCode() == second.hashCode()
+
+
+def test_hash_code_different_strings():
+    first = JString("abc")
+    second = JString("def")
+
+    assert first.hashCode() != second.hashCode()

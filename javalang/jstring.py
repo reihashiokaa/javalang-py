@@ -41,3 +41,54 @@ class JString:
             return
 
         raise TypeError("value must be a string, JString, list or tuple of characters")
+    
+    def equals(self, other):
+        if not isinstance(other, JString):
+            return False
+        return self._value == other._value
+
+    def equalsIgnoreCase(self, other):
+        if not isinstance(other, JString):
+            return False
+        return self._value.lower() == other._value.lower()
+    
+    def compareTo(self, other):
+        if not isinstance(other, JString):
+            raise TypeError("other must be a JString")
+
+        if self._value == other._value:
+            return 0
+
+        if self._value < other._value:
+            return -1
+
+        return 1
+
+
+    def compareToIgnoreCase(self, other):
+        if not isinstance(other, JString):
+            raise TypeError("other must be a JString")
+
+        left = self._value.lower()
+        right = other._value.lower()
+
+        if left == right:
+            return 0
+
+        if left < right:
+            return -1
+
+        return 1
+    
+    def contentEquals(self, other):
+        if isinstance(other, JString):
+            return self._value == other._value
+
+        if isinstance(other, str):
+            return self._value == other
+
+        return False
+
+
+    def hashCode(self):
+        return hash(self._value)
