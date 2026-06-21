@@ -4,6 +4,23 @@
 class JString:
     """Representa uma adaptação da classe String da API Java SE 8."""
 
+    def length(self):
+        """Retorna o tamanho da string."""
+        return len(self._value)
+    
+    def isEmpty(self):
+        """Verifica se a string esta vazia."""
+        return self.length() == 0
+    
+    def charAt(self, index):
+        """Retorna o caractere na posicao informada."""
+        if not isinstance(index, int):
+            raise TypeError("index must be an int")
+        if index < 0 or index >= self.length():
+            raise IndexError("index out of range")
+    
+        return self._value[index]
+
     def __init__(self, value="", offset=None, count=None):
         has_range = offset is not None or count is not None
 
