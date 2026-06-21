@@ -753,3 +753,47 @@ As verificações locais foram executadas com sucesso utilizando:
 Aceita com modificações.
 
 ---
+
+---
+
+## Registro de Uso 17
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos de conversão de bits e representação hexadecimal da classe `JFloat`, referentes à issue #54 da milestone `v0.3-jfloat`.
+
+### Trecho do projeto afetado
+
+* `javalang/jfloat.py`
+* `tests/test_jfloat.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #54, responsável pelos métodos `toHexString`, `floatToIntBits`, `floatToRawIntBits` e `intBitsToFloat`, separando os commits entre implementação, testes e documentação.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação em commits separados, sugerindo a divisão entre conversões de bits, representação hexadecimal, testes automatizados e documentação. Também apoiou a definição da estratégia técnica com uso do módulo `struct` para simular a representação IEEE 754 de 32 bits e a diferença entre `floatToIntBits` e `floatToRawIntBits`.
+
+Além disso, auxiliou na criação dos testes para valores comuns, valores negativos, zero positivo, zero negativo, infinitos, `NaN` e conversão inversa por meio de `intBitsToFloat`.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #54, sem adicionar métodos de outras issues da milestone. As verificações locais foram executadas utilizando:
+
+* `python -m pytest`
+* `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.

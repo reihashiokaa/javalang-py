@@ -451,6 +451,46 @@ A definir.
 
 ---
 
+### Conversões de bits e representação hexadecimal de JFloat
+
+**Método:**
+toHexString, floatToIntBits, floatToRawIntBits e intBitsToFloat
+
+**Assinatura Java:**
+public static String toHexString(float f)
+public static int floatToIntBits(float value)
+public static int floatToRawIntBits(float value)
+public static float intBitsToFloat(int bits)
+
+**Decisão da equipe:**
+Como Python não possui um tipo `float` limitado diretamente a 32 bits como o `float` do Java, os métodos foram adaptados utilizando o módulo `struct` para converter valores de ponto flutuante para a representação IEEE 754 de 32 bits e também para reconstruir valores `float` a partir de inteiros de 32 bits.
+
+O método `floatToIntBits` normaliza valores `NaN` para o padrão canônico esperado pela API Java. Já o método `floatToRawIntBits` preserva o padrão bruto de bits sempre que possível, considerando as limitações do tipo `float` do Python. O método `intBitsToFloat` realiza o caminho inverso, interpretando um inteiro como uma sequência de 32 bits de ponto flutuante. O método `toHexString` gera uma representação textual hexadecimal baseada nessa representação binária.
+
+**Justificativa:**
+Os métodos desta issue dependem diretamente da representação binária de valores `float` em 32 bits. Em Java, o tipo `float` segue esse tamanho fixo, enquanto em Python o tipo `float` normalmente possui precisão equivalente ao `double`. Por isso, foi necessário forçar a conversão para 32 bits antes de manipular os bits, garantindo uma adaptação mais próxima do comportamento da classe `Float` da API Java SE 8.
+
+Além disso, existe uma diferença entre `floatToIntBits` e `floatToRawIntBits` no tratamento de `NaN`. A versão `floatToIntBits` usa uma representação canônica para `NaN`, enquanto `floatToRawIntBits` tenta preservar a representação bruta. Essa diferença foi mantida na adaptação sempre que possível.
+
+**Alternativa em Python (quando aplicável):**
+struct.pack("!f", valor)
+struct.unpack("!I", bytes_do_float)
+
+```
+# exemplo de conversão de float para bits
+struct.unpack("!I", struct.pack("!f", float(valor)))[0]
+
+# exemplo de conversão de bits para float
+struct.unpack("!f", struct.pack("!I", bits & 0xFFFFFFFF))[0]
+```
+
+**Issue relacionada:**
+Issue #54
+
+**Pull Request relacionado:**
+A definir
+
+
 ## Histórico de Atualizações
 
 | Data       | Alteração                    | Responsável |
@@ -464,3 +504,4 @@ A definir.
 | 20/06/2026 | Registro das adaptações de operações de conversões em JFloat| Miguel |
 | 20/06/2026 | Registro das adaptações de  parsing value em JFloat| Beatriz |
 | 21/06/2026 | Registro das adaptações de valores especiais em JFloat | Isabela |
+| 21/06/2026 | Registro das adaptações de conversões de bits e representação hexadecimal em JFloat | Luciana |

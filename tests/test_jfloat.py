@@ -37,6 +37,7 @@ def test_jfloat_size_and_bytes_match_java_float():
 def test_jfloat_type_uses_python_float_as_adaptation():
     assert JFloat.TYPE is float
 
+
 def test_jfloat_int_value_truncates_decimal_part():
     value = JFloat(10.8)
     assert value.intValue() == 10
@@ -51,6 +52,7 @@ def test_jfloat_long_value_returns_integer_value():
     value = JFloat(20.5)
     assert value.longValue() == 20
 
+
 def test_jfloat_float_value_returns_float():
     value = JFloat(10.5)
     assert value.floatValue() == 10.5
@@ -59,6 +61,7 @@ def test_jfloat_float_value_returns_float():
 def test_jfloat_double_value_returns_float_adaptation():
     value = JFloat(10.5)
     assert value.doubleValue() == 10.5
+
 
 def test_jfloat_byte_value_with_value_inside_range():
     value = JFloat(10.5)
@@ -79,105 +82,107 @@ def test_jfloat_short_value_wraps_like_signed_short():
     value = JFloat(32768.0)
     assert value.shortValue() == -32768
 
+
 def test_parse_float_inteiro():
     assert JFloat.parseFloat("10") == 10.0
- 
- 
+
+
 def test_parse_float_decimal():
     assert JFloat.parseFloat("3.14") == pytest.approx(3.14)
- 
- 
+
+
 def test_parse_float_negativo():
     assert JFloat.parseFloat("-2.5") == -2.5
- 
- 
+
+
 def test_parse_float_zero():
     assert JFloat.parseFloat("0") == 0.0
- 
- 
+
+
 def test_parse_float_zero_decimal():
     assert JFloat.parseFloat("0.0") == 0.0
- 
- 
+
+
 def test_parse_float_infinity():
     assert JFloat.parseFloat("Infinity") == float("inf")
- 
- 
+
+
 def test_parse_float_negative_infinity():
     assert JFloat.parseFloat("-Infinity") == float("-inf")
- 
- 
+
+
 def test_parse_float_nan():
     assert math.isnan(JFloat.parseFloat("NaN"))
- 
- 
+
+
 def test_parse_float_entrada_invalida():
     with pytest.raises(ValueError):
         JFloat.parseFloat("abc")
- 
- 
+
+
 def test_parse_float_entrada_vazia():
     with pytest.raises(ValueError):
         JFloat.parseFloat("")
- 
- 
+
+
 def test_parse_float_tipo_errado():
     with pytest.raises(ValueError):
         JFloat.parseFloat(3.14)
- 
+
+
 def test_value_of_float():
     resultado = JFloat.valueOf(3.14)
     assert isinstance(resultado, JFloat)
     assert resultado.floatValue() == pytest.approx(3.14)
- 
- 
+
+
 def test_value_of_inteiro():
     resultado = JFloat.valueOf(10)
     assert isinstance(resultado, JFloat)
     assert resultado.floatValue() == 10.0
- 
- 
+
+
 def test_value_of_negativo():
     resultado = JFloat.valueOf(-7.5)
     assert isinstance(resultado, JFloat)
     assert resultado.floatValue() == -7.5
- 
- 
+
+
 def test_value_of_zero():
     resultado = JFloat.valueOf(0)
     assert isinstance(resultado, JFloat)
     assert resultado.floatValue() == 0.0
 
+
 def test_value_of_string_decimal():
     resultado = JFloat.valueOf("2.71")
     assert isinstance(resultado, JFloat)
     assert resultado.floatValue() == pytest.approx(2.71)
- 
- 
+
+
 def test_value_of_string_negativa():
     resultado = JFloat.valueOf("-1.0")
     assert isinstance(resultado, JFloat)
     assert resultado.floatValue() == -1.0
- 
- 
+
+
 def test_value_of_string_invalida():
     with pytest.raises(ValueError):
         JFloat.valueOf("texto")
- 
- 
+
+
 def test_value_of_tipo_invalido():
     with pytest.raises(ValueError):
         JFloat.valueOf([1, 2, 3])
 
 
-
-
 def test_jfloat_to_string():
     """Testa a representação textual de instâncias e métodos estáticos."""
     assert JFloat(1.5).toString() == "1.5"
-    assert JFloat(float('inf')).toString() == "Infinity"
-    assert JFloat(float('nan')).toString() == "NaN"
+    assert JFloat(float("inf")).toString() == "Infinity"
+    assert JFloat(float("nan")).toString() == "NaN"
     assert JFloat.toString_static(-2.5) == "-2.5"
+
 
 def test_jfloat_hash_code_valido():
     """Testa se o hash code gera valores inteiros consistentes."""
@@ -185,20 +190,23 @@ def test_jfloat_hash_code_valido():
     assert isinstance(jf.hashCode(), int)
     assert jf.hashCode() > 0
 
+
 def test_jfloat_hash_code_casos_especiais():
     """Testa o hash de NaN e a diferença de hash entre 0.0 e -0.0."""
-    nan_jf = JFloat(float('nan'))
-    assert nan_jf.hashCode() == 0x7fc00000
-    
+    nan_jf = JFloat(float("nan"))
+    assert nan_jf.hashCode() == 0x7FC00000
+
     assert JFloat(0.0).hashCode() != JFloat(-0.0).hashCode()
+
 
 def test_jfloat_equals():
     """Testa as regras de igualdade do Java para Float."""
     # Em Java, NaN é igual a NaN na comparação de objetos
-    assert JFloat(float('nan')).equals(JFloat(float('nan'))) is True
+    assert JFloat(float("nan")).equals(JFloat(float("nan"))) is True
     # Em Java, 0.0 é diferente de -0.0 no equals
     assert JFloat(0.0).equals(JFloat(-0.0)) is False
     assert JFloat(5.5).equals(JFloat(5.5)) is True
+
 
 def test_jfloat_compare_to():
     """Testa a comparação baseada em instâncias."""
@@ -208,14 +216,16 @@ def test_jfloat_compare_to():
     assert jf2.compareTo(jf1) == 1
     assert jf1.compareTo(JFloat(1.2)) == 0
 
+
 def test_jfloat_compare_static():
     """Testa o método estático JFloat.compare e suas regras de ordenação."""
     # NaN é considerado maior que qualquer outro valor, inclusive Infinity
-    assert JFloat.compare(float('nan'), float('inf')) == 1
-    assert JFloat.compare(float('nan'), float('nan')) == 0
+    assert JFloat.compare(float("nan"), float("inf")) == 1
+    assert JFloat.compare(float("nan"), float("nan")) == 0
     # -0.0 é estritamente menor que 0.0
     assert JFloat.compare(-0.0, 0.0) == -1
     assert JFloat.compare(10.0, 5.0) == 1
+
 
 def test_jfloat_is_nan_detects_nan_value():
     assert JFloat(float("nan")).isNaN() is True
@@ -253,3 +263,82 @@ def test_jfloat_is_finite_returns_false_for_nan_and_infinity():
     assert JFloat(float("inf")).isFinite() is False
     assert JFloat(float("-inf")).isFinite() is False
     assert JFloat.isFinite(float("nan")) is False
+
+
+def test_float_to_int_bits_regular_values():
+    assert JFloat.floatToIntBits(0.0) == 0x00000000
+    assert JFloat.floatToIntBits(1.0) == 0x3F800000
+    assert JFloat.floatToIntBits(-1.0) & 0xFFFFFFFF == 0xBF800000
+
+
+def test_float_to_int_bits_special_values():
+    assert JFloat.floatToIntBits(float("inf")) == 0x7F800000
+    assert JFloat.floatToIntBits(float("-inf")) & 0xFFFFFFFF == 0xFF800000
+    assert JFloat.floatToIntBits(float("nan")) == 0x7FC00000
+
+
+def test_float_to_raw_int_bits_regular_values():
+    assert JFloat.floatToRawIntBits(0.0) == 0x00000000
+    assert JFloat.floatToRawIntBits(1.0) == 0x3F800000
+    assert JFloat.floatToRawIntBits(-1.0) & 0xFFFFFFFF == 0xBF800000
+
+
+def test_float_to_raw_int_bits_nan_keeps_nan_pattern():
+    raw_bits = JFloat.floatToRawIntBits(float("nan")) & 0xFFFFFFFF
+
+    assert (raw_bits & 0x7F800000) == 0x7F800000
+    assert (raw_bits & 0x007FFFFF) != 0
+
+
+def test_int_bits_to_float_regular_values():
+    assert JFloat.intBitsToFloat(0x00000000) == 0.0
+    assert JFloat.intBitsToFloat(0x3F800000) == 1.0
+    assert JFloat.intBitsToFloat(0xBF800000) == -1.0
+
+
+def test_int_bits_to_float_negative_zero():
+    value = JFloat.intBitsToFloat(0x80000000)
+
+    assert value == 0.0
+    assert math.copysign(1.0, value) == -1.0
+
+
+def test_int_bits_to_float_special_values():
+    assert math.isinf(JFloat.intBitsToFloat(0x7F800000))
+    assert JFloat.intBitsToFloat(0x7F800000) > 0
+
+    assert math.isinf(JFloat.intBitsToFloat(0xFF800000))
+    assert JFloat.intBitsToFloat(0xFF800000) < 0
+
+    assert math.isnan(JFloat.intBitsToFloat(0x7FC00000))
+
+
+def test_int_bits_to_float_rejects_invalid_type():
+    with pytest.raises(TypeError):
+        JFloat.intBitsToFloat(1.5)
+
+
+def test_to_hex_string_zero_values():
+    assert JFloat.toHexString(0.0) == "0x0.0p0"
+    assert JFloat.toHexString(-0.0) == "-0x0.0p0"
+
+
+def test_to_hex_string_regular_values():
+    assert JFloat.toHexString(1.0) == "0x1.0p0"
+    assert JFloat.toHexString(-1.0) == "-0x1.0p0"
+    assert JFloat.toHexString(2.0) == "0x1.0p1"
+    assert JFloat.toHexString(0.5) == "0x1.0p-1"
+
+
+def test_to_hex_string_decimal_value():
+    assert JFloat.toHexString(3.5) == "0x1.cp1"
+
+
+def test_to_hex_string_special_values():
+    assert JFloat.toHexString(float("inf")) == "Infinity"
+    assert JFloat.toHexString(float("-inf")) == "-Infinity"
+    assert JFloat.toHexString(float("nan")) == "NaN"
+
+
+def test_to_hex_string_min_value():
+    assert JFloat.toHexString(JFloat.MIN_VALUE) == "0x0.000002p-126"
