@@ -162,3 +162,21 @@ class JString:
         """Retorna uma subsequencia da string."""
 
         return self.substring(beginIndex, endIndex)
+    
+    def concat(self, other):
+        """Concatena esta string com outra string."""
+        if isinstance(other, JString):
+            other_value = other._value
+        elif isinstance(other, str):
+            other_value = other
+        else:
+            raise TypeError("other must be a string or JString")
+        return JString(self._value + other_value)
+
+    def trim(self):
+        """Remove espacos das extremidades da string."""
+        return JString(self._value.strip())
+
+    def intern(self):
+        """Retorna a propria instancia como adaptacao de String.intern."""
+        return self
