@@ -662,6 +662,56 @@ Python não possui sobrecarga de métodos como Java, por isso as variações de 
 
 **Pull Request relacionado:** A definir.
 
+---
+
+### JString
+
+**Métodos:**
+`codePointAt`, `codePointBefore`, `codePointCount` e `offsetByCodePoints`
+
+**Assinatura Java:**
+`public int codePointAt(int index)`
+
+`public int codePointBefore(int index)`
+
+`public int codePointCount(int beginIndex, int endIndex)`
+
+`public int offsetByCodePoints(int index, int codePointOffset)`
+
+**Decisão da equipe:**
+Os métodos de code points da classe `JString` foram implementados utilizando o comportamento nativo de strings do Python.
+
+O método `codePointAt` retorna o código Unicode do caractere na posição informada usando `ord`. O método `codePointBefore` retorna o código Unicode do caractere anterior ao índice informado. O método `codePointCount` conta a quantidade de caracteres Unicode em um intervalo, e `offsetByCodePoints` calcula um novo índice a partir de um deslocamento informado.
+
+**Justificativa:**
+Na classe `String` do Java, os métodos de code points existem para lidar com caracteres Unicode, inclusive casos em que determinados caracteres podem ocupar mais de uma unidade `char`.
+
+Em Python, a `str` trabalha de forma mais direta com caracteres Unicode, permitindo acessar caracteres por índice e obter seu código Unicode com `ord`. Por isso, a implementação foi adaptada para usar os recursos nativos da linguagem, mantendo uma interface semelhante à API Java.
+
+**Comportamento adotado em Python:**
+
+* `codePointAt(index)` retorna `ord(self._value[index])`.
+* `codePointBefore(index)` retorna `ord(self._value[index - 1])`.
+* `codePointCount(beginIndex, endIndex)` retorna o tamanho do intervalo da string.
+* `offsetByCodePoints(index, codePointOffset)` retorna o índice deslocado pela quantidade informada.
+* Índices inválidos geram `IndexError`.
+* Índices ou deslocamentos com tipo inválido geram `TypeError`.
+
+**Diferença em relação ao Java:**
+A implementação não simula manualmente pares substitutos (`surrogate pairs`) da representação interna do Java. Para esta adaptação inicial, foi adotado o tratamento direto de caracteres Unicode do Python.
+
+**Alternativa em Python (quando aplicável):**
+`ord(character)`
+
+`len(text[beginIndex:endIndex])`
+
+**Issue relacionada:**
+#67
+
+**Pull Request relacionado:**
+A definir.
+
+---
 
 ## Histórico de Atualizações
 
@@ -681,3 +731,4 @@ Python não possui sobrecarga de métodos como Java, por isso as variações de 
 | 21/06/2026 | Registro das adaptações de igualdade, hash e comparação em JString | Maria Eduarda |
 | 21/06/2026 | Registro das adaptações de de acesso, tamanho, conversão, da classe JString. em JString | BEatriz |
 | 21/06/2026 | Registro das adaptações de recorte e transformação em JString | Beatriz |
+| 21/06/2026 | Registro das adaptações de code points em JString | Isabela |

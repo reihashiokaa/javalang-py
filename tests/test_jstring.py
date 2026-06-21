@@ -46,6 +46,153 @@ def test_jstring_char_at_rejects_non_integer_index():
     with pytest.raises(TypeError):
         value.charAt("1")
 
+def test_jstring_code_point_at_returns_ascii_code_point():
+    value = JString("abc")
+
+    assert value.codePointAt(0) == ord("a")
+    assert value.codePointAt(1) == ord("b")
+
+
+def test_jstring_code_point_at_returns_unicode_code_point():
+    value = JString("ação")
+
+    assert value.codePointAt(0) == ord("a")
+    assert value.codePointAt(1) == ord("ç")
+
+
+def test_jstring_code_point_at_rejects_invalid_index():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.codePointAt(-1)
+
+    with pytest.raises(IndexError):
+        value.codePointAt(3)
+
+
+def test_jstring_code_point_at_rejects_non_integer_index():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.codePointAt("1")
+
+
+def test_jstring_code_point_before_returns_ascii_code_point():
+    value = JString("abc")
+
+    assert value.codePointBefore(1) == ord("a")
+    assert value.codePointBefore(3) == ord("c")
+
+
+def test_jstring_code_point_before_returns_unicode_code_point():
+    value = JString("ação")
+
+    assert value.codePointBefore(2) == ord("ç")
+    assert value.codePointBefore(4) == ord("o")
+
+
+def test_jstring_code_point_before_rejects_invalid_index():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.codePointBefore(0)
+
+    with pytest.raises(IndexError):
+        value.codePointBefore(4)
+
+
+def test_jstring_code_point_before_rejects_non_integer_index():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.codePointBefore("1")
+
+
+def test_jstring_code_point_count_returns_ascii_count():
+    value = JString("abcdef")
+
+    assert value.codePointCount(0, 3) == 3
+    assert value.codePointCount(2, 6) == 4
+
+
+def test_jstring_code_point_count_returns_unicode_count():
+    value = JString("ação")
+
+    assert value.codePointCount(0, 4) == 4
+    assert value.codePointCount(1, 3) == 2
+
+
+def test_jstring_code_point_count_allows_empty_range():
+    value = JString("abc")
+
+    assert value.codePointCount(1, 1) == 0
+
+
+def test_jstring_code_point_count_rejects_invalid_range():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.codePointCount(-1, 2)
+
+    with pytest.raises(IndexError):
+        value.codePointCount(2, 1)
+
+    with pytest.raises(IndexError):
+        value.codePointCount(0, 4)
+
+
+def test_jstring_code_point_count_rejects_non_integer_indexes():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.codePointCount("0", 2)
+
+
+def test_jstring_offset_by_code_points_moves_forward():
+    value = JString("abcdef")
+
+    assert value.offsetByCodePoints(1, 3) == 4
+
+
+def test_jstring_offset_by_code_points_moves_backward():
+    value = JString("abcdef")
+
+    assert value.offsetByCodePoints(4, -2) == 2
+
+
+def test_jstring_offset_by_code_points_works_with_unicode():
+    value = JString("ação")
+
+    assert value.offsetByCodePoints(0, 2) == 2
+    assert value.offsetByCodePoints(3, -2) == 1
+
+
+def test_jstring_offset_by_code_points_allows_length_index():
+    value = JString("abc")
+
+    assert value.offsetByCodePoints(3, 0) == 3
+
+
+def test_jstring_offset_by_code_points_rejects_invalid_result():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.offsetByCodePoints(0, -1)
+
+    with pytest.raises(IndexError):
+        value.offsetByCodePoints(2, 2)
+
+
+def test_jstring_offset_by_code_points_rejects_non_integer_values():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.offsetByCodePoints("0", 1)
+
+    with pytest.raises(TypeError):
+        value.offsetByCodePoints(0, "1")
+
+
 def test_jstring_to_char_array_returns_character_list():
     value = JString("abc")
 
