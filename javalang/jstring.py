@@ -41,6 +41,28 @@ class JString:
 
         return ord(self._value[index - 1])
 
+    def codePointCount(self, beginIndex, endIndex):
+        """Retorna a quantidade de code points no intervalo informado."""
+        if not isinstance(beginIndex, int) or not isinstance(endIndex, int):
+            raise TypeError("beginIndex and endIndex must be integers")
+
+        if beginIndex < 0 or endIndex < beginIndex or endIndex > self.length():
+            raise IndexError("range is invalid")
+
+        return len(self._value[beginIndex:endIndex])
+
+    def offsetByCodePoints(self, index, codePointOffset):
+        """Retorna o indice deslocado pela quantidade de code points informada."""
+        if not isinstance(index, int) or not isinstance(codePointOffset, int):
+            raise TypeError("index and codePointOffset must be integers")
+
+        new_index = index + codePointOffset
+
+        if index < 0 or index > self.length() or new_index < 0 or new_index > self.length():
+            raise IndexError("index out of range")
+
+        return new_index
+
     def toCharArray(self):
         """Retorna uma lista com os caracteres da string."""
         return list(self._value)
