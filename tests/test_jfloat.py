@@ -316,3 +316,29 @@ def test_int_bits_to_float_special_values():
 def test_int_bits_to_float_rejects_invalid_type():
     with pytest.raises(TypeError):
         JFloat.intBitsToFloat(1.5)
+
+
+def test_to_hex_string_zero_values():
+    assert JFloat.toHexString(0.0) == "0x0.0p0"
+    assert JFloat.toHexString(-0.0) == "-0x0.0p0"
+
+
+def test_to_hex_string_regular_values():
+    assert JFloat.toHexString(1.0) == "0x1.0p0"
+    assert JFloat.toHexString(-1.0) == "-0x1.0p0"
+    assert JFloat.toHexString(2.0) == "0x1.0p1"
+    assert JFloat.toHexString(0.5) == "0x1.0p-1"
+
+
+def test_to_hex_string_decimal_value():
+    assert JFloat.toHexString(3.5) == "0x1.cp1"
+
+
+def test_to_hex_string_special_values():
+    assert JFloat.toHexString(float("inf")) == "Infinity"
+    assert JFloat.toHexString(float("-inf")) == "-Infinity"
+    assert JFloat.toHexString(float("nan")) == "NaN"
+
+
+def test_to_hex_string_min_value():
+    assert JFloat.toHexString(JFloat.MIN_VALUE) == "0x0.000002p-126"
