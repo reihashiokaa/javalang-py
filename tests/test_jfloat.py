@@ -357,3 +357,23 @@ def test_jfloat_sum_positive_and_negative_values():
 
 def test_jfloat_sum_with_zero():
     assert JFloat.sum(10.5, 0.0) == 10.5
+
+def test_jfloat_max_returns_greater_value():
+    assert JFloat.max(10.5, 5.5) == 10.5
+
+
+def test_jfloat_max_with_negative_values():
+    assert JFloat.max(-10.5, -5.5) == -5.5
+
+
+def test_jfloat_max_with_equal_values():
+    assert JFloat.max(7.5, 7.5) == 7.5
+
+
+def test_jfloat_max_with_nan_returns_nan():
+    result = JFloat.max(float("nan"), 10.5)
+    assert math.isnan(result)
+
+
+def test_jfloat_max_with_infinity():
+    assert JFloat.max(float("inf"), 10.5) == float("inf")
