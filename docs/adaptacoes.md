@@ -564,8 +564,7 @@ Python não possui sobrecarga de construtores da mesma forma que Java. Por isso,
 
 **Issue relacionada:** #65
 
-**Pull Request relacionado:** A definir.
-
+**Pull Request relacionado:** #79
 
 
 ## Histórico de Atualizações
