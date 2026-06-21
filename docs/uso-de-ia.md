@@ -86,6 +86,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 20/06/2026 | Gemini     | Auxiliar na implementação dos métodos de representação textual, igualdade e comparação da classe JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py` | Aceita |
 | 21/06/2026 | ChatGPT | Apoio na implementação das verificações de valores especiais de JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.3-jfloat | `docs/relatorios/status-v0.3.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação inicial de JString | `javalang/jstring.py`, `javalang/__init__.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 ---
 
 ## Registro de Uso 01
@@ -885,6 +886,50 @@ As verificações locais foram executadas utilizando:
 
 Aceita com modificações.
 
+## Registro de Uso 20
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação inicial da classe `JString`, incluindo estrutura da classe, construtores básicos, testes iniciais e registro de adaptação.
+
+### Trecho do projeto afetado
+
+- `javalang/jstring.py`
+- `javalang/__init__.py`
+- `tests/test_jstring.py`
+- `docs/adaptacoes.md`
+- `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a primeira issue da milestone `v0.4-jstring`, criando a estrutura inicial da classe `JString`, seus construtores básicos, testes e documentação de adaptação.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da estrutura inicial da classe `JString`, sugerindo uma adaptação dos construtores da classe `String` do Java para um único construtor Python com verificação de tipo.
+
+Também foram sugeridos testes para criação de strings vazias, strings comuns, cópia de `JString`, listas de caracteres, tuplas de caracteres e criação com `offset` e `count`.
+
+### Validação da equipe
+
+O conteúdo foi revisado antes de ser incorporado ao projeto. A implementação foi mantida dentro do escopo da issue, sem adicionar métodos de acesso, comparação, busca, transformação ou regex.
+
+As verificações locais foram executadas utilizando:
+
+- `python -m pytest`
+- `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
 
 
 

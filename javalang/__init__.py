@@ -2,5 +2,6 @@
 
 from .jfloat import JFloat
 from .jinteger import JInteger
+from .jstring import JString
 
-__all__ = ["JFloat", "JInteger"]
+__all__ = ["JFloat", "JInteger", "JString"]
