@@ -145,4 +145,31 @@ class JFloat:
             if h1 > h2:
                 return -1
         return 0
+    
+    def isNaN(self_or_value):
+        """Verifica se o valor é NaN."""
+        if isinstance(self_or_value, JFloat):
+            value = self_or_value._value
+        else:
+            value = float(self_or_value)
+
+        return math.isnan(value)
+
+    def isInfinite(self_or_value):
+        """Verifica se o valor é infinito."""
+        if isinstance(self_or_value, JFloat):
+            value = self_or_value._value
+        else:
+            value = float(self_or_value)
+
+        return math.isinf(value)
+
+    def isFinite(self_or_value):
+        """Verifica se o valor é finito."""
+        if isinstance(self_or_value, JFloat):
+            value = self_or_value._value
+        else:
+            value = float(self_or_value)
+
+        return math.isfinite(value)
 
