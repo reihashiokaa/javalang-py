@@ -227,6 +227,9 @@ class JString:
     @staticmethod
     def valueOf(value):
         """Retorna uma JString representando o valor informado."""
+        if value is None:
+            return JString("null")
+
         if isinstance(value, bool):
             return JString("true" if value else "false")
 
@@ -240,12 +243,14 @@ class JString:
             return JString(value)
 
         if isinstance(value, (list, tuple)):
-            characters = list(value)
+            return JString(value)
 
-            for character in characters:
-                if not isinstance(character, str) or len(character) != 1:
-                    raise ValueError("character array must contain only single-character strings")
+        return JString(str(value))
 
-            return JString(characters)
+    @staticmethod
+    def copyValueOf(value):
+        """Cria uma JString a partir de uma lista ou tupla de caracteres."""
+        if not isinstance(value, (list, tuple)):
+            raise TypeError("value must be a list or tuple of characters")
 
-        raise TypeError("unsupported value type")
+        return JString(value)
