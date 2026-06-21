@@ -71,3 +71,19 @@ def test_equals_returns_false_for_different_strings():
 
 def test_equals_ignore_case_returns_true():
     assert JString("abc").equalsIgnoreCase(JString("ABC"))
+
+
+def test_compare_to_equal_strings():
+    assert JString("abc").compareTo(JString("abc")) == 0
+
+
+def test_compare_to_smaller_string():
+    assert JString("abc").compareTo(JString("abd")) < 0
+
+
+def test_compare_to_greater_string():
+    assert JString("abd").compareTo(JString("abc")) > 0
+
+
+def test_compare_to_ignore_case():
+    assert JString("abc").compareToIgnoreCase(JString("ABC")) == 0
