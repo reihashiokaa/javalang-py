@@ -255,3 +255,14 @@ class JFloat:
             return JFloat.NaN
 
         return first_value if first_value >= second_value else second_value
+    
+    @staticmethod
+    def min(first, second):
+        """Retorna o menor entre dois valores float."""
+        first_value = float(first)
+        second_value = float(second)
+
+        if math.isnan(first_value) or math.isnan(second_value):
+            return JFloat.NaN
+
+        return first_value if first_value <= second_value else second_value
