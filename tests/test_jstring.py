@@ -2,6 +2,7 @@ import pytest
 
 from javalang import JString
 
+
 def test_jstring_length_returns_number_of_characters():
     value = JString("abc")
 
