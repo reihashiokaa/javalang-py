@@ -533,6 +533,39 @@ Nos métodos `max` e `min`, foi adotado tratamento explícito para valores `NaN`
 **Pull Request relacionado:**
 A definir.
 
+### Estrutura inicial e construtores de JString
+
+**Classe:** `JString`
+
+**Elementos Java relacionados:**
+
+- `String()`
+- `String(String original)`
+- `String(char[] value)`
+- `String(char[], int, int)`
+
+**Decisão da equipe:**
+
+A classe `JString` foi implementada como adaptação da classe `String` da API Java SE 8. O valor interno é armazenado como `str` do Python, aproveitando a imutabilidade natural desse tipo.
+
+As sobrecargas de construtores da API Java foram adaptadas para um único construtor Python, usando verificação de tipo e parâmetros opcionais `offset` e `count`.
+
+**Justificativa:**
+
+Python não possui sobrecarga de construtores da mesma forma que Java. Por isso, a equipe optou por concentrar os construtores básicos em `__init__`, preservando o comportamento principal esperado.
+
+**Comportamento adotado em Python:**
+
+- `JString()` cria uma string vazia.
+- `JString("abc")` cria uma instância a partir de `str`.
+- `JString(outra_jstring)` copia o valor interno de outra instância.
+- `JString(["a", "b", "c"])` cria uma string a partir de caracteres.
+- `JString(["a", "b", "c"], 1, 2)` cria uma string usando intervalo.
+
+**Issue relacionada:** #65
+
+**Pull Request relacionado:** A definir.
+
 
 
 ## Histórico de Atualizações
