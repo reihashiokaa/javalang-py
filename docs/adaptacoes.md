@@ -612,3 +612,4 @@ hash(string_value)
 | 21/06/2026 | Registro das adaptações de valores especiais em JFloat | Isabela |
 | 21/06/2026 | Registro das adaptações de conversões de bits e representação hexadecimal em JFloat | Luciana |
 | 21/06/2026 | Registro das adaptações dos metodos estaticos min, max e sum em JFloat | Miguel |
+| 21/06/2026 | Registro das adaptações de igualdade, hash e comparação em JString | Maria Eduarda |
