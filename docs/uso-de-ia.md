@@ -82,6 +82,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 20/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.2-jinteger | `docs/relatorios/status-v0.2.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | ChatGPT | Apoio na implementação inicial de JFloat | `javalang/jfloat.py`, `javalang/__init__.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | ChatGPT | Apoio na implementação das conversões básicas de JFloat, criação de testes e documentação de adaptações | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 20/06/2026 | Claude | Sugestão de implementação dos métodos parseFloat e valueOf da classe JFloat.| `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 
 ---
 
@@ -267,7 +268,6 @@ Aceita com modificações.
 
 ---
 
-
 ## Registro de Uso 06
 
 ### Data
@@ -314,6 +314,7 @@ As verificações locais foram executadas com sucesso utilizando:
 
 Aceita com modificações.
 
+---
 
 ## Registro de Uso 07
 
@@ -356,7 +357,7 @@ Aceita com modificações.
 
 ---
 
-## Registro de Uso 09
+## Registro de Uso 08
 
 ### Data
 
@@ -400,7 +401,9 @@ As verificações locais foram executadas utilizando:
 
 Aceita com modificações.
 
-## Registro de Uso 008
+---
+
+## Registro de Uso 09
 
 ### Data 
 
@@ -431,7 +434,9 @@ O conteúdo sugerido foi revisado antes de ser incorporado ao repositório. A im
 ### Resultado
 Aceito com modificações
 
-## Registro de Uso IA-08
+---
+
+## Registro de Uso IA 10
 
 ### Data
 
@@ -486,7 +491,7 @@ As sugestões fornecidas pela IA foram analisadas, adaptadas ao padrão já exis
 
 ---
 
-## Registro de Uso IA-09
+## Registro de Uso IA 11
 
 ### Data
 
@@ -528,7 +533,9 @@ As verificações locais foram executadas utilizando:
 
 Aceita com modificações.
 
-## Registro de Uso IA-10
+---
+
+## Registro de Uso IA 12
 
 ### Data
 
@@ -575,7 +582,9 @@ As verificações locais foram executadas utilizando:
 
 Aceita com modificações.
 
-## Registro de Uso 11
+---
+
+## Registro de Uso 13
 
 ### Data
 
@@ -611,4 +620,49 @@ A IA auxiliou na explicação do comportamento das conversões numéricas da cla
 
 * Aceita com modificações.
 
+---
 
+## Registro de Uso 014
+
+### Data
+
+20/06/2026
+
+### Ferramenta Utilizada
+
+Claude (Anthropic)
+
+### Objetivo
+
+
+Gerar sugestão de implementação dos métodos parseFloat e valueOf da classe JFloat.
+Propor casos de teste para os métodos implementados.
+Auxiliar na criação da documentação de adaptações.
+
+
+### Trecho do Projeto Afetado
+
+
+javalang/jfloat.py — métodos parseFloat e valueOf
+tests/test_jfloat.py — casos de teste dos métodos acima
+docs/adaptacoes.md — registro das adaptações de sobrecarga e exceções
+
+
+### Descrição da Contribuição da IA
+
+A IA sugeriu a implementação de parseFloat com tratamento explícito das strings especiais "Infinity", "-Infinity" e "NaN", além do uso de ValueError como substituto de NumberFormatException. Para valueOf, a IA propôs unificar as duas sobrecargas Java em um único método com detecção de tipo em tempo de execução. Também foram sugeridos 19 casos de teste cobrindo valores inteiros, decimais, negativos, zero, strings especiais e entradas inválidas.
+
+### Validação da Equipe
+
+
+Código revisado pelo responsável da issue antes de commitar.
+Todos os 34 testes do arquivo test_jfloat.py (15 existentes + 19 novos) executados com sucesso via pytest.
+Lógica dos métodos conferida manualmente comparando com a documentação Java SE 8.
+Documentação de adaptações ajustada para seguir o modelo definido pela equipe.
+
+
+### Resultado
+
+Aceita com modificações — a estrutura geral foi mantida, mas os textos de documentação foram ajustados para seguir o modelo de registro de adaptações da equipe.
+
+---

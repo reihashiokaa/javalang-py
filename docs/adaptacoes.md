@@ -372,6 +372,36 @@ Preencher após abertura do pull request.
 
 ---
 
+### JFloat
+
+**Método:**
+parseFloat
+valueOf(float f)
+valueOf(String s)
+
+**Assinatura Java:**
+public static float parseFloat(String s)
+public static Float valueOf(float f) 
+public static Float valueOf(String s)
+
+**Decisão da equipe:**
+Implementado. Strings especiais "Infinity", "-Infinity" e "NaN" são verificadas explicitamente antes de chamar float() do Python, pois o Python nativo não reconhece esse formato com letra maiúscula (usado pelo Java). Entradas inválidas lançam ValueError no lugar de NumberFormatException, que não existe em Python, ValueError é a exceção idiomática equivalente para erros de conversão de valor.
+As duas sobrecargas foram unificadas em um único método estático valueOf(value). O método detecta o tipo do argumento em tempo de execução: se receber str, chama parseFloat internamente antes de criar a instância; se receber int ou float, cria a instância diretamente; qualquer outro tipo lança ValueError.
+**Justificativa:**
+Sem o tratamento das strings especiais, parseFloat("Infinity") lançaria ValueError em vez de retornar float("inf"), quebrando o contrato Java.
+A troca de exceção foi necessária porque NumberFormatException não faz parte da linguagem Python.
+Python não suporta sobrecarga de métodos. Definir dois métodos com o mesmo nome na mesma classe faz o segundo substituir o primeiro silenciosamente, sem erro. A detecção por tipo em tempo de execução preserva o contrato público das duas assinaturas Java em um único ponto de entrada, que é a abordagem idiomática em Python para esse caso.
+**Alternativa em Python (quando aplicável):**
+float("inf"), float("-inf"), float("nan") e float("3.14") para conversões diretas sem passar pela classe.
+Chamar JFloat(float(valor)) ou JFloat(JFloat.parseFloat(string)) diretamente, sem passar por valueOf.
+
+**Issue relacionada:**
+#51
+
+**Pull Request relacionado:**
+Preencher após o pull request
+
+---
 
 ## Histórico de Atualizações
 
@@ -384,3 +414,5 @@ Preencher após abertura do pull request.
 | 19/06/2026 | Registro das adaptações de operações bit-a-bit| Beatriz |
 | 19/06/2026 | Registro das adaptações de operações bit-a-bit| Miguel |
 | 20/06/2026 | Registro das adaptações de operações de conversões em JFloat| Miguel |
+| 20/06/2026 | Registro das adaptações de  parsing value em JFloat| Beatriz |
+
