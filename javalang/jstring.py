@@ -79,3 +79,16 @@ class JString:
             return -1
 
         return 1
+    
+    def contentEquals(self, other):
+        if isinstance(other, JString):
+            return self._value == other._value
+
+        if isinstance(other, str):
+            return self._value == other
+
+        return False
+
+
+    def hashCode(self):
+        return hash(self._value)
