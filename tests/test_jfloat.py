@@ -1,5 +1,7 @@
 import math
 
+import pytest
+
 from javalang import JFloat
 
 
