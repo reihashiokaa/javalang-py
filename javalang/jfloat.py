@@ -239,3 +239,8 @@ class JFloat:
             value = float(self_or_value)
 
         return math.isfinite(value)
+        
+    @staticmethod
+    def sum(first, second):
+        """Soma dois valores float."""
+        return float(first) + float(second)
