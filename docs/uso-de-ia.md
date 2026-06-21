@@ -88,7 +88,8 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 21/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.3-jfloat | `docs/relatorios/status-v0.3.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação inicial de JString | `javalang/jstring.py`, `javalang/__init__.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | Gemini     | Auxiliar na implementação dos métodos de igualdade, hash e comparação da classe JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
-| 21/06/2026 | Clude| Auxiliar na implementação dos básicos de tamanho, acesso a caracteres e conversão para arrays ou bytes. | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modifcações|
+| 21/06/2026 | Claude| Auxiliar na implementação dos básicos de tamanho, acesso a caracteres e conversão para arrays ou bytes. | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modifcações|
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos de code points de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 ---
 
 ## Registro de Uso 01
@@ -1010,3 +1011,51 @@ A IA sugeriu a implementação dos métodos de acesso, conversão e transformaç
 
 ### Resultado
 Aceita com modificações.
+
+## Registro de Uso 17
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos de code points da classe `JString`, incluindo `codePointAt`, `codePointBefore`, `codePointCount` e `offsetByCodePoints`.
+
+### Trecho do projeto afetado
+
+- `javalang/jstring.py`
+- `tests/test_jstring.py`
+- `docs/adaptacoes.md`
+- `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #67 da milestone `v0.4-jstring`, responsável pelos métodos `codePointAt`, `codePointBefore`, `codePointCount` e `offsetByCodePoints`, respeitando a regra de até três métodos por commit, criando testes e registrando as adaptações necessárias entre Java e Python.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação dos métodos de code points da classe `JString`, sugerindo a divisão da issue em dois blocos: `codePointAt` e `codePointBefore` no primeiro bloco, e `codePointCount` e `offsetByCodePoints` no segundo bloco.
+
+Também apoiou a definição da estratégia de adaptação para Python, utilizando o comportamento nativo de `str`, a função `ord` para obter o código Unicode de um caractere e operações de índice para contagem e deslocamento.
+
+Além disso, sugeriu testes automatizados para caracteres ASCII, caracteres Unicode simples, índices inválidos e tipos inválidos. A IA também auxiliou na redação do registro de adaptações em `docs/adaptacoes.md`, destacando a diferença entre o tratamento de Unicode em Java e Python.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #67, sem adicionar métodos de outras issues da milestone `v0.4-jstring`.
+
+As verificações locais foram executadas com sucesso utilizando:
+
+- `python -m ruff check .`
+- `python -m pytest`
+
+### Resultado
+
+Aceita com modificações.
+
+---
