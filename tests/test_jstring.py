@@ -2,6 +2,48 @@ import pytest
 
 from javalang import JString
 
+def test_jstring_length_returns_number_of_characters():
+    value = JString("abc")
+    
+    assert value.length() == 3
+
+def test_jstring_length_returns_zero_for_empty_string():
+    value = JString()
+
+    assert value.length() == 0
+
+def test_jstring_is_empty_returns_true_for_empty_string():
+    value = JString()
+
+    assert value.isEmpty() is True
+
+def test_jstring_is_empty_returns_false_for_non_empty_string():
+    value = JString("abc")
+
+    assert value.isEmpty() is False
+
+def test_jstring_char_at_returns_character_at_index():
+    value = JString("abc")
+
+    assert value.charAt(1) == "b"
+
+def test_jstring_char_at_rejects_negative_index():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.charAt(-1)
+
+def test_jstring_char_at_rejects_index_out_of_range():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.charAt(3)
+
+def test_jstring_char_at_rejects_non_integer_index():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.charAt("1")
 
 def test_jstring_can_be_created_empty():
     value = JString()
