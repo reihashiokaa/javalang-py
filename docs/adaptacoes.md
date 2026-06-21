@@ -627,6 +627,41 @@ Java pode usar o charset padrão da plataforma em ‘getBytes()‘. Para evitar 
 
 **Pull Request relacionado:** A definir.
 
+---
+
+### Transformações básicas de JString
+
+**Classe:** ‘JString‘
+
+**Métodos relacionados:**
+
+- ‘substring‘
+- ‘subSequence‘
+- ‘concat‘
+- ‘trim‘
+- ‘intern‘
+
+**Decisão da equipe:**
+
+Os métodos de recorte e transformação de ‘JString‘ retornam novas instâncias de ‘JString‘, preservando a ideia de imutabilidade da classe ‘String‘ do Java. O método ‘substring‘ foi adaptado para aceitar ‘endIndex‘ opcional, representando as duas variações da API Java. O método ‘intern‘ foi tratado como adaptação e retorna a própria instância.
+
+**Justificativa:**
+
+Python não possui sobrecarga de métodos como Java, por isso as variações de ‘substring‘ foram reunidas em um único método. O pool interno de strings do Java não é reproduzido diretamente no runtime Python. Por isso, ‘intern‘ foi mantido apenas como método de compatibilidade.
+
+**Comportamento adotado em Python:**
+
+- ‘substring(beginIndex)‘ retorna do índice informado até o fim.
+- ‘substring(beginIndex, endIndex)‘ retorna o intervalo informado.
+- ‘subSequence(beginIndex, endIndex)‘ reutiliza ‘substring‘.
+- ‘concat‘ retorna uma nova ‘JString‘.
+- ‘trim‘ usa ‘strip()‘ do Python.
+- ‘intern‘ retorna a própria instância.
+
+**Issue relacionada:** #72
+
+**Pull Request relacionado:** A definir.
+
 
 ## Histórico de Atualizações
 
@@ -644,3 +679,5 @@ Java pode usar o charset padrão da plataforma em ‘getBytes()‘. Para evitar 
 | 21/06/2026 | Registro das adaptações de conversões de bits e representação hexadecimal em JFloat | Luciana |
 | 21/06/2026 | Registro das adaptações dos metodos estaticos min, max e sum em JFloat | Miguel |
 | 21/06/2026 | Registro das adaptações de igualdade, hash e comparação em JString | Maria Eduarda |
+| 21/06/2026 | Registro das adaptações de de acesso, tamanho, conversão, da classe JString. em JString | BEatriz |
+| 21/06/2026 | Registro das adaptações de recorte e transformação em JString | Beatriz |

@@ -213,3 +213,121 @@ def test_hash_code_different_strings():
     second = JString("def")
 
     assert first.hashCode() != second.hashCode()
+
+def test_jstring_substring_from_begin_index():
+    value = JString("abcdef")
+    result = value.substring(2)
+
+    assert isinstance(result, JString)
+
+    assert result._value == "cdef"
+
+def test_jstring_substring_with_begin_and_end_index():
+    value = JString("abcdef")
+    result = value.substring(1, 4)
+
+    assert isinstance(result, JString)
+
+    assert result._value == "bcd"
+
+def test_jstring_substring_allows_empty_result():
+    value = JString("abcdef")
+    result = value.substring(2, 2)
+
+    assert result._value == ""
+
+def test_jstring_substring_rejects_negative_begin_index():
+    value = JString("abcdef")
+
+    with pytest.raises(IndexError):
+        value.substring(-1)
+
+def test_jstring_substring_rejects_end_before_begin():
+    value = JString("abcdef")
+
+    with pytest.raises(IndexError):
+        value.substring(4, 2)
+
+def test_jstring_substring_rejects_end_out_of_range():
+    value = JString("abcdef")
+
+    with pytest.raises(IndexError):
+        value.substring(1, 10)
+
+def test_jstring_substring_rejects_invalid_begin_type():
+    value = JString("abcdef")
+
+    with pytest.raises(TypeError):
+        value.substring("1")
+
+def test_jstring_substring_rejects_invalid_end_type():
+    value = JString("abcdef")
+
+    with pytest.raises(TypeError):
+        value.substring(1, "4")
+
+def test_jstring_sub_sequence_returns_substring():
+    value = JString("abcdef")
+    result = value.subSequence(1, 4)
+
+    assert isinstance(result, JString)
+
+    assert result._value == "bcd"
+
+def test_jstring_concat_accepts_python_string():
+    value = JString("abc")
+    result = value.concat("def")
+
+    assert isinstance(result, JString)
+
+    assert result._value == "abcdef"
+
+def test_jstring_concat_accepts_jstring():
+    value = JString("abc")
+    other = JString("def")
+    result = value.concat(other)
+
+    assert isinstance(result, JString)
+
+    assert result._value == "abcdef"
+
+def test_jstring_concat_does_not_change_original_value():
+    value = JString("abc")
+    result = value.concat("def")
+
+    assert value._value == "abc"
+
+    assert result._value == "abcdef"
+
+def test_jstring_concat_rejects_invalid_type():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.concat(123)
+
+def test_jstring_trim_removes_spaces_from_edges():
+    value = JString(" abc ")
+    result = value.trim()
+
+    assert isinstance(result, JString)
+
+    assert result._value == "abc"
+
+def test_jstring_trim_does_not_change_original_value():
+    value = JString(" abc ")
+    result = value.trim()
+
+    assert value._value == " abc "
+
+    assert result._value == "abc"
+
+def test_jstring_trim_keeps_internal_spaces():
+    value = JString(" a b c ")
+    result = value.trim()
+
+    assert result._value == "a b c"
+
+def test_jstring_intern_returns_same_instance():
+    value = JString("abc")
+    
+    assert value.intern() is value
