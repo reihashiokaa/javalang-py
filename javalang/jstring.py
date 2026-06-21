@@ -222,3 +222,18 @@ class JString:
     def intern(self):
         """Retorna a propria instancia como adaptacao de String.intern."""
         return self
+    
+    
+    @staticmethod
+    def valueOf(value):
+        """Retorna uma JString representando o valor informado."""
+        if isinstance(value, bool):
+            raise TypeError("boolean valueOf will be handled separately")
+
+        if isinstance(value, int):
+            return JString(str(value))
+
+        if isinstance(value, float):
+            return JString(str(value))
+
+        raise TypeError("unsupported value type")
