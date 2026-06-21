@@ -51,3 +51,31 @@ class JString:
         if not isinstance(other, JString):
             return False
         return self._value.lower() == other._value.lower()
+    
+    def compareTo(self, other):
+        if not isinstance(other, JString):
+            raise TypeError("other must be a JString")
+
+        if self._value == other._value:
+            return 0
+
+        if self._value < other._value:
+            return -1
+
+        return 1
+
+
+    def compareToIgnoreCase(self, other):
+        if not isinstance(other, JString):
+            raise TypeError("other must be a JString")
+
+        left = self._value.lower()
+        right = other._value.lower()
+
+        if left == right:
+            return 0
+
+        if left < right:
+            return -1
+
+        return 1
