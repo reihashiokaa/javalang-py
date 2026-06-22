@@ -484,6 +484,57 @@ def test_jstring_concat_rejects_invalid_type():
     with pytest.raises(TypeError):
         value.concat(123)
 
+def test_jstring_replace_character_by_character():
+    value = JString("banana")
+    result = value.replace("a", "o")
+
+    assert isinstance(result, JString)
+    assert result._value == "bonono"
+
+
+def test_jstring_replace_sequence_by_sequence():
+    value = JString("hello world")
+    result = value.replace("world", "python")
+
+    assert isinstance(result, JString)
+    assert result._value == "hello python"
+
+
+def test_jstring_replace_returns_same_text_when_value_is_not_found():
+    value = JString("banana")
+    result = value.replace("x", "o")
+
+    assert result._value == "banana"
+
+
+def test_jstring_replace_accepts_jstring_values():
+    value = JString("abcabc")
+    result = value.replace(JString("ab"), JString("x"))
+
+    assert isinstance(result, JString)
+    assert result._value == "xcxc"
+
+
+def test_jstring_replace_does_not_change_original_value():
+    value = JString("banana")
+    result = value.replace("a", "o")
+
+    assert value._value == "banana"
+    assert result._value == "bonono"
+
+
+def test_jstring_replace_rejects_invalid_old_value_type():
+    value = JString("banana")
+
+    with pytest.raises(TypeError):
+        value.replace(1, "x")
+
+
+def test_jstring_replace_rejects_invalid_new_value_type():
+    value = JString("banana")
+
+    with pytest.raises(TypeError):
+        value.replace("a", 1)
 
 def test_jstring_trim_removes_spaces_from_edges():
     value = JString(" abc ")
