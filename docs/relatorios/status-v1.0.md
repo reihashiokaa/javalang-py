@@ -38,6 +38,7 @@ A release `v1.0.0` consolida a entrega final do projeto `javalang-py`, reunindo 
 - `docs/relatorios/status-v0.3.md`
 - `docs/relatorios/status-v0.4.md`
 - `docs/relatorios/status-v1.0.0.md`
+- `docs/auditoria.md`
 
 ## Verificações realizadas
 
