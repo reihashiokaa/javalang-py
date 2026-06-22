@@ -262,17 +262,6 @@ Foram observadas evidências de:
 * registros de uso de IA;
 * preparação da release final.
 
-## Pendências identificadas
-
-No momento da consolidação da auditoria, as pendências devem ser conferidas manualmente antes da publicação da release `v1.0.0`:
-
-* Confirmar se todas as issues principais foram fechadas ou justificadas.
-* Confirmar se todos os pull requests relevantes foram revisados.
-* Confirmar se a CI está verde na branch principal.
-* Confirmar se o link do vídeo final foi adicionado ao repositório.
-* Confirmar se as releases anteriores estão publicadas.
-* Confirmar se a release `v1.0.0` foi publicada após a revisão final.
-
 ## Conclusão
 
 O projeto `javalang-py` foi conduzido com uso de práticas de Gerência de Configuração de Software, incluindo controle de versões, rastreabilidade, revisão por pares, integração contínua, baselines, releases e documentação das decisões técnicas.
