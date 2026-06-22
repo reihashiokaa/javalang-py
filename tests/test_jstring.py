@@ -941,3 +941,26 @@ def test_jstring_last_index_of_empty_string_returns_from_index():
 def test_jstring_last_index_of_empty_string_limits_from_index_to_length():
     value = JString("abcabc")
     assert value.lastIndexOf("", 20) == 6
+
+def test_jstring_matches_returns_true_when_full_text_matches_regex():
+    value = JString("abc123")
+    assert value.matches(r"[a-z]+[0-9]+") is True
+
+
+def test_jstring_matches_returns_false_when_only_part_matches_regex():
+    value = JString("abc123")
+    assert value.matches(r"[a-z]+") is False
+
+
+def test_jstring_matches_rejects_invalid_regex_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.matches(123)
+
+
+def test_jstring_replace_first_replaces_only_first_match():
+    value = JString("abc123def456")
+    result = value.replaceFirst(r"\d+", "#")
+    assert isinstance(result, JString)
+    assert result._value == "abc#def456"
+    
