@@ -1158,3 +1158,37 @@ Aceita com modificações.
 
 ---
 
+## Registro de Uso 26
+
+### Data
+
+**21/06/2026**
+
+### Ferramenta Utilizada
+
+Claude (Anthropic)
+
+### Objetivo
+
+* Gerar sugestão de implementação dos métodos de busca e comparação de strings.
+* Propor casos de teste para validação dos comportamentos previstos na API Java.
+
+### Trecho do Projeto Afetado
+
+* `javalang/jstring.py` — métodos `contains`, `startsWith`, `endsWith` e `regionMatches`
+* `tests/test_jstring.py` — casos de teste dos métodos acima
+
+### Descrição da Contribuição da IA
+
+A IA sugeriu a implementação dos métodos responsáveis pela verificação de conteúdo, prefixos, sufixos e correspondência parcial entre strings. Também foi proposta uma adaptação para as sobrecargas de `startsWith` e `regionMatches`, utilizando parâmetros opcionais e quantidade variável de argumentos para reproduzir o comportamento da API Java em Python. Além disso, foram sugeridos testes cobrindo conteúdo presente e ausente, prefixos e sufixos válidos e inválidos, comparação de regiões e comparação ignorando diferenças entre letras maiúsculas e minúsculas.
+
+### Validação da Equipe
+
+* Código revisado pelo responsável da issue antes de commitar.
+* Testes executados localmente com `python -m pytest`.
+* Lógica conferida manualmente comparando com a documentação Java SE 8.
+* Casos de teste revisados para garantir aderência ao comportamento esperado da especificação.
+
+### Resultado
+
+Aceita com modificações.
