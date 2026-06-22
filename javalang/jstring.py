@@ -244,6 +244,14 @@ class JString:
         """Remove espacos das extremidades da string."""
         return JString(self._value.strip())
 
+    def toLowerCase(self):
+        # Retorna uma nova JString com todos os caracteres em minusculas.
+        return JString(self._value.lower())
+
+    def toUpperCase(self):
+        # Retorna uma nova JString com todos os caracteres em maiusculas.
+        return JString(self._value.upper())
+
     def intern(self):
         """Retorna a propria instancia como adaptacao de String.intern."""
         return self
