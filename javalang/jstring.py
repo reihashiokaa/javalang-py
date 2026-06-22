@@ -227,6 +227,9 @@ class JString:
     @staticmethod
     def valueOf(value):
         """Retorna uma JString representando o valor informado."""
+        if value is None:
+            return JString("null")
+
         if isinstance(value, bool):
             return JString("true" if value else "false")
 
@@ -240,12 +243,53 @@ class JString:
             return JString(value)
 
         if isinstance(value, (list, tuple)):
-            characters = list(value)
+            return JString(value)
 
-            for character in characters:
-                if not isinstance(character, str) or len(character) != 1:
-                    raise ValueError("character array must contain only single-character strings")
+        return JString(str(value))
 
-            return JString(characters)
+    @staticmethod
+    def copyValueOf(value):
+        """Cria uma JString a partir de uma lista ou tupla de caracteres."""
+        if not isinstance(value, (list, tuple)):
+            raise TypeError("value must be a list or tuple of characters")
 
-        raise TypeError("unsupported value type")
+        return JString(value)
+    
+    @staticmethod
+    def format(format_string, *args):
+        """Formata uma string usando os argumentos informados."""
+        if not isinstance(format_string, str):
+            raise TypeError("format_string must be a string")
+
+        try:
+            if args:
+                return JString(format_string % args)
+
+            return JString(format_string)
+        except (TypeError, ValueError) as error:
+            raise ValueError("invalid format arguments") from error
+
+    @staticmethod
+    def join(delimiter, *elements):
+        """Une elementos usando o delimitador informado."""
+        if isinstance(delimiter, JString):
+            delimiter_value = delimiter._value
+        elif isinstance(delimiter, str):
+            delimiter_value = delimiter
+        else:
+            raise TypeError("delimiter must be a string or JString")
+
+        if len(elements) == 1 and isinstance(elements[0], (list, tuple)):
+            elements = tuple(elements[0])
+
+        values = []
+
+        for element in elements:
+            if isinstance(element, JString):
+                values.append(element._value)
+            elif isinstance(element, str):
+                values.append(element)
+            else:
+                raise TypeError("join elements must be strings or JString")
+
+        return JString(delimiter_value.join(values))

@@ -550,3 +550,96 @@ def test_jstring_value_of_character_tuple():
 def test_jstring_value_of_rejects_invalid_character_list():
     with pytest.raises(ValueError):
         JString.valueOf(["a", "bc"])
+
+
+class SampleObject:
+    def __str__(self):
+        return "sample-object"
+
+
+def test_jstring_value_of_accepts_generic_object():
+    result = JString.valueOf(SampleObject())
+
+    assert isinstance(result, JString)
+    assert result._value == "sample-object"
+
+
+def test_jstring_value_of_none_returns_null_text():
+    result = JString.valueOf(None)
+
+    assert isinstance(result, JString)
+    assert result._value == "null"
+
+
+def test_jstring_copy_value_of_creates_string_from_character_list():
+    result = JString.copyValueOf(["a", "b", "c"])
+
+    assert isinstance(result, JString)
+    assert result._value == "abc"
+
+
+def test_jstring_copy_value_of_rejects_invalid_character_list():
+    with pytest.raises(ValueError):
+        JString.copyValueOf(["a", "bc"])
+
+
+def test_jstring_format_with_string_argument():
+    result = JString.format("Hello, %s", "World")
+
+    assert isinstance(result, JString)
+    assert result._value == "Hello, World"
+
+
+def test_jstring_format_with_number_argument():
+    result = JString.format("Value: %d", 10)
+
+    assert isinstance(result, JString)
+    assert result._value == "Value: 10"
+
+
+def test_jstring_format_without_arguments_returns_original_text():
+    result = JString.format("No arguments")
+
+    assert isinstance(result, JString)
+    assert result._value == "No arguments"
+
+
+def test_jstring_format_rejects_invalid_format_string_type():
+    with pytest.raises(TypeError):
+        JString.format(123, "abc")
+
+
+def test_jstring_format_rejects_invalid_arguments():
+    with pytest.raises(ValueError):
+        JString.format("Value: %d", "abc")
+
+
+def test_jstring_join_with_python_strings():
+    result = JString.join(", ", "a", "b", "c")
+
+    assert isinstance(result, JString)
+    assert result._value == "a, b, c"
+
+
+def test_jstring_join_with_list_of_strings():
+    result = JString.join("-", ["a", "b", "c"])
+
+    assert isinstance(result, JString)
+    assert result._value == "a-b-c"
+
+
+def test_jstring_join_accepts_jstring_delimiter_and_elements():
+    result = JString.join(JString("-"), JString("a"), JString("b"))
+
+    assert isinstance(result, JString)
+    assert result._value == "a-b"
+
+
+def test_jstring_join_rejects_invalid_delimiter():
+    with pytest.raises(TypeError):
+        JString.join(123, "a", "b")
+
+
+def test_jstring_join_rejects_invalid_element():
+    with pytest.raises(TypeError):
+        JString.join("-", "a", 123)
