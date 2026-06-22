@@ -811,3 +811,46 @@ def test_jstring_join_rejects_invalid_delimiter():
 def test_jstring_join_rejects_invalid_element():
     with pytest.raises(TypeError):
         JString.join("-", "a", 123)
+
+def test_jstring_last_index_of_character_returns_last_index():
+    value = JString("abcabc")
+    assert value.lastIndexOf("b") == 4
+
+
+def test_jstring_last_index_of_character_code_returns_last_index():
+    value = JString("abcabc")
+    assert value.lastIndexOf(ord("b")) == 4
+
+
+def test_jstring_last_index_of_character_with_from_index():
+    value = JString("abcabc")
+    assert value.lastIndexOf("b", 3) == 1
+
+
+def test_jstring_last_index_of_character_returns_minus_one_when_not_found():
+    value = JString("abcabc")
+    assert value.lastIndexOf("z") == -1
+
+
+def test_jstring_last_index_of_character_returns_minus_one_for_negative_from_index():
+    value = JString("abcabc")
+    assert value.lastIndexOf("a", -1) == -1
+
+
+def test_jstring_last_index_of_character_rejects_invalid_from_index_type():
+    value = JString("abcabc")
+
+    with pytest.raises(TypeError):
+        value.lastIndexOf("a", "0")
+
+
+def test_jstring_last_index_of_character_rejects_invalid_target_type():
+    value = JString("abcabc")
+
+    with pytest.raises(TypeError):
+        value.lastIndexOf(10.5)
+
+
+def test_jstring_last_index_of_invalid_unicode_code_returns_minus_one():
+    value = JString("abcabc")
+    assert value.lastIndexOf(0x110000) == -1
