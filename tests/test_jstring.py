@@ -963,4 +963,40 @@ def test_jstring_replace_first_replaces_only_first_match():
     result = value.replaceFirst(r"\d+", "#")
     assert isinstance(result, JString)
     assert result._value == "abc#def456"
-    
+
+def test_jstring_replace_first_does_not_change_original_value():
+    value = JString("abc123")
+    result = value.replaceFirst(r"\d+", "#")
+    assert value._value == "abc123"
+    assert result._value == "abc#"
+
+
+def test_jstring_replace_first_rejects_invalid_regex_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.replaceFirst(123, "#")
+
+
+def test_jstring_replace_first_rejects_invalid_replacement_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.replaceFirst(r"\d+", 123)
+
+
+def test_jstring_replace_all_replaces_all_matches():
+    value = JString("abc123def456")
+    result = value.replaceAll(r"\d+", "#")
+    assert isinstance(result, JString)
+    assert result._value == "abc#def#"
+
+
+def test_jstring_replace_all_rejects_invalid_regex_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.replaceAll(123, "#")
+
+
+def test_jstring_replace_all_rejects_invalid_replacement_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.replaceAll(r"\d+", 123)    
