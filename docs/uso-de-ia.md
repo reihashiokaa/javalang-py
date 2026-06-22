@@ -1192,3 +1192,50 @@ A IA sugeriu a implementação dos métodos responsáveis pela verificação de 
 ### Resultado
 
 Aceita com modificações.
+
+
+---
+
+## Registro de Uso 27
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos `indexOf` da classe `JString`, referentes à issue #70 da milestone `v0.4-jstring`.
+
+### Trecho do projeto afetado
+
+* `javalang/jstring.py`
+* `tests/test_jstring.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #70, responsável pelas variações de `indexOf` em `JString`, incluindo busca por caractere, busca por substring, testes automatizados e documentação da adaptação Java para Python.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da issue em blocos menores, separando a implementação de `indexOf` por caractere e por substring. Também sugeriu a adaptação das sobrecargas da API Java para um único método Python com parâmetro opcional `fromIndex` e verificação de tipo em tempo de execução.
+
+Além disso, apoiou a criação dos testes automatizados para valores encontrados, valores não encontrados, busca com índice inicial, índice inicial negativo, índice fora do intervalo, busca por `str`, busca por `JString` e tipos inválidos.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #70, sem incluir métodos de outras issues da milestone. As verificações locais foram executadas utilizando:
+
+* `python -m pytest`
+* `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
+
+

@@ -770,6 +770,54 @@ O método `format` também não implementa toda a sintaxe de formatação da cla
 **Pull Request relacionado:**
 A definir.
 
+### JString — métodos indexOf
+
+**Método:**
+indexOf(int), indexOf(int, int), indexOf(String) e indexOf(String, int)
+
+**Assinatura Java:**
+public int indexOf(int ch)
+public int indexOf(int ch, int fromIndex)
+public int indexOf(String str)
+public int indexOf(String str, int fromIndex)
+
+**Decisão da equipe:**
+As variações sobrecarregadas do método `indexOf` da API Java foram adaptadas para um único método em Python, utilizando o parâmetro `value` para representar o caractere ou substring buscada e o parâmetro opcional `fromIndex` para indicar a posição inicial da busca.
+
+Quando `value` recebe um inteiro, ele é interpretado como o código Unicode de um caractere, aproximando o comportamento de `indexOf(int)` do Java. Nesse caso, o valor é convertido com `chr(value)`. Quando `value` recebe uma `str` ou uma instância de `JString`, a busca é feita como substring.
+
+**Justificativa:**
+Java possui sobrecarga de métodos, permitindo várias assinaturas para `indexOf`. Python não possui sobrecarga da mesma forma, então a equipe optou por concentrar as variações em um único método com verificação de tipo em tempo de execução.
+
+Além disso, em Java o método `indexOf(int)` recebe um código inteiro de caractere. Em Python, os caracteres são representados como strings de tamanho 1, então foi necessário converter o valor inteiro usando `chr()`.
+
+**Comportamento adotado em Python:**
+
+* `indexOf(int)` busca o caractere correspondente ao código Unicode informado.
+* `indexOf(int, fromIndex)` busca o caractere a partir do índice informado.
+* `indexOf(str)` busca a primeira ocorrência da substring.
+* `indexOf(str, fromIndex)` busca a substring a partir do índice informado.
+* `indexOf(JString)` também é aceito como adaptação para buscas usando outra instância de `JString`.
+* Quando `fromIndex` é negativo, a busca começa em `0`.
+* Quando `fromIndex` é maior que o tamanho da string, o método retorna `-1`.
+* Quando o valor inteiro não representa um código Unicode válido, o método retorna `-1`.
+
+**Alternativa em Python (quando aplicável):**
+Uso do método nativo `find` de `str`:
+
+```python
+texto.find(valor, inicio)
+```
+
+Conversão de código inteiro para caractere:
+
+```python
+chr(valor)
+```
+
+**Issue relacionada:** #70
+**Pull Request relacionado:** A definir.
+
 
 ### Busca e correspondência de conteúdo em JString
 
@@ -827,3 +875,4 @@ Python não possui suporte nativo à sobrecarga de métodos baseada em assinatur
 | 21/06/2026 | Registro das adaptações de recorte e transformação em JString | Beatriz |
 | 21/06/2026 | Registro das adaptações de code points em JString | Isabela |
 | 21/06/2026 | Registro das adaptações de métodos estáticos auxiliares em JString | Isabela |
+| 21/06/2026 | Registro das adaptações dos métodos indexOf em JString | Luciana |
