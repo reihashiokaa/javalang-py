@@ -1280,3 +1280,46 @@ Também foram sugeridos casos de teste cobrindo ocorrências encontradas e não 
 Aceita com modificações.
 
 
+---
+
+## Registro de Uso 29
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos `replace`, `toLowerCase` e `toUpperCase` da classe `JString`, referentes à issue #73 da milestone `v0.4-jstring`.
+
+### Trecho do projeto afetado
+
+* `javalang/jstring.py`
+* `tests/test_jstring.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #73, responsável pelos métodos `replace`, `toLowerCase` e `toUpperCase` em `JString`, incluindo implementação, testes automatizados e documentação da adaptação Java para Python.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na divisão da issue em blocos menores, separando primeiro os métodos de conversão de caixa e depois o método de substituição. Também sugeriu a adaptação das sobrecargas de `replace` da API Java para um único método Python, aceitando `str` e `JString`.
+
+Além disso, apoiou a criação dos testes automatizados para substituição de caractere, substituição de sequência, valor inexistente, uso de `JString`, preservação do valor original, tipos inválidos, conversão para minúsculas e conversão para maiúsculas.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #73, sem incluir métodos de outras issues da milestone. As verificações locais foram executadas utilizando:
+
+* `python -m pytest`
+* `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
