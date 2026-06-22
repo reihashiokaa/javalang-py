@@ -184,8 +184,7 @@ class JString:
         return hash(self._value)
 
     def indexOf(self, value, fromIndex=0):
-        # """Retorna a primeira posição de um caractere na string."""
-
+        # """Retorna a primeira posição de um caractere ou substring na string."""
         if not isinstance(fromIndex, int):
             raise TypeError("fromIndex must be an int")
 
@@ -194,15 +193,22 @@ class JString:
         if start > self.length():
             return -1
 
-        if not isinstance(value, int):
-            raise TypeError("value must be an int")
+        if isinstance(value, int):
+            if value < 0 or value > 0x10FFFF:
+                return -1
 
-        if value < 0 or value > 0x10FFFF:
-            return -1
+            search_value = chr(value)
 
-        character = chr(value)
+        elif isinstance(value, JString):
+            search_value = value._value
 
-        return self._value.find(character, start)
+        elif isinstance(value, str):
+            search_value = value
+
+        else:
+            raise TypeError("value must be an int, str or JString")
+
+        return self._value.find(search_value, start)
 
     def substring(self, beginIndex, endIndex=None):
         """Retorna uma nova JString com parte do conteudo."""
