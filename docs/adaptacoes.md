@@ -663,6 +663,7 @@ Python não possui sobrecarga de métodos como Java, por isso as variações de 
 **Pull Request relacionado:** A definir.
 
 ---
+
 ### JString
 
 **Métodos:**
@@ -680,7 +681,7 @@ Python não possui sobrecarga de métodos como Java, por isso as variações de 
 **Decisão da equipe:**
 Os métodos de code points da classe `JString` foram implementados utilizando o comportamento nativo de strings do Python.
 
-O método `codePointAt` retorna o código Unicode do caractere na posição informada usando `ord`. O método `codePointBefore` retorna o código Unicode do caractere anterior ao índice informado. O método `codePointCount` conta a quantidade de code points/caracteres Unicode no intervalo, e `offsetByCodePoints` calcula um novo índice a partir de um deslocamento informado.
+O método `codePointAt` retorna o código Unicode do caractere na posição informada usando `ord`. O método `codePointBefore` retorna o código Unicode do caractere anterior ao índice informado. O método `codePointCount` conta a quantidade de caracteres Unicode em um intervalo, e `offsetByCodePoints` calcula um novo índice a partir de um deslocamento informado.
 
 **Justificativa:**
 Na classe `String` do Java, os métodos de code points existem para lidar com caracteres Unicode, inclusive casos em que determinados caracteres podem ocupar mais de uma unidade `char`.
@@ -711,146 +712,38 @@ A implementação não simula manualmente pares substitutos (`surrogate pairs`) 
 A definir.
 
 ---
-### JString
 
-**Métodos:**
-`valueOf`, `copyValueOf`, `format` e `join`
-
-**Assinatura Java:**
-`public static String valueOf(Object obj)`
-
-`public static String copyValueOf(char[] data)`
-
-`public static String format(String format, Object... args)`
-
-`public static String join(CharSequence delimiter, CharSequence... elements)`
-
-**Decisão da equipe:**
-Os métodos estáticos auxiliares da classe `JString` foram adaptados para Python utilizando verificação de tipos e recursos nativos da linguagem.
-
-O método `valueOf` foi expandido para aceitar objetos genéricos, retornando uma `JString` baseada na representação textual do objeto. O valor `None` foi tratado como equivalente ao texto `"null"`, aproximando o comportamento esperado para `null` em Java.
-
-O método `copyValueOf` cria uma nova `JString` a partir de uma lista ou tupla de caracteres, reutilizando as validações já existentes no construtor da classe.
-
-O método `format` foi adaptado usando formatação textual do Python com o operador `%`. O método `join` foi implementado usando o método nativo `join` de strings do Python, aceitando delimitador e elementos do tipo `str` ou `JString`.
-
-**Justificativa:**
-Java possui sobrecarga de métodos e métodos estáticos específicos para conversão, cópia, formatação e junção de strings. Python não possui sobrecarga de métodos da mesma forma, então a implementação foi adaptada para concentrar os comportamentos em métodos com verificação de tipo em tempo de execução.
-
-Além disso, a formatação de strings em Java e Python possui diferenças de sintaxe e funcionamento. Para esta adaptação inicial, foi adotada uma abordagem simplificada com o operador `%`, suficiente para os cenários básicos previstos na issue.
-
-**Comportamento adotado em Python:**
-
-* `valueOf(value)` retorna uma nova `JString` com a representação textual do valor recebido.
-* `valueOf(None)` retorna `JString("null")`.
-* `copyValueOf(value)` cria uma `JString` a partir de lista ou tupla de caracteres.
-* `format(format_string, *args)` retorna uma `JString` com o texto formatado.
-* `join(delimiter, *elements)` une strings usando o delimitador informado.
-* `join` aceita delimitador e elementos do tipo `str` ou `JString`.
-* Tipos inválidos geram `TypeError`.
-* Argumentos inválidos de formatação geram `ValueError`.
-
-**Diferença em relação ao Java:**
-A implementação não reproduz todas as variações sobrecarregadas da API Java. As variações foram adaptadas para métodos Python com parâmetros flexíveis e validação interna.
-
-O método `format` também não implementa toda a sintaxe de formatação da classe `String` do Java, adotando a formatação nativa do Python como alternativa simplificada.
-
-**Alternativa em Python (quando aplicável):**
-`str(value)`
-
-`"".join(characters)`
-
-`format_string % args`
-
-`delimiter.join(elements)`
-
-**Issue relacionada:**
-#76
-
-**Pull Request relacionado:**
-A definir.
-
-### JString — métodos indexOf
-
-**Método:**
-indexOf(int), indexOf(int, int), indexOf(String) e indexOf(String, int)
-
-**Assinatura Java:**
-public int indexOf(int ch)
-public int indexOf(int ch, int fromIndex)
-public int indexOf(String str)
-public int indexOf(String str, int fromIndex)
-
-**Decisão da equipe:**
-As variações sobrecarregadas do método `indexOf` da API Java foram adaptadas para um único método em Python, utilizando o parâmetro `value` para representar o caractere ou substring buscada e o parâmetro opcional `fromIndex` para indicar a posição inicial da busca.
-
-Quando `value` recebe um inteiro, ele é interpretado como o código Unicode de um caractere, aproximando o comportamento de `indexOf(int)` do Java. Nesse caso, o valor é convertido com `chr(value)`. Quando `value` recebe uma `str` ou uma instância de `JString`, a busca é feita como substring.
-
-**Justificativa:**
-Java possui sobrecarga de métodos, permitindo várias assinaturas para `indexOf`. Python não possui sobrecarga da mesma forma, então a equipe optou por concentrar as variações em um único método com verificação de tipo em tempo de execução.
-
-Além disso, em Java o método `indexOf(int)` recebe um código inteiro de caractere. Em Python, os caracteres são representados como strings de tamanho 1, então foi necessário converter o valor inteiro usando `chr()`.
-
-**Comportamento adotado em Python:**
-
-* `indexOf(int)` busca o caractere correspondente ao código Unicode informado.
-* `indexOf(int, fromIndex)` busca o caractere a partir do índice informado.
-* `indexOf(str)` busca a primeira ocorrência da substring.
-* `indexOf(str, fromIndex)` busca a substring a partir do índice informado.
-* `indexOf(JString)` também é aceito como adaptação para buscas usando outra instância de `JString`.
-* Quando `fromIndex` é negativo, a busca começa em `0`.
-* Quando `fromIndex` é maior que o tamanho da string, o método retorna `-1`.
-* Quando o valor inteiro não representa um código Unicode válido, o método retorna `-1`.
-
-**Alternativa em Python (quando aplicável):**
-Uso do método nativo `find` de `str`:
-
-```python
-texto.find(valor, inicio)
-```
-
-Conversão de código inteiro para caractere:
-
-```python
-chr(valor)
-```
-
-**Issue relacionada:** #70
-**Pull Request relacionado:** A definir.
-
-
-### Busca e correspondência de conteúdo em JString
+### Métodos valueOf básicos de JString
 
 **Classe:** `JString`
 
 **Métodos relacionados:**
 
-* `contains`
-* `startsWith`
-* `startsWith` com offset
-* `endsWith`
-* `regionMatches`
-* `regionMatches` com `ignoreCase`
+* `String.valueOf(int)`
+* `String.valueOf(long)`
+* `String.valueOf(float)`
+* `String.valueOf(double)`
+* `String.valueOf(boolean)`
+* `String.valueOf(char)`
+* `String.valueOf(char[])`
 
 **Decisão da equipe:**
 
-Os métodos de busca e correspondência de conteúdo foram implementados utilizando as operações equivalentes disponíveis na classe `str` do Python. As sobrecargas existentes na API Java foram adaptadas para uma única implementação quando necessário, preservando o comportamento esperado da especificação.
+As variações básicas de `String.valueOf` foram adaptadas para um único método estático `JString.valueOf`.
 
 **Justificativa:**
 
-Python não possui suporte nativo à sobrecarga de métodos baseada em assinatura, como ocorre em Java. Por esse motivo, as variações de `startsWith` e `regionMatches` foram unificadas em uma única implementação capaz de tratar diferentes conjuntos de parâmetros. A funcionalidade original foi mantida sem perda de comportamento observável.
+Java possui sobrecarga de métodos para diferenciar tipos primitivos. Em Python, não há sobrecarga da mesma forma e os tipos numéricos também são mais simples. Por isso, a implementação usa verificação de tipo dentro de um único método.
 
 **Comportamento adotado em Python:**
 
-* `contains(sequence)` verifica se uma sequência está presente na string.
-* `startsWith(prefix)` verifica se a string começa com o prefixo informado.
-* `startsWith(prefix, toffset)` verifica se a string começa com o prefixo a partir da posição indicada.
-* `endsWith(suffix)` verifica se a string termina com o sufixo informado.
-* `regionMatches(toffset, other, ooffset, length)` compara regiões específicas de duas strings.
-* `regionMatches(ignoreCase, toffset, other, ooffset, length)` compara regiões específicas ignorando diferenças entre maiúsculas e minúsculas quando solicitado.
-* Comparações de região que ultrapassem os limites das strings retornam `False`, seguindo o comportamento da API Java.
+* `int` representa as variações de `int` e `long`.
+* `float` representa as variações de `float` e `double`.
+* `bool` retorna `"true"` ou `"false"`.
+* `str` representa caractere ou texto.
+* listas e tuplas de caracteres representam `char[]`.
 
-**Issue relacionada:** #69
+**Observação importante:**
 
 ### Métodos lastIndexOf de JString
 
@@ -880,6 +773,59 @@ Java possui sobrecarga para busca reversa por caractere, código Unicode e strin
 
 **Issue relacionada:** #N
 
+A verificação de `bool` ocorre antes da verificação de `int`, porque em Python `bool` é subclasse de `int`.
+
+**Issue relacionada:** #75
+
+**Pull Request relacionado:** A definir.
+
+---
+
+### JString — replace, toLowerCase e toUpperCase
+
+**Métodos:**
+replace(char, char), replace(CharSequence, CharSequence), toLowerCase e toUpperCase
+
+**Assinatura Java:**
+public String replace(char oldChar, char newChar)
+public String replace(CharSequence target, CharSequence replacement)
+public String toLowerCase()
+public String toUpperCase()
+
+**Decisão da equipe:**
+As variações sobrecarregadas de `replace` da API Java foram adaptadas para um único método em Python, recebendo os parâmetros `old` e `new`. Esses parâmetros podem ser strings nativas ou instâncias de `JString`.
+
+Quando os valores possuem apenas um caractere, o método representa a adaptação de `replace(char, char)`. Quando os valores possuem mais de um caractere, o método representa a adaptação de `replace(CharSequence, CharSequence)`.
+
+Os métodos `toLowerCase` e `toUpperCase` foram implementados usando os métodos nativos de string do Python, `lower()` e `upper()`.
+
+**Justificativa:**
+Java possui sobrecarga de métodos, permitindo duas versões diferentes de `replace`. Python não possui sobrecarga da mesma forma, então a equipe concentrou esse comportamento em um único método com verificação de tipo em tempo de execução.
+
+No caso de `toLowerCase` e `toUpperCase`, a API Java possui variações relacionadas a `Locale`. Nesta versão do projeto, a equipe optou por implementar apenas o comportamento básico sem locale, usando a conversão padrão de Unicode fornecida pelo Python.
+
+**Comportamento adotado em Python:**
+
+* `replace("a", "b")` substitui todas as ocorrências de um caractere por outro.
+* `replace("abc", "x")` substitui todas as ocorrências de uma sequência por outra.
+* `replace(JString(...), JString(...))` também é aceito como adaptação para objetos `JString`.
+* `toLowerCase()` retorna uma nova `JString` com o texto em minúsculas.
+* `toUpperCase()` retorna uma nova `JString` com o texto em maiúsculas.
+* A string original não é alterada, mantendo o comportamento imutável esperado para strings.
+
+**Alternativa em Python (quando aplicável):**
+
+Uso dos métodos nativos de `str`:
+
+```python
+texto.replace(valor_antigo, valor_novo)
+texto.lower()
+texto.upper()
+```
+
+**Issue relacionada:** #73
+**Pull Request relacionado:** A definir.
+
 ---
 
 ## Histórico de Atualizações
@@ -904,3 +850,5 @@ Java possui sobrecarga para busca reversa por caractere, código Unicode e strin
 | 21/06/2026 | Registro das adaptações de métodos estáticos auxiliares em JString | Isabela |
 | 21/06/2026 | Registro das adaptações dos métodos indexOf em JString | Luciana |
 | 21/06/2026 | Registro das adaptações dos método lastIndexOf em SubStrings | Miguel |
+| 21/06/2026 | Registro das adaptações de code points em JString | Isabela |
+| 21/06/2026 | Registro das adaptações de `replace`, `toLowerCase` e `toUpperCase` em JString | Luciana |
