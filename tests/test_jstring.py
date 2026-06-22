@@ -1000,3 +1000,21 @@ def test_jstring_replace_all_rejects_invalid_replacement_type():
     value = JString("abc123")
     with pytest.raises(TypeError):
         value.replaceAll(r"\d+", 123)    
+
+def test_jstring_split_returns_list_of_jstrings():
+    value = JString("a,b,c")
+    result = value.split(",")
+    assert [item._value for item in result] == ["a", "b", "c"]
+    assert all(isinstance(item, JString) for item in result)
+
+
+def test_jstring_split_uses_regex_separator():
+    value = JString("a1b2c")
+    result = value.split(r"\d")
+    assert [item._value for item in result] == ["a", "b", "c"]
+
+
+def test_jstring_split_with_positive_limit():
+    value = JString("a,b,c")
+    result = value.split(",", 2)
+    assert [item._value for item in result] == ["a", "b,c"]
