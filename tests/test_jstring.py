@@ -811,3 +811,38 @@ def test_jstring_join_rejects_invalid_delimiter():
 def test_jstring_join_rejects_invalid_element():
     with pytest.raises(TypeError):
         JString.join("-", "a", 123)
+
+def test_jstring_last_index_of_substring_returns_last_index():
+    value = JString("abcabc")
+    assert value.lastIndexOf("bc") == 4
+
+
+def test_jstring_last_index_of_substring_with_from_index():
+    value = JString("abcabc")
+    assert value.lastIndexOf("bc", 3) == 1
+
+
+def test_jstring_last_index_of_substring_with_exact_from_index():
+    value = JString("abcabc")
+    assert value.lastIndexOf("bc", 4) == 4
+
+
+def test_jstring_last_index_of_substring_returns_minus_one_when_not_found():
+    value = JString("abcabc")
+    assert value.lastIndexOf("xyz") == -1
+
+
+def test_jstring_last_index_of_accepts_jstring_target():
+    value = JString("abcabc")
+    target = JString("bc")
+    assert value.lastIndexOf(target) == 4
+
+
+def test_jstring_last_index_of_empty_string_returns_from_index():
+    value = JString("abcabc")
+    assert value.lastIndexOf("", 3) == 3
+
+
+def test_jstring_last_index_of_empty_string_limits_from_index_to_length():
+    value = JString("abcabc")
+    assert value.lastIndexOf("", 20) == 6

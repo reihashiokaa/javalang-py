@@ -852,6 +852,33 @@ Python não possui suporte nativo à sobrecarga de métodos baseada em assinatur
 
 **Issue relacionada:** #69
 
+### Métodos lastIndexOf de JString
+
+**Classe:** `JString`
+
+**Métodos relacionados:**
+- `lastIndexOf(int)`
+- `lastIndexOf(int, int)`
+- `lastIndexOf(String)`
+- `lastIndexOf(String, int)`
+
+**Decisão da equipe:**
+
+As variações de `lastIndexOf` da API Java foram adaptadas para um único método Python, usando verificação de tipo e parâmetro opcional `fromIndex`.
+
+**Justificativa:**
+
+Java possui sobrecarga para busca reversa por caractere, código Unicode e string. Python não possui sobrecarga de métodos da mesma forma, então a implementação concentra os comportamentos em um único método.
+
+**Comportamento adotado em Python:**
+
+- se `target` for `int`, ele é interpretado como código Unicode;
+- se `target` for `str`, ele é usado como caractere ou substring;
+- se `target` for `JString`, seu valor interno é usado na busca;
+- se `fromIndex` for negativo, o retorno é `-1`;
+- se o valor não for encontrado, o retorno é `-1`.
+
+**Issue relacionada:** #N
 
 ---
 
@@ -876,3 +903,4 @@ Python não possui suporte nativo à sobrecarga de métodos baseada em assinatur
 | 21/06/2026 | Registro das adaptações de code points em JString | Isabela |
 | 21/06/2026 | Registro das adaptações de métodos estáticos auxiliares em JString | Isabela |
 | 21/06/2026 | Registro das adaptações dos métodos indexOf em JString | Luciana |
+| 21/06/2026 | Registro das adaptações dos método lastIndexOf em SubStrings | Miguel |

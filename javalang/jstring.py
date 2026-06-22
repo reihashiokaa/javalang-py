@@ -396,3 +396,46 @@ class JString:
                 raise TypeError("join elements must be strings or JString")
 
         return JString(delimiter_value.join(values))
+    
+    def lastIndexOf(self, target, fromIndex=None):
+        """Retorna o indice da ultima ocorrencia do alvo."""
+
+        if isinstance(target, int):
+            if target < 0 or target > 0x10FFFF:
+                return -1
+
+            target_value = chr(target)
+
+        elif isinstance(target, JString):
+            target_value = target._value
+
+        elif isinstance(target, str):
+            target_value = target
+
+        else:
+            raise TypeError(
+                "target must be an int, string or JString"
+            )
+
+        if fromIndex is None:
+            return self._value.rfind(target_value)
+
+        if not isinstance(fromIndex, int):
+            raise TypeError("fromIndex must be an int")
+
+        if fromIndex < 0:
+            return -1
+
+        if target_value == "":
+            return min(fromIndex, self.length())
+
+        search_end = min(
+            fromIndex + len(target_value),
+            self.length()
+        )
+
+        return self._value.rfind(
+            target_value,
+            0,
+            search_end
+        )
