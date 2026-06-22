@@ -240,6 +240,24 @@ class JString:
             raise TypeError("other must be a string or JString")
         return JString(self._value + other_value)
 
+    def replace(self, old, new):
+    # """Retorna uma nova JString substituindo ocorrencias do valor informado."""
+        if isinstance(old, JString):
+            old_value = old._value
+        elif isinstance(old, str):
+            old_value = old
+        else:
+            raise TypeError("old must be a string or JString")
+
+        if isinstance(new, JString):
+            new_value = new._value
+        elif isinstance(new, str):
+            new_value = new
+        else:
+            raise TypeError("new must be a string or JString")
+
+        return JString(self._value.replace(old_value, new_value))
+
     def trim(self):
         """Remove espacos das extremidades da string."""
         return JString(self._value.strip())
