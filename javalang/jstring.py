@@ -488,3 +488,21 @@ class JString:
         if not isinstance(replacement, str):
             raise TypeError("replacement must be a string")
         return JString(re.sub(regex, replacement, self._value))
+    
+    def split(self, regex, limit=0):
+        """Divide a string usando uma regex como separador."""
+        if not isinstance(regex, str):
+            raise TypeError("regex must be a string")
+        if not isinstance(limit, int):
+            raise TypeError("limit must be an int")
+
+        if limit > 0:
+            parts = re.split(regex, self._value, maxsplit=limit - 1)
+        else:
+            parts = re.split(regex, self._value)
+
+        if limit == 0:
+            while parts and parts[-1] == "":
+                parts.pop()
+
+        return [JString(part) for part in parts]
