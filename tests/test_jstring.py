@@ -632,3 +632,33 @@ def test_index_of_character_rejects_invalid_value_type():
 
     with pytest.raises(TypeError):
         value.indexOf(1.5)
+
+
+def test_index_of_substring_returns_first_occurrence():
+    value = JString("banana")
+
+    assert value.indexOf("na") == 2
+
+
+def test_index_of_substring_returns_minus_one_when_not_found():
+    value = JString("banana")
+
+    assert value.indexOf("xy") == -1
+
+
+def test_index_of_substring_uses_start_index():
+    value = JString("banana")
+
+    assert value.indexOf("na", 3) == 4
+
+
+def test_index_of_substring_accepts_jstring_value():
+    value = JString("banana")
+
+    assert value.indexOf(JString("na")) == 2
+
+
+def test_index_of_substring_empty_string_returns_start_index():
+    value = JString("banana")
+
+    assert value.indexOf("", 3) == 3
