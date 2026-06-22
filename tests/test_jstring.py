@@ -8,25 +8,30 @@ def test_jstring_length_returns_number_of_characters():
 
     assert value.length() == 3
 
+
 def test_jstring_length_returns_zero_for_empty_string():
     value = JString()
 
     assert value.length() == 0
+
 
 def test_jstring_is_empty_returns_true_for_empty_string():
     value = JString()
 
     assert value.isEmpty() is True
 
+
 def test_jstring_is_empty_returns_false_for_non_empty_string():
     value = JString("abc")
 
     assert value.isEmpty() is False
 
+
 def test_jstring_char_at_returns_character_at_index():
     value = JString("abc")
 
     assert value.charAt(1) == "b"
+
 
 def test_jstring_char_at_rejects_negative_index():
     value = JString("abc")
@@ -34,17 +39,20 @@ def test_jstring_char_at_rejects_negative_index():
     with pytest.raises(IndexError):
         value.charAt(-1)
 
+
 def test_jstring_char_at_rejects_index_out_of_range():
     value = JString("abc")
 
     with pytest.raises(IndexError):
         value.charAt(3)
 
+
 def test_jstring_char_at_rejects_non_integer_index():
     value = JString("abc")
 
     with pytest.raises(TypeError):
         value.charAt("1")
+
 
 def test_jstring_code_point_at_returns_ascii_code_point():
     value = JString("abc")
@@ -198,12 +206,14 @@ def test_jstring_to_char_array_returns_character_list():
 
     assert value.toCharArray() == ["a", "b", "c"]
 
+
 def test_jstring_to_char_array_returns_new_list():
     value = JString("abc")
     characters = value.toCharArray()
     characters[0] = "x"
 
     assert value._value == "abc"
+
 
 def test_jstring_get_chars_copies_range_to_destination():
     value = JString("abcdef")
@@ -212,12 +222,14 @@ def test_jstring_get_chars_copies_range_to_destination():
 
     assert destination == ["", "b", "c", "d", ""]
 
+
 def test_jstring_get_chars_rejects_invalid_source_range():
     value = JString("abc")
     destination = ["", "", ""]
 
     with pytest.raises(IndexError):
         value.getChars(2, 5, destination, 0)
+
 
 def test_jstring_get_chars_rejects_invalid_destination_range():
     value = JString("abc")
@@ -226,21 +238,25 @@ def test_jstring_get_chars_rejects_invalid_destination_range():
     with pytest.raises(IndexError):
         value.getChars(0, 3, destination, 0)
 
+
 def test_jstring_get_chars_rejects_non_list_destination():
     value = JString("abc")
 
     with pytest.raises(TypeError):
         value.getChars(0, 2, "abc", 0)
 
+
 def test_jstring_get_bytes_uses_utf8_by_default():
     value = JString("abc")
 
     assert value.getBytes() == b"abc"
 
+
 def test_jstring_get_bytes_accepts_charset():
     value = JString("abc")
 
     assert value.getBytes("utf-8") == b"abc"
+
 
 def test_jstring_get_bytes_rejects_invalid_charset_type():
     value = JString("abc")
@@ -248,11 +264,13 @@ def test_jstring_get_bytes_rejects_invalid_charset_type():
     with pytest.raises(TypeError):
         value.getBytes(123)
 
+
 def test_jstring_get_bytes_rejects_unknown_charset():
     value = JString("abc")
 
     with pytest.raises(LookupError):
         value.getBytes("charset-inexistente")
+
 
 def test_jstring_can_be_created_empty():
     value = JString()
@@ -312,6 +330,7 @@ def test_jstring_rejects_invalid_type():
     with pytest.raises(TypeError):
         JString(123)
 
+
 def test_equals_returns_true_for_equal_strings():
     assert JString("abc").equals(JString("abc"))
 
@@ -361,6 +380,7 @@ def test_hash_code_different_strings():
 
     assert first.hashCode() != second.hashCode()
 
+
 def test_jstring_substring_from_begin_index():
     value = JString("abcdef")
     result = value.substring(2)
@@ -368,6 +388,7 @@ def test_jstring_substring_from_begin_index():
     assert isinstance(result, JString)
 
     assert result._value == "cdef"
+
 
 def test_jstring_substring_with_begin_and_end_index():
     value = JString("abcdef")
@@ -377,11 +398,13 @@ def test_jstring_substring_with_begin_and_end_index():
 
     assert result._value == "bcd"
 
+
 def test_jstring_substring_allows_empty_result():
     value = JString("abcdef")
     result = value.substring(2, 2)
 
     assert result._value == ""
+
 
 def test_jstring_substring_rejects_negative_begin_index():
     value = JString("abcdef")
@@ -389,11 +412,13 @@ def test_jstring_substring_rejects_negative_begin_index():
     with pytest.raises(IndexError):
         value.substring(-1)
 
+
 def test_jstring_substring_rejects_end_before_begin():
     value = JString("abcdef")
 
     with pytest.raises(IndexError):
         value.substring(4, 2)
+
 
 def test_jstring_substring_rejects_end_out_of_range():
     value = JString("abcdef")
@@ -401,17 +426,20 @@ def test_jstring_substring_rejects_end_out_of_range():
     with pytest.raises(IndexError):
         value.substring(1, 10)
 
+
 def test_jstring_substring_rejects_invalid_begin_type():
     value = JString("abcdef")
 
     with pytest.raises(TypeError):
         value.substring("1")
 
+
 def test_jstring_substring_rejects_invalid_end_type():
     value = JString("abcdef")
 
     with pytest.raises(TypeError):
         value.substring(1, "4")
+
 
 def test_jstring_sub_sequence_returns_substring():
     value = JString("abcdef")
@@ -421,6 +449,7 @@ def test_jstring_sub_sequence_returns_substring():
 
     assert result._value == "bcd"
 
+
 def test_jstring_concat_accepts_python_string():
     value = JString("abc")
     result = value.concat("def")
@@ -428,6 +457,7 @@ def test_jstring_concat_accepts_python_string():
     assert isinstance(result, JString)
 
     assert result._value == "abcdef"
+
 
 def test_jstring_concat_accepts_jstring():
     value = JString("abc")
@@ -438,6 +468,7 @@ def test_jstring_concat_accepts_jstring():
 
     assert result._value == "abcdef"
 
+
 def test_jstring_concat_does_not_change_original_value():
     value = JString("abc")
     result = value.concat("def")
@@ -446,11 +477,13 @@ def test_jstring_concat_does_not_change_original_value():
 
     assert result._value == "abcdef"
 
+
 def test_jstring_concat_rejects_invalid_type():
     value = JString("abc")
 
     with pytest.raises(TypeError):
         value.concat(123)
+
 
 def test_jstring_trim_removes_spaces_from_edges():
     value = JString(" abc ")
@@ -460,6 +493,7 @@ def test_jstring_trim_removes_spaces_from_edges():
 
     assert result._value == "abc"
 
+
 def test_jstring_trim_does_not_change_original_value():
     value = JString(" abc ")
     result = value.trim()
@@ -468,17 +502,20 @@ def test_jstring_trim_does_not_change_original_value():
 
     assert result._value == "abc"
 
+
 def test_jstring_trim_keeps_internal_spaces():
     value = JString(" a b c ")
     result = value.trim()
 
     assert result._value == "a b c"
 
+
 def test_jstring_intern_returns_same_instance():
     value = JString("abc")
-    
+
     assert value.intern() is value
-    
+
+
 def test_jstring_value_of_positive_integer():
     result = JString.valueOf(10)
 
@@ -509,7 +546,8 @@ def test_jstring_value_of_negative_float():
     result = JString.valueOf(-2.5)
 
     assert result._value == "-2.5"
-    
+
+
 def test_jstring_value_of_boolean_true():
     result = JString.valueOf(True)
 
@@ -550,3 +588,47 @@ def test_jstring_value_of_character_tuple():
 def test_jstring_value_of_rejects_invalid_character_list():
     with pytest.raises(ValueError):
         JString.valueOf(["a", "bc"])
+
+
+def test_index_of_character_returns_first_occurrence():
+    value = JString("banana")
+
+    assert value.indexOf(ord("a")) == 1
+
+
+def test_index_of_character_returns_minus_one_when_not_found():
+    value = JString("banana")
+
+    assert value.indexOf(ord("x")) == -1
+
+
+def test_index_of_character_uses_start_index():
+    value = JString("banana")
+
+    assert value.indexOf(ord("a"), 2) == 3
+
+
+def test_index_of_character_negative_start_index_starts_from_zero():
+    value = JString("banana")
+
+    assert value.indexOf(ord("b"), -5) == 0
+
+
+def test_index_of_character_start_index_greater_than_length_returns_minus_one():
+    value = JString("banana")
+
+    assert value.indexOf(ord("a"), 20) == -1
+
+
+def test_index_of_character_rejects_invalid_start_index_type():
+    value = JString("banana")
+
+    with pytest.raises(TypeError):
+        value.indexOf(ord("a"), "1")
+
+
+def test_index_of_character_rejects_invalid_value_type():
+    value = JString("banana")
+
+    with pytest.raises(TypeError):
+        value.indexOf(1.5)
