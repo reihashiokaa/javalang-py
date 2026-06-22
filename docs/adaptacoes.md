@@ -863,26 +863,35 @@ self._value.rfind(sub_str, 0, fromIndex + 1)
 
 ## Histórico de Atualizações
 
-| Data       | Alteração                    | Responsável |
+| Data       | Alteração                    | Ferramenta |
 | ---------- | ---------------------------- | ----------- |
-| 13/06/2026 | Criação inicial do documento | Luciana     |
-| 19/06/2026 | Registro das adaptações de operações sem sinal de JInteger | Isabela |
-| 19/06/2026 | Implementação de conversões  | Miguel      |
-| 19/06/2026 | Registro das adaptações de parsing e criação por valor de JInteger | Reinaldo |
-| 19/06/2026 | Registro das adaptações de operações bit-a-bit| Beatriz |
-| 19/06/2026 | Registro das adaptações de operações bit-a-bit| Miguel |
-| 20/06/2026 | Registro das adaptações de operações de conversões em JFloat| Miguel |
-| 20/06/2026 | Registro das adaptações de  parsing value em JFloat| Beatriz |
-| 21/06/2026 | Registro das adaptações de valores especiais em JFloat | Isabela |
-| 21/06/2026 | Registro das adaptações de conversões de bits e representação hexadecimal em JFloat | Luciana |
-| 21/06/2026 | Registro das adaptações dos metodos estaticos min, max e sum em JFloat | Miguel |
-| 21/06/2026 | Registro das adaptações de igualdade, hash e comparação em JString | Maria Eduarda |
-| 21/06/2026 | Registro das adaptações de de acesso, tamanho, conversão, da classe JString. em JString | BEatriz |
-| 21/06/2026 | Registro das adaptações de recorte e transformação em JString | Beatriz |
-| 21/06/2026 | Registro das adaptações de code points em JString | Isabela |
-| 21/06/2026 | Registro das adaptações de métodos estáticos auxiliares em JString | Isabela |
-| 21/06/2026 | Registro das adaptações dos métodos indexOf em JString | Luciana |
-| 21/06/2026 | Registro das adaptações dos método lastIndexOf em SubStrings | Miguel |
-| 21/06/2026 | Registro das adaptações de code points em JString | Isabela |
-| 21/06/2026 | Registro das adaptações de `replace`, `toLowerCase` e `toUpperCase` em JString | Luciana |
-| 22/06/2026 | Registro das adaptações do método lastIndexOf em JString | Maria Eduarda |
+| 13/06/2026 | Criação inicial do documento | ChatGPT |
+| 17/06/2026 | Criação de plano de implementação | ChatGPT |
+| 17/06/2026 | Preparação de relatório de baseline | ChatGPT |
+| 18/06/2026 | Apoio na implementação inicial de JInteger | ChatGPT |
+| 18/06/2026 | Auxiliar na implementação dos métodos básicos de instância da classe JInteger | ChatGPT |
+| 18/06/2026 | Auxiliar na adaptação da implementação de operações bit a bit da classe JInteger | Claude |
+| 19/06/2026 | Auxiliar na implementação das operações sem sinal da classe JInteger | ChatGPT |
+| 19/06/2026 | Apoio na implementação dos métodos estáticos de aritmética de JInteger | ChatGPT |
+| 19/06/2026 | Apoio na implementação de parsing e criação por valor em JInteger | ChatGPT |
+| 19/06/2026 | Auxiliar na implementação e validação das operações bit a bit iniciais de JInteger | ChatGPT |
+| 20/06/2026 | Apoio na preparação do relatório da baseline v0.2-jinteger | ChatGPT |
+| 20/06/2026 | Apoio na implementação inicial de JFloat | ChatGPT |
+| 20/06/2026 | Apoio na implementação das conversões básicas de JFloat | ChatGPT |
+| 20/06/2026 | Sugestão de implementação dos métodos parseFloat e valueOf da classe JFloat | Claude |
+| 20/06/2026 | Auxiliar na implementação dos métodos de representação textual, igualdade e comparação da classe JFloat | Gemini |
+| 21/06/2026 | Apoio na implementação das verificações de valores especiais de JFloat | ChatGPT |
+| 21/06/2026 | Apoio na implementação dos métodos de conversão de bits e representação hexadecimal de JFloat | ChatGPT |
+| 21/06/2026 | Apoio na implementação dos métodos aritméticos estáticos de JFloat | ChatGPT |
+| 21/06/2026 | Apoio na preparação do relatório da baseline v0.3-jfloat | ChatGPT |
+| 21/06/2026 | Apoio na implementação inicial de JString | ChatGPT |
+| 21/06/2026 | Auxiliar na implementação dos métodos de igualdade, hash e comparação da classe JString | Gemini |
+| 21/06/2026 | Apoio na implementação de tamanho, acesso, conversão para bytes e transformações básicas de JString | Claude |
+| 21/06/2026 | Apoio na implementação de contains, startsWith, endsWith e regionMatches de JString | Claude |
+| 21/06/2026 | Apoio na implementação dos métodos de code points de JString | ChatGPT |
+| 21/06/2026 | Apoio na implementação dos métodos valueOf básicos de JString | ChatGPT |
+| 21/06/2026 | Apoio na implementação dos métodos estáticos auxiliares de JString | ChatGPT |
+| 21/06/2026 | Apoio na implementação dos métodos indexOf de JString | ChatGPT |
+| 21/06/2026 | Apoio na implementação dos métodos lastIndexOf para retornar o índice do elemento da string | ChatGPT |
+| 21/06/2026 | Apoio na implementação dos métodos replace, toLowerCase e toUpperCase de JString | ChatGPT |
+| 22/06/2026 | Gerar sugestão de implementação dos métodos lastIndexOf da classe JString | ChatGPT |
