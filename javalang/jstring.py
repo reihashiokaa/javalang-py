@@ -1,5 +1,6 @@
-"""Implementação inicial da classe JString."""
+import re
 
+"""Implementação inicial da classe JString."""
 
 class JString:
     """Representa uma adaptação da classe String da API Java SE 8."""
@@ -465,3 +466,25 @@ class JString:
             0,
             search_end
         )
+
+    def matches(self, regex):
+        """Verifica se a string inteira combina com a regex."""
+        if not isinstance(regex, str):
+            raise TypeError("regex must be a string")
+        return re.fullmatch(regex, self._value) is not None
+
+    def replaceFirst(self, regex, replacement):
+        """Substitui a primeira ocorrencia encontrada pela regex."""
+        if not isinstance(regex, str):
+            raise TypeError("regex must be a string")
+        if not isinstance(replacement, str):
+            raise TypeError("replacement must be a string")
+        return JString(re.sub(regex, replacement, self._value, count=1))
+
+    def replaceAll(self, regex, replacement):
+        """Substitui todas as ocorrencias encontradas pela regex."""
+        if not isinstance(regex, str):
+            raise TypeError("regex must be a string")
+        if not isinstance(replacement, str):
+            raise TypeError("replacement must be a string")
+        return JString(re.sub(regex, replacement, self._value))
