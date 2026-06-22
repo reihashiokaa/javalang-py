@@ -399,16 +399,6 @@ class JString:
     
     def lastIndexOf(self, target, fromIndex=None):
         """Retorna o indice da ultima ocorrencia do alvo."""
-        if fromIndex is None:
-            search_end = self.length() - 1
-        else:
-            if not isinstance(fromIndex, int):
-                raise TypeError("fromIndex must be an int")
-
-            if fromIndex < 0:
-                return -1
-
-            search_end = min(fromIndex, self.length() - 1)
 
         if isinstance(target, int):
             if target < 0 or target > 0x10FFFF:
@@ -416,16 +406,36 @@ class JString:
 
             target_value = chr(target)
 
-        elif isinstance(target, str) and len(target) == 1:
+        elif isinstance(target, JString):
+            target_value = target._value
+
+        elif isinstance(target, str):
             target_value = target
 
         else:
             raise TypeError(
-                "target must be a character or unicode code point"
+                "target must be an int, string or JString"
             )
+
+        if fromIndex is None:
+            return self._value.rfind(target_value)
+
+        if not isinstance(fromIndex, int):
+            raise TypeError("fromIndex must be an int")
+
+        if fromIndex < 0:
+            return -1
+
+        if target_value == "":
+            return min(fromIndex, self.length())
+
+        search_end = min(
+            fromIndex + len(target_value),
+            self.length()
+        )
 
         return self._value.rfind(
             target_value,
             0,
-            search_end + 1
+            search_end
         )
