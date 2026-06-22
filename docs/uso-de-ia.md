@@ -8,7 +8,7 @@ Este documento registra os usos relevantes de ferramentas de Inteligência Artif
 
 ### Data 
 
-**DD/MM/AAAA**
+**17/06/2026**
 
 ### Ferramenta Utilizada
 
@@ -69,31 +69,35 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | Data       | Ferramenta | Objetivo | Arquivo/Funcionalidade | Resultado |
 | ---------- | ---------- | --------- | ---------------------- | --------- |
 | 13/06/2026 | ChatGPT    | Criação de documentação | docs/uso-de-ia.md | Adaptada |
-| DD/MM/AAAA | ChatGPT | Criação de plano de implementação | docs/plano-implementacao.md | Aceita com modificações |
-| 17/06/2026 | ChatGPT | Preparação de relatório de baseline | docs/relatorios/status-v0.1.md | Aceita com modificações |
-| 18/06/2026 | ChatGPT | Apoio na implementação inicial de JInteger | javalang/jinteger.py, javalang/__init__.py, tests/test_jinteger.py | Aceita com modificações |
-| 18/06/2026 | ChatGPT | Auxílio na implementação dos métodos básicos de instância da classe JInteger | javalang/jinteger.py, tests/test_jinteger.py, docs/uso-de-ia.md | Aceita com modificações |
+| 17/06/2026 | ChatGPT | Criação de plano de implementação | docs/plano-implementacao.md | Aceita com modificações |
 | 17/06/2026 | ChatGPT | Preparação de relatório de baseline | `docs/relatorios/status-v0.1.md` | Aceita com modificações |
 | 18/06/2026 | ChatGPT | Apoio na implementação inicial de JInteger | `javalang/jinteger.py`, `javalang/__init__.py`, `tests/test_jinteger.py` | Aceita com modificações |
-| 18/06/2026 | ChatGPT | axiliar na implementação dos métodos básicos de instância da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py` e `docs/uso-de-ia.md` | Aceita |
+| 18/06/2026 | ChatGPT | Auxiliar na implementação dos métodos básicos de instância da classe JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py` e `docs/uso-de-ia.md` | Aceita |
+| 18/06/2026 | Claude | Auxiliar na adaptação da implementação de operações bit a bit da classe JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/adaptacoes.md` | Aceita com modificações |
+| 19/06/2026 | ChatGPT | Auxiliar na implementação das operações sem sinal da classe JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 19/06/2026 | ChatGPT | Apoio na implementação dos métodos estáticos de aritmética de JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py` | Aceita com modificações |
 | 19/06/2026 | ChatGPT | Apoio na implementação de parsing e criação por valor em JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
-| 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos de conversão da classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
-| 19/06/2026 | ChatGPT | Auxiliar na implementação dos métodos operacao bit a bit classe JInteger |`javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modificações |
+| 19/06/2026 | ChatGPT | Auxiliar na implementação e validação das operações bit a bit iniciais de JInteger | `javalang/jinteger.py`, `tests/test_jinteger.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.2-jinteger | `docs/relatorios/status-v0.2.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | ChatGPT | Apoio na implementação inicial de JFloat | `javalang/jfloat.py`, `javalang/__init__.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | ChatGPT | Apoio na implementação das conversões básicas de JFloat, criação de testes e documentação de adaptações | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
-| 20/06/2026 | Claude | Sugestão de implementação dos métodos parseFloat e valueOf da classe JFloat.| `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 20/06/2026 | Claude | Sugestão de implementação dos métodos parseFloat e valueOf da classe JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 20/06/2026 | Gemini     | Auxiliar na implementação dos métodos de representação textual, igualdade e comparação da classe JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py` | Aceita |
 | 21/06/2026 | ChatGPT | Apoio na implementação das verificações de valores especiais de JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos de conversão de bits e representação hexadecimal de JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos aritméticos estáticos de JFloat | `javalang/jfloat.py`, `tests/test_jfloat.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.3-jfloat | `docs/relatorios/status-v0.3.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação inicial de JString | `javalang/jstring.py`, `javalang/__init__.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | Gemini     | Auxiliar na implementação dos métodos de igualdade, hash e comparação da classe JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
-| 21/06/2026 | Claude| Auxiliar na implementação dos básicos de tamanho, acesso a caracteres e conversão para arrays ou bytes. | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modifcações|
+| 21/06/2026 | Claude | Apoio na implementação de tamanho, acesso, conversão para bytes e transformações básicas de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | Claude | Apoio na implementação de contains, startsWith, endsWith e regionMatches de JString | `javalang/jstring.py`, `tests/test_jstring.py` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos de code points de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos valueOf básicos de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos estáticos auxiliares de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
-| 21/06/2026 | ChatGPT | Apoio na implementação dos método lastIndexOf para retornar o indice do elemento da string | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
-| 22/06/2026 | Gemini     | Auxiliar na implementação e cenários de testes do método lastIndexOf | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos indexOf de JString | `javalang/jstring.py`, `tests/test_jstring.py` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos lastIndexOf para retornar o índice do elemento da string | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos replace, toLowerCase e toUpperCase de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 22/06/2026 | ChatGPT | Gerar sugestão de implementação dos métodos lastIndexOf da classe JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md` | Aceita com modificações |
 
 ---
 
@@ -426,7 +430,7 @@ Claude
 
 ### Objetivo
 
-Auxiliar na adaptação da implementação de operações bit a bit da classe Jinteger e seus testes.
+Auxiliar na adaptação da implementação de operações bit a bit da classe JInteger e seus testes.
 
 ### Trecho do Projeto Afetado
 
@@ -436,7 +440,7 @@ docs/adaptacoes.md
 
 ### Descrição da Contribuição da IA
 
-O agente explicou como funcionava a lógica bit abit de Java e como adapta-lá para python. Auxiliou também na documentação dessas adaptações.
+O agente explicou como funcionava a lógica bit a bit de Java e como adapta-lá para python. Auxiliou também na documentação dessas adaptações.
 
 ### Validação da Equipe
 
@@ -1325,43 +1329,7 @@ As sugestões foram revisadas antes de serem incorporadas ao projeto. A implemen
 
 Aceita com modificações.
 
-## Registro de Uso 28
 
-### Data
-
-22/06/2026
-
-### Ferramenta Utilizada
-
-Gemini (Google)
-
-### Objetivo
-
-* Auxiliar na implementação unificada das variações do método `lastIndexOf` da classe `JString`.
-* Propor cenários e estruturas de testes usando `pytest` para cobrir busca reversa de caracteres e substrings.
-
-### Trecho do Projeto Afetado
-
-* `javalang/jstring.py`
-* `tests/test_jstring.py`
-* `docs/adaptacoes.md`
-* `docs/uso-de-ia.md`
-
-### Descrição da Contribuição da IA
-
-A IA sugeriu uma implementação unificada e idiomática em Python para o método `lastIndexOf`, concentrando as múltiplas sobrecargas da API Java em uma assinatura flexível com verificação de tipo em tempo de execução e o parâmetro opcional `fromIndex`. 
-
-Também auxiliou no mapeamento de cenários de teste específicos para a busca reversa, incluindo o comportamento com `fromIndex` negativo, índices além dos limites da string, substrings vazias e repetidas, códigos Unicode inteiros, e lançamentos de `TypeError` para parâmetros inválidos.
-
-### Validação da Equipe
-
-* O código sugerido foi revisado manualmente para garantir o alinhamento com a arquitetura geral da classe `JString`.
-* Os limites de escopo (regras de commits por método) foram respeitados.
-* A suíte de testes unitários foi executada com sucesso localmente usando `python -m pytest` e o linter `ruff`.
-
-### Resultado
-
-Aceita com modificações (ajustes nos textos de documentação para seguir os modelos preestabelecidos pelo grupo).
 
 
 
