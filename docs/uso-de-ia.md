@@ -91,6 +91,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 21/06/2026 | Claude| Auxiliar na implementação dos básicos de tamanho, acesso a caracteres e conversão para arrays ou bytes. | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modifcações|
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos de code points de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos valueOf básicos de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos estáticos auxiliares de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 
 ---
 
@@ -1103,6 +1104,90 @@ As verificações locais foram executadas utilizando:
 
 * `python -m pytest`
 * `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações. 
+---
+
+## Registro de Uso 25
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos estáticos auxiliares da classe `JString`, incluindo `valueOf(Object)`, `copyValueOf`, `format` e `join`.
+
+### Trecho do projeto afetado
+
+* `javalang/jstring.py`
+* `tests/test_jstring.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #76 da milestone `v0.4-jstring`, responsável pelos métodos estáticos auxiliares `valueOf(Object)`, `copyValueOf`, `format` e `join`, respeitando a regra de até três métodos por commit, criando testes e registrando as adaptações necessárias entre Java e Python.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação dos métodos estáticos auxiliares da classe `JString`, sugerindo a divisão da issue em dois blocos: `valueOf(Object)` e `copyValueOf` no primeiro bloco, e `format` e `join` no segundo bloco.
+
+Também apoiou a definição da estratégia de adaptação para Python, expandindo o método `valueOf` para aceitar objetos genéricos, tratando `None` como equivalente textual a `null`, criando `copyValueOf` a partir de listas ou tuplas de caracteres, utilizando formatação textual com o operador `%` e implementando `join` com suporte a valores `str` e `JString`.
+
+Além disso, sugeriu testes automatizados para objeto genérico, valor `None`, cópia de lista de caracteres, formatação simples, junção de strings e casos inválidos. A IA também auxiliou na redação do registro de adaptações em `docs/adaptacoes.md`.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #76, sem adicionar métodos de outras issues da milestone `v0.4-jstring`.
+
+As verificações locais foram executadas com sucesso utilizando:
+
+* `python -m ruff check .`
+* `python -m pytest`
+
+### Resultado
+
+Aceita com modificações.
+
+---
+
+## Registro de Uso 26
+
+### Data
+
+**21/06/2026**
+
+### Ferramenta Utilizada
+
+Claude (Anthropic)
+
+### Objetivo
+
+* Gerar sugestão de implementação dos métodos de busca e comparação de strings.
+* Propor casos de teste para validação dos comportamentos previstos na API Java.
+
+### Trecho do Projeto Afetado
+
+* `javalang/jstring.py` — métodos `contains`, `startsWith`, `endsWith` e `regionMatches`
+* `tests/test_jstring.py` — casos de teste dos métodos acima
+
+### Descrição da Contribuição da IA
+
+A IA sugeriu a implementação dos métodos responsáveis pela verificação de conteúdo, prefixos, sufixos e correspondência parcial entre strings. Também foi proposta uma adaptação para as sobrecargas de `startsWith` e `regionMatches`, utilizando parâmetros opcionais e quantidade variável de argumentos para reproduzir o comportamento da API Java em Python. Além disso, foram sugeridos testes cobrindo conteúdo presente e ausente, prefixos e sufixos válidos e inválidos, comparação de regiões e comparação ignorando diferenças entre letras maiúsculas e minúsculas.
+
+### Validação da Equipe
+
+* Código revisado pelo responsável da issue antes de commitar.
+* Testes executados localmente com `python -m pytest`.
+* Lógica conferida manualmente comparando com a documentação Java SE 8.
+* Casos de teste revisados para garantir aderência ao comportamento esperado da especificação.
 
 ### Resultado
 

@@ -184,7 +184,7 @@ class JString:
         return hash(self._value)
 
     def indexOf(self, value, fromIndex=0):
-        # """Retorna a primeira posição de um caractere ou substring na string."""
+        """Retorna a primeira posição de um caractere ou substring na string."""
         if not isinstance(fromIndex, int):
             raise TypeError("fromIndex must be an int")
 
@@ -248,9 +248,91 @@ class JString:
         """Retorna a propria instancia como adaptacao de String.intern."""
         return self
 
+    def contains(self, sequence):
+        """Verifica se a string contem a sequencia informada."""
+        if isinstance(sequence, JString):
+            sequence_value = sequence._value
+        elif isinstance(sequence, str):
+            sequence_value = sequence
+        else:
+            raise TypeError("sequence must be a string or JString")
+        return sequence_value in self._value
+
+    def startsWith(self, prefix, toffset=0):
+        """Verifica se a string começa com o prefixo informado."""
+        if isinstance(prefix, JString):
+            prefix = prefix._value
+        elif not isinstance(prefix, str):
+            raise TypeError("prefix must be a string or JString")
+
+        if not isinstance(toffset, int):
+            raise TypeError("toffset must be an int")
+
+        if toffset < 0 or toffset > self.length():
+            return False
+
+        return self._value.startswith(prefix, toffset)
+
+    def endsWith(self, suffix):
+        """Verifica se a string termina com o sufixo informado."""
+        if isinstance(suffix, JString):
+            suffix = suffix._value
+        elif not isinstance(suffix, str):
+            raise TypeError("suffix must be a string or JString")
+
+        return self._value.endswith(suffix)
+
+    def regionMatches(self, *args):
+        """
+        Adaptação das sobrecargas Java:
+
+        regionMatches(toffset, other, ooffset, length)
+        regionMatches(ignoreCase, toffset, other, ooffset, length)
+        """
+
+        if len(args) == 4:
+            ignoreCase = False
+            toffset, other, ooffset, length = args
+
+        elif len(args) == 5:
+            ignoreCase, toffset, other, ooffset, length = args
+
+            if not isinstance(ignoreCase, bool):
+                raise TypeError("ignoreCase must be a bool")
+        else:
+            raise TypeError("invalid arguments")
+
+        if isinstance(other, JString):
+            other = other._value
+        elif not isinstance(other, str):
+            raise TypeError("other must be a string or JString")
+
+        if not all(isinstance(value, int) for value in [toffset, ooffset, length]):
+            raise TypeError("offsets and length must be integers")
+
+        if toffset < 0 or ooffset < 0 or length < 0:
+            return False
+
+        if toffset + length > len(self._value):
+            return False
+
+        if ooffset + length > len(other):
+            return False
+
+        left = self._value[toffset : toffset + length]
+        right = other[ooffset : ooffset + length]
+
+        if ignoreCase:
+            return left.lower() == right.lower()
+
+        return left == right
+
     @staticmethod
     def valueOf(value):
         """Retorna uma JString representando o valor informado."""
+        if value is None:
+            return JString("null")
+
         if isinstance(value, bool):
             return JString("true" if value else "false")
 
@@ -264,12 +346,53 @@ class JString:
             return JString(value)
 
         if isinstance(value, (list, tuple)):
-            characters = list(value)
+            return JString(value)
 
-            for character in characters:
-                if not isinstance(character, str) or len(character) != 1:
-                    raise ValueError("character array must contain only single-character strings")
+        return JString(str(value))
 
-            return JString(characters)
+    @staticmethod
+    def copyValueOf(value):
+        """Cria uma JString a partir de uma lista ou tupla de caracteres."""
+        if not isinstance(value, (list, tuple)):
+            raise TypeError("value must be a list or tuple of characters")
 
-        raise TypeError("unsupported value type")
+        return JString(value)
+
+    @staticmethod
+    def format(format_string, *args):
+        """Formata uma string usando os argumentos informados."""
+        if not isinstance(format_string, str):
+            raise TypeError("format_string must be a string")
+
+        try:
+            if args:
+                return JString(format_string % args)
+
+            return JString(format_string)
+        except (TypeError, ValueError) as error:
+            raise ValueError("invalid format arguments") from error
+
+    @staticmethod
+    def join(delimiter, *elements):
+        """Une elementos usando o delimitador informado."""
+        if isinstance(delimiter, JString):
+            delimiter_value = delimiter._value
+        elif isinstance(delimiter, str):
+            delimiter_value = delimiter
+        else:
+            raise TypeError("delimiter must be a string or JString")
+
+        if len(elements) == 1 and isinstance(elements[0], (list, tuple)):
+            elements = tuple(elements[0])
+
+        values = []
+
+        for element in elements:
+            if isinstance(element, JString):
+                values.append(element._value)
+            elif isinstance(element, str):
+                values.append(element)
+            else:
+                raise TypeError("join elements must be strings or JString")
+
+        return JString(delimiter_value.join(values))

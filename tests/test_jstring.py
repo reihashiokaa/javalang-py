@@ -516,6 +516,62 @@ def test_jstring_intern_returns_same_instance():
     assert value.intern() is value
 
 
+def test_contains_present():
+    assert JString("hello world").contains("world")
+
+
+def test_contains_absent():
+    assert not JString("hello world").contains("python")
+
+
+def test_starts_with():
+    assert JString("hello").startsWith("he")
+
+
+def test_starts_with_offset():
+    assert JString("hello").startsWith("ll", 2)
+
+
+def test_starts_with_invalid_offset():
+    assert not JString("hello").startsWith("he", 10)
+
+
+def test_ends_with():
+    assert JString("hello").endsWith("lo")
+
+
+def test_ends_with_false():
+    assert not JString("hello").endsWith("he")
+
+
+def test_region_matches():
+    assert JString("abcdef").regionMatches(
+        2,
+        JString("xxcdeyy"),
+        2,
+        3,
+    )
+
+
+def test_region_matches_ignore_case():
+    assert JString("ABCDEF").regionMatches(
+        True,
+        2,
+        JString("xxcdeyy"),
+        2,
+        3,
+    )
+
+
+def test_region_matches_false():
+    assert not JString("abcdef").regionMatches(
+        2,
+        JString("xxxyz"),
+        2,
+        3,
+    )
+
+
 def test_jstring_value_of_positive_integer():
     result = JString.valueOf(10)
 
@@ -662,3 +718,96 @@ def test_index_of_substring_empty_string_returns_start_index():
     value = JString("banana")
 
     assert value.indexOf("", 3) == 3
+
+
+class SampleObject:
+    def __str__(self):
+        return "sample-object"
+
+
+def test_jstring_value_of_accepts_generic_object():
+    result = JString.valueOf(SampleObject())
+
+    assert isinstance(result, JString)
+    assert result._value == "sample-object"
+
+
+def test_jstring_value_of_none_returns_null_text():
+    result = JString.valueOf(None)
+
+    assert isinstance(result, JString)
+    assert result._value == "null"
+
+
+def test_jstring_copy_value_of_creates_string_from_character_list():
+    result = JString.copyValueOf(["a", "b", "c"])
+
+    assert isinstance(result, JString)
+    assert result._value == "abc"
+
+
+def test_jstring_copy_value_of_rejects_invalid_character_list():
+    with pytest.raises(ValueError):
+        JString.copyValueOf(["a", "bc"])
+
+
+def test_jstring_format_with_string_argument():
+    result = JString.format("Hello, %s", "World")
+
+    assert isinstance(result, JString)
+    assert result._value == "Hello, World"
+
+
+def test_jstring_format_with_number_argument():
+    result = JString.format("Value: %d", 10)
+
+    assert isinstance(result, JString)
+    assert result._value == "Value: 10"
+
+
+def test_jstring_format_without_arguments_returns_original_text():
+    result = JString.format("No arguments")
+
+    assert isinstance(result, JString)
+    assert result._value == "No arguments"
+
+
+def test_jstring_format_rejects_invalid_format_string_type():
+    with pytest.raises(TypeError):
+        JString.format(123, "abc")
+
+
+def test_jstring_format_rejects_invalid_arguments():
+    with pytest.raises(ValueError):
+        JString.format("Value: %d", "abc")
+
+
+def test_jstring_join_with_python_strings():
+    result = JString.join(", ", "a", "b", "c")
+
+    assert isinstance(result, JString)
+    assert result._value == "a, b, c"
+
+
+def test_jstring_join_with_list_of_strings():
+    result = JString.join("-", ["a", "b", "c"])
+
+    assert isinstance(result, JString)
+    assert result._value == "a-b-c"
+
+
+def test_jstring_join_accepts_jstring_delimiter_and_elements():
+    result = JString.join(JString("-"), JString("a"), JString("b"))
+
+    assert isinstance(result, JString)
+    assert result._value == "a-b"
+
+
+def test_jstring_join_rejects_invalid_delimiter():
+    with pytest.raises(TypeError):
+        JString.join(123, "a", "b")
+
+
+def test_jstring_join_rejects_invalid_element():
+    with pytest.raises(TypeError):
+        JString.join("-", "a", 123)
