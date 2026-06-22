@@ -509,6 +509,50 @@ def test_jstring_trim_keeps_internal_spaces():
 
     assert result._value == "a b c"
 
+def test_jstring_to_lower_case_converts_text():
+    value = JString("AbC ÇÃO")
+    result = value.toLowerCase()
+
+    assert isinstance(result, JString)
+    assert result._value == "abc ção"
+
+
+def test_jstring_to_lower_case_does_not_change_original_value():
+    value = JString("ABC")
+    result = value.toLowerCase()
+
+    assert value._value == "ABC"
+    assert result._value == "abc"
+
+
+def test_jstring_to_lower_case_keeps_empty_string():
+    value = JString()
+    result = value.toLowerCase()
+
+    assert result._value == ""
+
+
+def test_jstring_to_upper_case_converts_text():
+    value = JString("AbC ção")
+    result = value.toUpperCase()
+
+    assert isinstance(result, JString)
+    assert result._value == "ABC ÇÃO"
+
+
+def test_jstring_to_upper_case_does_not_change_original_value():
+    value = JString("abc")
+    result = value.toUpperCase()
+
+    assert value._value == "abc"
+    assert result._value == "ABC"
+
+
+def test_jstring_to_upper_case_keeps_empty_string():
+    value = JString()
+    result = value.toUpperCase()
+
+    assert result._value == ""
 
 def test_jstring_intern_returns_same_instance():
     value = JString("abc")
