@@ -21,6 +21,48 @@ class JString:
     
         return self._value[index]
     
+    def codePointAt(self, index):
+        """Retorna o code point do caractere na posicao informada."""
+        if not isinstance(index, int):
+            raise TypeError("index must be an int")
+
+        if index < 0 or index >= self.length():
+            raise IndexError("index out of range")
+
+        return ord(self._value[index])
+
+    def codePointBefore(self, index):
+        """Retorna o code point do caractere anterior ao indice informado."""
+        if not isinstance(index, int):
+            raise TypeError("index must be an int")
+
+        if index <= 0 or index > self.length():
+            raise IndexError("index out of range")
+
+        return ord(self._value[index - 1])
+
+    def codePointCount(self, beginIndex, endIndex):
+        """Retorna a quantidade de code points no intervalo informado."""
+        if not isinstance(beginIndex, int) or not isinstance(endIndex, int):
+            raise TypeError("beginIndex and endIndex must be integers")
+
+        if beginIndex < 0 or endIndex < beginIndex or endIndex > self.length():
+            raise IndexError("range is invalid")
+
+        return len(self._value[beginIndex:endIndex])
+
+    def offsetByCodePoints(self, index, codePointOffset):
+        """Retorna o indice deslocado pela quantidade de code points informada."""
+        if not isinstance(index, int) or not isinstance(codePointOffset, int):
+            raise TypeError("index and codePointOffset must be integers")
+
+        new_index = index + codePointOffset
+
+        if index < 0 or index > self.length() or new_index < 0 or new_index > self.length():
+            raise IndexError("index out of range")
+
+        return new_index
+
     def toCharArray(self):
         """Retorna uma lista com os caracteres da string."""
         return list(self._value)
@@ -259,3 +301,73 @@ class JString:
             return left.lower() == right.lower()
 
         return left == right
+    
+    @staticmethod
+    def valueOf(value):
+        """Retorna uma JString representando o valor informado."""
+        if value is None:
+            return JString("null")
+
+        if isinstance(value, bool):
+            return JString("true" if value else "false")
+
+        if isinstance(value, int):
+            return JString(str(value))
+
+        if isinstance(value, float):
+            return JString(str(value))
+
+        if isinstance(value, str):
+            return JString(value)
+
+        if isinstance(value, (list, tuple)):
+            return JString(value)
+
+        return JString(str(value))
+
+    @staticmethod
+    def copyValueOf(value):
+        """Cria uma JString a partir de uma lista ou tupla de caracteres."""
+        if not isinstance(value, (list, tuple)):
+            raise TypeError("value must be a list or tuple of characters")
+
+        return JString(value)
+    
+    @staticmethod
+    def format(format_string, *args):
+        """Formata uma string usando os argumentos informados."""
+        if not isinstance(format_string, str):
+            raise TypeError("format_string must be a string")
+
+        try:
+            if args:
+                return JString(format_string % args)
+
+            return JString(format_string)
+        except (TypeError, ValueError) as error:
+            raise ValueError("invalid format arguments") from error
+
+    @staticmethod
+    def join(delimiter, *elements):
+        """Une elementos usando o delimitador informado."""
+        if isinstance(delimiter, JString):
+            delimiter_value = delimiter._value
+        elif isinstance(delimiter, str):
+            delimiter_value = delimiter
+        else:
+            raise TypeError("delimiter must be a string or JString")
+
+        if len(elements) == 1 and isinstance(elements[0], (list, tuple)):
+            elements = tuple(elements[0])
+
+        values = []
+
+        for element in elements:
+            if isinstance(element, JString):
+                values.append(element._value)
+            elif isinstance(element, str):
+                values.append(element)
+            else:
+                raise TypeError("join elements must be strings or JString")
+
+        return JString(delimiter_value.join(values))

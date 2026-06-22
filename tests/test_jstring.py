@@ -46,6 +46,153 @@ def test_jstring_char_at_rejects_non_integer_index():
     with pytest.raises(TypeError):
         value.charAt("1")
 
+def test_jstring_code_point_at_returns_ascii_code_point():
+    value = JString("abc")
+
+    assert value.codePointAt(0) == ord("a")
+    assert value.codePointAt(1) == ord("b")
+
+
+def test_jstring_code_point_at_returns_unicode_code_point():
+    value = JString("ação")
+
+    assert value.codePointAt(0) == ord("a")
+    assert value.codePointAt(1) == ord("ç")
+
+
+def test_jstring_code_point_at_rejects_invalid_index():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.codePointAt(-1)
+
+    with pytest.raises(IndexError):
+        value.codePointAt(3)
+
+
+def test_jstring_code_point_at_rejects_non_integer_index():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.codePointAt("1")
+
+
+def test_jstring_code_point_before_returns_ascii_code_point():
+    value = JString("abc")
+
+    assert value.codePointBefore(1) == ord("a")
+    assert value.codePointBefore(3) == ord("c")
+
+
+def test_jstring_code_point_before_returns_unicode_code_point():
+    value = JString("ação")
+
+    assert value.codePointBefore(2) == ord("ç")
+    assert value.codePointBefore(4) == ord("o")
+
+
+def test_jstring_code_point_before_rejects_invalid_index():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.codePointBefore(0)
+
+    with pytest.raises(IndexError):
+        value.codePointBefore(4)
+
+
+def test_jstring_code_point_before_rejects_non_integer_index():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.codePointBefore("1")
+
+
+def test_jstring_code_point_count_returns_ascii_count():
+    value = JString("abcdef")
+
+    assert value.codePointCount(0, 3) == 3
+    assert value.codePointCount(2, 6) == 4
+
+
+def test_jstring_code_point_count_returns_unicode_count():
+    value = JString("ação")
+
+    assert value.codePointCount(0, 4) == 4
+    assert value.codePointCount(1, 3) == 2
+
+
+def test_jstring_code_point_count_allows_empty_range():
+    value = JString("abc")
+
+    assert value.codePointCount(1, 1) == 0
+
+
+def test_jstring_code_point_count_rejects_invalid_range():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.codePointCount(-1, 2)
+
+    with pytest.raises(IndexError):
+        value.codePointCount(2, 1)
+
+    with pytest.raises(IndexError):
+        value.codePointCount(0, 4)
+
+
+def test_jstring_code_point_count_rejects_non_integer_indexes():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.codePointCount("0", 2)
+
+
+def test_jstring_offset_by_code_points_moves_forward():
+    value = JString("abcdef")
+
+    assert value.offsetByCodePoints(1, 3) == 4
+
+
+def test_jstring_offset_by_code_points_moves_backward():
+    value = JString("abcdef")
+
+    assert value.offsetByCodePoints(4, -2) == 2
+
+
+def test_jstring_offset_by_code_points_works_with_unicode():
+    value = JString("ação")
+
+    assert value.offsetByCodePoints(0, 2) == 2
+    assert value.offsetByCodePoints(3, -2) == 1
+
+
+def test_jstring_offset_by_code_points_allows_length_index():
+    value = JString("abc")
+
+    assert value.offsetByCodePoints(3, 0) == 3
+
+
+def test_jstring_offset_by_code_points_rejects_invalid_result():
+    value = JString("abc")
+
+    with pytest.raises(IndexError):
+        value.offsetByCodePoints(0, -1)
+
+    with pytest.raises(IndexError):
+        value.offsetByCodePoints(2, 2)
+
+
+def test_jstring_offset_by_code_points_rejects_non_integer_values():
+    value = JString("abc")
+
+    with pytest.raises(TypeError):
+        value.offsetByCodePoints("0", 1)
+
+    with pytest.raises(TypeError):
+        value.offsetByCodePoints(0, "1")
+
+
 def test_jstring_to_char_array_returns_character_list():
     value = JString("abc")
 
@@ -385,3 +532,168 @@ def test_region_matches_false():
         2,
         3,
     )
+    
+def test_jstring_value_of_positive_integer():
+    result = JString.valueOf(10)
+
+    assert isinstance(result, JString)
+    assert result._value == "10"
+
+
+def test_jstring_value_of_negative_integer():
+    result = JString.valueOf(-5)
+
+    assert result._value == "-5"
+
+
+def test_jstring_value_of_zero_integer():
+    result = JString.valueOf(0)
+
+    assert result._value == "0"
+
+
+def test_jstring_value_of_float():
+    result = JString.valueOf(10.5)
+
+    assert isinstance(result, JString)
+    assert result._value == "10.5"
+
+
+def test_jstring_value_of_negative_float():
+    result = JString.valueOf(-2.5)
+
+    assert result._value == "-2.5"
+    
+def test_jstring_value_of_boolean_true():
+    result = JString.valueOf(True)
+
+    assert result._value == "true"
+
+
+def test_jstring_value_of_boolean_false():
+    result = JString.valueOf(False)
+
+    assert result._value == "false"
+
+
+def test_jstring_value_of_char():
+    result = JString.valueOf("a")
+
+    assert result._value == "a"
+
+
+def test_jstring_value_of_string_text():
+    result = JString.valueOf("abc")
+
+    assert result._value == "abc"
+
+
+def test_jstring_value_of_character_list():
+    result = JString.valueOf(["a", "b", "c"])
+
+    assert isinstance(result, JString)
+    assert result._value == "abc"
+
+
+def test_jstring_value_of_character_tuple():
+    result = JString.valueOf(("a", "b", "c"))
+
+    assert result._value == "abc"
+
+
+def test_jstring_value_of_rejects_invalid_character_list():
+    with pytest.raises(ValueError):
+        JString.valueOf(["a", "bc"])
+
+
+class SampleObject:
+    def __str__(self):
+        return "sample-object"
+
+
+def test_jstring_value_of_accepts_generic_object():
+    result = JString.valueOf(SampleObject())
+
+    assert isinstance(result, JString)
+    assert result._value == "sample-object"
+
+
+def test_jstring_value_of_none_returns_null_text():
+    result = JString.valueOf(None)
+
+    assert isinstance(result, JString)
+    assert result._value == "null"
+
+
+def test_jstring_copy_value_of_creates_string_from_character_list():
+    result = JString.copyValueOf(["a", "b", "c"])
+
+    assert isinstance(result, JString)
+    assert result._value == "abc"
+
+
+def test_jstring_copy_value_of_rejects_invalid_character_list():
+    with pytest.raises(ValueError):
+        JString.copyValueOf(["a", "bc"])
+
+
+def test_jstring_format_with_string_argument():
+    result = JString.format("Hello, %s", "World")
+
+    assert isinstance(result, JString)
+    assert result._value == "Hello, World"
+
+
+def test_jstring_format_with_number_argument():
+    result = JString.format("Value: %d", 10)
+
+    assert isinstance(result, JString)
+    assert result._value == "Value: 10"
+
+
+def test_jstring_format_without_arguments_returns_original_text():
+    result = JString.format("No arguments")
+
+    assert isinstance(result, JString)
+    assert result._value == "No arguments"
+
+
+def test_jstring_format_rejects_invalid_format_string_type():
+    with pytest.raises(TypeError):
+        JString.format(123, "abc")
+
+
+def test_jstring_format_rejects_invalid_arguments():
+    with pytest.raises(ValueError):
+        JString.format("Value: %d", "abc")
+
+
+def test_jstring_join_with_python_strings():
+    result = JString.join(", ", "a", "b", "c")
+
+    assert isinstance(result, JString)
+    assert result._value == "a, b, c"
+
+
+def test_jstring_join_with_list_of_strings():
+    result = JString.join("-", ["a", "b", "c"])
+
+    assert isinstance(result, JString)
+    assert result._value == "a-b-c"
+
+
+def test_jstring_join_accepts_jstring_delimiter_and_elements():
+    result = JString.join(JString("-"), JString("a"), JString("b"))
+
+    assert isinstance(result, JString)
+    assert result._value == "a-b"
+
+
+def test_jstring_join_rejects_invalid_delimiter():
+    with pytest.raises(TypeError):
+        JString.join(123, "a", "b")
+
+
+def test_jstring_join_rejects_invalid_element():
+    with pytest.raises(TypeError):
+        JString.join("-", "a", 123)

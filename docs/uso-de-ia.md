@@ -88,7 +88,11 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 21/06/2026 | ChatGPT | Apoio na preparação do relatório da baseline v0.3-jfloat | `docs/relatorios/status-v0.3.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação inicial de JString | `javalang/jstring.py`, `javalang/__init__.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | Gemini     | Auxiliar na implementação dos métodos de igualdade, hash e comparação da classe JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita |
-| 21/06/2026 | Clude| Auxiliar na implementação dos básicos de tamanho, acesso a caracteres e conversão para arrays ou bytes. | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modifcações|
+| 21/06/2026 | Claude| Auxiliar na implementação dos básicos de tamanho, acesso a caracteres e conversão para arrays ou bytes. | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/uso-de-ia.md` e `docs/adaptacoes.md` | Aceita com modifcações|
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos de code points de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos valueOf básicos de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos métodos estáticos auxiliares de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+
 ---
 
 ## Registro de Uso 01
@@ -1010,3 +1014,147 @@ A IA sugeriu a implementação dos métodos de acesso, conversão e transformaç
 
 ### Resultado
 Aceita com modificações.
+
+## Registro de Uso 23
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos de code points da classe `JString`, incluindo `codePointAt`, `codePointBefore`, `codePointCount` e `offsetByCodePoints`.
+
+### Trecho do projeto afetado
+
+- `javalang/jstring.py`
+- `tests/test_jstring.py`
+- `docs/adaptacoes.md`
+- `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #67 da milestone `v0.4-jstring`, responsável pelos métodos `codePointAt`, `codePointBefore`, `codePointCount` e `offsetByCodePoints`, respeitando a regra de até três métodos por commit, criando testes e registrando as adaptações necessárias entre Java e Python.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação dos métodos de code points da classe `JString`, sugerindo a divisão da issue em dois blocos: `codePointAt` e `codePointBefore` no primeiro bloco, e `codePointCount` e `offsetByCodePoints` no segundo bloco.
+
+Também apoiou a definição da estratégia de adaptação para Python, utilizando o comportamento nativo de `str`, a função `ord` para obter o código Unicode de um caractere e operações de índice para contagem e deslocamento.
+
+Além disso, sugeriu testes automatizados para caracteres ASCII, caracteres Unicode simples, índices inválidos e tipos inválidos. A IA também auxiliou na redação do registro de adaptações em `docs/adaptacoes.md`, destacando a diferença entre o tratamento de Unicode em Java e Python.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #67, sem adicionar métodos de outras issues da milestone `v0.4-jstring`.
+
+As verificações locais foram executadas com sucesso utilizando:
+
+- `python -m ruff check .`
+- `python -m pytest`
+
+### Resultado
+
+Aceita com modificações.
+
+---
+
+## Registro de Uso 24
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos estáticos básicos `valueOf` da classe `JString`, incluindo conversões para inteiros, floats, booleanos, strings, caracteres e listas de caracteres.
+
+### Trecho do projeto afetado
+
+* `javalang/jstring.py`
+* `tests/test_jstring.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue de métodos `valueOf` básicos da milestone `v0.4-jstring`, mantendo o limite de métodos por commit e criando testes separados por bloco.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação do método estático `JString.valueOf`, separando a implementação em dois blocos: primeiro valores numéricos, depois booleanos, strings, caracteres e listas ou tuplas de caracteres.
+
+Também foram sugeridos testes automatizados para validar conversões de inteiros, floats, booleanos, strings, listas de caracteres e tuplas de caracteres.
+
+Além disso, a IA apoiou a redação da adaptação em `docs/adaptacoes.md`, registrando a diferença entre as sobrecargas de `String.valueOf` no Java e a adaptação para um único método com verificação de tipo em Python.
+
+### Validação da equipe
+
+O conteúdo foi revisado antes de ser incorporado ao projeto. A implementação foi mantida dentro do escopo da issue, sem adicionar `valueOf(Object)`, `copyValueOf`, `format` ou `join`, que pertencem à próxima issue.
+
+As verificações locais foram executadas utilizando:
+
+* `python -m pytest`
+* `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações. 
+---
+
+## Registro de Uso 25
+
+### Data
+
+21/06/2026
+
+### Ferramenta utilizada
+
+ChatGPT
+
+### Objetivo
+
+Auxiliar na implementação dos métodos estáticos auxiliares da classe `JString`, incluindo `valueOf(Object)`, `copyValueOf`, `format` e `join`.
+
+### Trecho do projeto afetado
+
+* `javalang/jstring.py`
+* `tests/test_jstring.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Prompt ou interação representativa
+
+> Ajudar a implementar a issue #76 da milestone `v0.4-jstring`, responsável pelos métodos estáticos auxiliares `valueOf(Object)`, `copyValueOf`, `format` e `join`, respeitando a regra de até três métodos por commit, criando testes e registrando as adaptações necessárias entre Java e Python.
+
+### Descrição da contribuição da IA
+
+A IA auxiliou na organização da implementação dos métodos estáticos auxiliares da classe `JString`, sugerindo a divisão da issue em dois blocos: `valueOf(Object)` e `copyValueOf` no primeiro bloco, e `format` e `join` no segundo bloco.
+
+Também apoiou a definição da estratégia de adaptação para Python, expandindo o método `valueOf` para aceitar objetos genéricos, tratando `None` como equivalente textual a `null`, criando `copyValueOf` a partir de listas ou tuplas de caracteres, utilizando formatação textual com o operador `%` e implementando `join` com suporte a valores `str` e `JString`.
+
+Além disso, sugeriu testes automatizados para objeto genérico, valor `None`, cópia de lista de caracteres, formatação simples, junção de strings e casos inválidos. A IA também auxiliou na redação do registro de adaptações em `docs/adaptacoes.md`.
+
+### Validação da equipe
+
+As sugestões foram revisadas antes de serem incorporadas ao projeto. A implementação foi mantida dentro do escopo da issue #76, sem adicionar métodos de outras issues da milestone `v0.4-jstring`.
+
+As verificações locais foram executadas com sucesso utilizando:
+
+* `python -m ruff check .`
+* `python -m pytest`
+
+### Resultado
+
+Aceita com modificações.
+
+---
+
