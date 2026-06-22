@@ -93,6 +93,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos valueOf básicos de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos estáticos auxiliares de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação dos método lastIndexOf para retornar o indice do elemento da string | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 22/06/2026 | Gemini     | Auxiliar na implementação e cenários de testes do método lastIndexOf | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 
 ---
 
@@ -1323,3 +1324,45 @@ As sugestões foram revisadas antes de serem incorporadas ao projeto. A implemen
 ### Resultado
 
 Aceita com modificações.
+
+## Registro de Uso 28
+
+### Data
+
+22/06/2026
+
+### Ferramenta Utilizada
+
+Gemini (Google)
+
+### Objetivo
+
+* Auxiliar na implementação unificada das variações do método `lastIndexOf` da classe `JString`.
+* Propor cenários e estruturas de testes usando `pytest` para cobrir busca reversa de caracteres e substrings.
+
+### Trecho do Projeto Afetado
+
+* `javalang/jstring.py`
+* `tests/test_jstring.py`
+* `docs/adaptacoes.md`
+* `docs/uso-de-ia.md`
+
+### Descrição da Contribuição da IA
+
+A IA sugeriu uma implementação unificada e idiomática em Python para o método `lastIndexOf`, concentrando as múltiplas sobrecargas da API Java em uma assinatura flexível com verificação de tipo em tempo de execução e o parâmetro opcional `fromIndex`. 
+
+Também auxiliou no mapeamento de cenários de teste específicos para a busca reversa, incluindo o comportamento com `fromIndex` negativo, índices além dos limites da string, substrings vazias e repetidas, códigos Unicode inteiros, e lançamentos de `TypeError` para parâmetros inválidos.
+
+### Validação da Equipe
+
+* O código sugerido foi revisado manualmente para garantir o alinhamento com a arquitetura geral da classe `JString`.
+* Os limites de escopo (regras de commits por método) foram respeitados.
+* A suíte de testes unitários foi executada com sucesso localmente usando `python -m pytest` e o linter `ruff`.
+
+### Resultado
+
+Aceita com modificações (ajustes nos textos de documentação para seguir os modelos preestabelecidos pelo grupo).
+
+
+
+

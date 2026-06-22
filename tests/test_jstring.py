@@ -941,3 +941,104 @@ def test_jstring_last_index_of_empty_string_returns_from_index():
 def test_jstring_last_index_of_empty_string_limits_from_index_to_length():
     value = JString("abcabc")
     assert value.lastIndexOf("", 20) == 6
+
+def test_jstring_matches_returns_true_when_full_text_matches_regex():
+    value = JString("abc123")
+    assert value.matches(r"[a-z]+[0-9]+") is True
+
+
+def test_jstring_matches_returns_false_when_only_part_matches_regex():
+    value = JString("abc123")
+    assert value.matches(r"[a-z]+") is False
+
+
+def test_jstring_matches_rejects_invalid_regex_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.matches(123)
+
+
+def test_jstring_replace_first_replaces_only_first_match():
+    value = JString("abc123def456")
+    result = value.replaceFirst(r"\d+", "#")
+    assert isinstance(result, JString)
+    assert result._value == "abc#def456"
+
+def test_jstring_replace_first_does_not_change_original_value():
+    value = JString("abc123")
+    result = value.replaceFirst(r"\d+", "#")
+    assert value._value == "abc123"
+    assert result._value == "abc#"
+
+
+def test_jstring_replace_first_rejects_invalid_regex_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.replaceFirst(123, "#")
+
+
+def test_jstring_replace_first_rejects_invalid_replacement_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.replaceFirst(r"\d+", 123)
+
+
+def test_jstring_replace_all_replaces_all_matches():
+    value = JString("abc123def456")
+    result = value.replaceAll(r"\d+", "#")
+    assert isinstance(result, JString)
+    assert result._value == "abc#def#"
+
+
+def test_jstring_replace_all_rejects_invalid_regex_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.replaceAll(123, "#")
+
+
+def test_jstring_replace_all_rejects_invalid_replacement_type():
+    value = JString("abc123")
+    with pytest.raises(TypeError):
+        value.replaceAll(r"\d+", 123)    
+
+def test_jstring_split_returns_list_of_jstrings():
+    value = JString("a,b,c")
+    result = value.split(",")
+    assert [item._value for item in result] == ["a", "b", "c"]
+    assert all(isinstance(item, JString) for item in result)
+
+
+def test_jstring_split_uses_regex_separator():
+    value = JString("a1b2c")
+    result = value.split(r"\d")
+    assert [item._value for item in result] == ["a", "b", "c"]
+
+
+def test_jstring_split_with_positive_limit():
+    value = JString("a,b,c")
+    result = value.split(",", 2)
+    assert [item._value for item in result] == ["a", "b,c"]
+
+def test_jstring_split_with_zero_limit_removes_trailing_empty_strings():
+    value = JString("a,b,")
+    result = value.split(",", 0)
+    assert [item._value for item in result] == ["a", "b"]
+
+
+def test_jstring_split_with_negative_limit_keeps_trailing_empty_strings():
+    value = JString("a,b,")
+    result = value.split(",", -1)
+    assert [item._value for item in result] == ["a", "b", ""]
+
+
+def test_jstring_split_rejects_invalid_regex_type():
+    value = JString("a,b,c")
+    with pytest.raises(TypeError):
+        value.split(123)
+
+
+def test_jstring_split_rejects_invalid_limit_type():
+    value = JString("a,b,c")
+    with pytest.raises(TypeError):
+        value.split(",", "2")
+        

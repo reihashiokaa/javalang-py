@@ -828,6 +828,39 @@ texto.upper()
 
 ---
 
+### JString — métodos lastIndexOf
+
+**Método:**
+`lastIndexOf(int)`, `lastIndexOf(int, int)`, `lastIndexOf(String)` e `lastIndexOf(String, int)`
+
+**Assinatura Java:**
+* `public int lastIndexOf(int ch)`
+* `public int lastIndexOf(int ch, int fromIndex)`
+* `public int lastIndexOf(String str)`
+* `public int lastIndexOf(String str, int fromIndex)`
+
+**Decisão da equipe:**
+As quatro sobrecargas da API Java foram consolidadas em um único método em Python com a assinatura `lastIndexOf(self, target, fromIndex=None)`. 
+
+O parâmetro `target` aceita `int` (interpretado como código Unicode e convertido usando `chr(target)`), `str` nativa do Python ou instâncias de `JString` (onde o valor interno `_value` é extraído). O controle do índice inicial da busca reversa utiliza o parâmetro opcional `fromIndex`.
+
+**Justificativa:**
+Como Python não suporta nativamente a sobrecarga de métodos com base em tipos de assinatura diferentes, a verificação de tipos (`isinstance`) e parâmetros padrão em tempo de execução foi a estratégia adotada para manter o contrato público da API Java em um único ponto de entrada.
+
+**Comportamento adotado em Python:**
+* Se `target` for `int`, busca o caractere equivalente via `chr(target)`. Caso o inteiro seja inválido para a tabela Unicode, retorna `-1`.
+* Se `fromIndex` for fornecido e for negativo, o método retorna imediatamente `-1`, replicando rigorosamente o comportamento da especificação do Java SE 8.
+* Se `fromIndex` for maior do que o comprimento da string, a busca reversa inicia a partir do último caractere.
+* Se a substring for vazia (`""`), o método retorna o valor de `fromIndex` (ou o tamanho da string se `fromIndex` for omitido), limitado ao tamanho total.
+* Tipos de parâmetros não previstos lançam explicitamente uma exceção do tipo `TypeError`.
+
+**Alternativa em Python (quando aplicável):**
+Utilização do método nativo `rfind` de strings do Python, aplicando fatiamento (`s[:fromIndex + 1]`) para ajustar a janela de busca reversa conforme os parâmetros fornecidos.
+
+```python
+# Busca reversa por substring com limite de índice
+self._value.rfind(sub_str, 0, fromIndex + 1)
+
 ## Histórico de Atualizações
 
 | Data       | Alteração                    | Responsável |
@@ -852,3 +885,4 @@ texto.upper()
 | 21/06/2026 | Registro das adaptações dos método lastIndexOf em SubStrings | Miguel |
 | 21/06/2026 | Registro das adaptações de code points em JString | Isabela |
 | 21/06/2026 | Registro das adaptações de `replace`, `toLowerCase` e `toUpperCase` em JString | Luciana |
+| 22/06/2026 | Registro das adaptações do método lastIndexOf em JString | Maria Eduarda |
