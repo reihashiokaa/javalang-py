@@ -1018,3 +1018,27 @@ def test_jstring_split_with_positive_limit():
     value = JString("a,b,c")
     result = value.split(",", 2)
     assert [item._value for item in result] == ["a", "b,c"]
+
+def test_jstring_split_with_zero_limit_removes_trailing_empty_strings():
+    value = JString("a,b,")
+    result = value.split(",", 0)
+    assert [item._value for item in result] == ["a", "b"]
+
+
+def test_jstring_split_with_negative_limit_keeps_trailing_empty_strings():
+    value = JString("a,b,")
+    result = value.split(",", -1)
+    assert [item._value for item in result] == ["a", "b", ""]
+
+
+def test_jstring_split_rejects_invalid_regex_type():
+    value = JString("a,b,c")
+    with pytest.raises(TypeError):
+        value.split(123)
+
+
+def test_jstring_split_rejects_invalid_limit_type():
+    value = JString("a,b,c")
+    with pytest.raises(TypeError):
+        value.split(",", "2")
+        
