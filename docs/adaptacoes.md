@@ -770,6 +770,41 @@ O método `format` também não implementa toda a sintaxe de formatação da cla
 **Pull Request relacionado:**
 A definir.
 
+
+### Busca e correspondência de conteúdo em JString
+
+**Classe:** `JString`
+
+**Métodos relacionados:**
+
+* `contains`
+* `startsWith`
+* `startsWith` com offset
+* `endsWith`
+* `regionMatches`
+* `regionMatches` com `ignoreCase`
+
+**Decisão da equipe:**
+
+Os métodos de busca e correspondência de conteúdo foram implementados utilizando as operações equivalentes disponíveis na classe `str` do Python. As sobrecargas existentes na API Java foram adaptadas para uma única implementação quando necessário, preservando o comportamento esperado da especificação.
+
+**Justificativa:**
+
+Python não possui suporte nativo à sobrecarga de métodos baseada em assinatura, como ocorre em Java. Por esse motivo, as variações de `startsWith` e `regionMatches` foram unificadas em uma única implementação capaz de tratar diferentes conjuntos de parâmetros. A funcionalidade original foi mantida sem perda de comportamento observável.
+
+**Comportamento adotado em Python:**
+
+* `contains(sequence)` verifica se uma sequência está presente na string.
+* `startsWith(prefix)` verifica se a string começa com o prefixo informado.
+* `startsWith(prefix, toffset)` verifica se a string começa com o prefixo a partir da posição indicada.
+* `endsWith(suffix)` verifica se a string termina com o sufixo informado.
+* `regionMatches(toffset, other, ooffset, length)` compara regiões específicas de duas strings.
+* `regionMatches(ignoreCase, toffset, other, ooffset, length)` compara regiões específicas ignorando diferenças entre maiúsculas e minúsculas quando solicitado.
+* Comparações de região que ultrapassem os limites das strings retornam `False`, seguindo o comportamento da API Java.
+
+**Issue relacionada:** #69
+
+
 ---
 
 ## Histórico de Atualizações

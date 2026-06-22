@@ -478,6 +478,60 @@ def test_jstring_intern_returns_same_instance():
     value = JString("abc")
     
     assert value.intern() is value
+
+def test_contains_present():
+    assert JString("hello world").contains("world")
+
+
+def test_contains_absent():
+    assert not JString("hello world").contains("python")
+
+
+def test_starts_with():
+    assert JString("hello").startsWith("he")
+
+
+def test_starts_with_offset():
+    assert JString("hello").startsWith("ll", 2)
+
+
+def test_starts_with_invalid_offset():
+    assert not JString("hello").startsWith("he", 10)
+
+
+def test_ends_with():
+    assert JString("hello").endsWith("lo")
+
+
+def test_ends_with_false():
+    assert not JString("hello").endsWith("he")
+
+def test_region_matches():
+    assert JString("abcdef").regionMatches(
+        2,
+        JString("xxcdeyy"),
+        2,
+        3,
+    )
+
+
+def test_region_matches_ignore_case():
+    assert JString("ABCDEF").regionMatches(
+        True,
+        2,
+        JString("xxcdeyy"),
+        2,
+        3,
+    )
+
+
+def test_region_matches_false():
+    assert not JString("abcdef").regionMatches(
+        2,
+        JString("xxxyz"),
+        2,
+        3,
+    )
     
 def test_jstring_value_of_positive_integer():
     result = JString.valueOf(10)
