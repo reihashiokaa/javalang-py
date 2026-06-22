@@ -92,6 +92,7 @@ Indique se a sugestão foi aceita, adaptada ou rejeitada.
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos de code points de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos valueOf básicos de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 | 21/06/2026 | ChatGPT | Apoio na implementação dos métodos estáticos auxiliares de JString | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
+| 21/06/2026 | ChatGPT | Apoio na implementação dos método lastIndexOf para retornar o indice do elemento da string | `javalang/jstring.py`, `tests/test_jstring.py`, `docs/adaptacoes.md`, `docs/uso-de-ia.md` | Aceita com modificações |
 
 ---
 
@@ -1233,6 +1234,46 @@ As sugestões foram revisadas antes de serem incorporadas ao projeto. A implemen
 
 * `python -m pytest`
 * `python -m ruff check .`
+
+### Resultado
+
+Aceita com modificações.
+
+---
+
+## Registro de Uso 28
+
+### Data
+
+**22/06/2026**
+
+### Ferramenta Utilizada
+
+ChatGPT (OpenAI)
+
+### Objetivo
+
+* Gerar sugestão de implementação dos métodos `lastIndexOf` da classe `JString`.
+* Propor casos de teste para validação da busca reversa de caracteres e substrings conforme a API Java.
+
+### Trecho do Projeto Afetado
+
+* `javalang/jstring.py` — método `lastIndexOf`
+* `tests/test_jstring.py` — casos de teste relacionados ao método `lastIndexOf`
+* `docs/adaptacoes.md` — registro da adaptação de sobrecarga para Python
+
+### Descrição da Contribuição da IA
+
+A IA sugeriu uma implementação unificada para as variações do método `lastIndexOf` previstas na API Java, utilizando verificação de tipos e parâmetro opcional para reproduzir as sobrecargas existentes em Java. Foram propostas adaptações para busca reversa por caractere, código Unicode, substring e instâncias de `JString`, considerando as limitações de sobrecarga de métodos em Python.
+
+Também foram sugeridos casos de teste cobrindo ocorrências encontradas e não encontradas, busca com índice inicial (`fromIndex`), substrings repetidas, índices limite, strings vazias e validação de parâmetros inválidos.
+
+### Validação da Equipe
+
+* Código revisado pelo responsável da issue antes de commitar.
+* Testes executados localmente com `python -m pytest`.
+* Lógica conferida manualmente comparando com a documentação da API Java SE 8.
+* Casos de teste revisados para garantir aderência ao comportamento esperado da especificação.
 
 ### Resultado
 
